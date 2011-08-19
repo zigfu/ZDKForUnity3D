@@ -185,18 +185,17 @@ public class OpenNISkeleton : MonoBehaviour
 		ret.Add("Orientation", orientationList);
 		return ret;
 	}
-	public string JSONSkeleton()
+    public ArrayList JSONSkeleton()
 	{
 		ArrayList data = new ArrayList();
 		foreach (SkeletonJoint j in Enum.GetValues(typeof(SkeletonJoint)))
 		{
 			data.Add(this.JSONJoint(j));
 		}
-		return JSON.JsonEncode(data);
+		return data;
 	}
-	public void SkeletonFromJSON(string encoded)
+    public void SkeletonFromJSON(ArrayList data)
 	{
-		ArrayList data = (ArrayList)JSON.JsonDecode(encoded);
 		foreach (SkeletonJoint j in Enum.GetValues(typeof(SkeletonJoint)))
 		{
 			this.JointFromJSON(j, (Hashtable)data[(int)j]);
