@@ -1,0 +1,175 @@
+fileFormatVersion: 1
+guid: ad4529d22e210f944af956c46e6a1f11
+ModelImporter:
+  importerVersion: 7
+  meshes:
+    scaleFactor: 0.01
+    useFileUnits: 1
+    meshCompression: 0
+    generateColliders: 0
+    swapUVs: 0
+  tangentSpace:
+    normalImportMode: 0
+    tangentImportMode: 1
+    smoothingAngle: 60
+    splitTangents: 1
+  materials:
+    generation: 1
+  animations:
+    generation: 3
+    bakeAnimations: 0
+    animationCompression: 1
+    animationWrapMode: 0
+    splitAnimations: 1
+  nodeInfo:
+    //RootNode:
+    - 100000
+    - 400000
+    - 11100000
+    Soldier:
+    - 100002
+    - 400002
+    R_LegikToe:
+    - 100004
+    - 400004
+    R_Legtoe:
+    - 100006
+    - 400006
+    R_LegikAnkle:
+    - 100008
+    - 400008
+    R_Legankle:
+    - 100010
+    - 400010
+    R_LegikBall:
+    - 100012
+    - 400012
+    R_LegtoePivot:
+    - 100014
+    - 400014
+    R_LegheelPivot:
+    - 100016
+    - 400016
+    L_LegikToe:
+    - 100018
+    - 400018
+    L_Legtoe:
+    - 100020
+    - 400020
+    L_LegikAnkle:
+    - 100022
+    - 400022
+    L_Legankle:
+    - 100024
+    - 400024
+    L_LegikBall:
+    - 100026
+    - 400026
+    L_LegtoePivot:
+    - 100028
+    - 400028
+    L_LegheelPivot:
+    - 100030
+    - 400030
+    R_Knee_CTRL:
+    - 100032
+    - 400032
+    L_Knee_CTRL:
+    - 100034
+    - 400034
+    R_Foot:
+    - 100036
+    - 400036
+    R_Ball:
+    - 100038
+    - 400038
+    R_Ankle:
+    - 100040
+    - 400040
+    R_Knee:
+    - 100042
+    - 400042
+    R_Hip:
+    - 100044
+    - 400044
+    L_Foot:
+    - 100046
+    - 400046
+    L_Ball:
+    - 100048
+    - 400048
+    L_Ankle:
+    - 100050
+    - 400050
+    L_Knee:
+    - 100052
+    - 400052
+    L_Hip:
+    - 100054
+    - 400054
+    R_Hand_Loc:
+    - 100056
+    - 400056
+    R_Hand:
+    - 100058
+    - 400058
+    R_Elbow:
+    - 100060
+    - 400060
+    R_Arm:
+    - 100062
+    - 400062
+    R_Shoulder:
+    - 100064
+    - 400064
+    L_Hand:
+    - 100066
+    - 400066
+    L_Elbow:
+    - 100068
+    - 400068
+    L_Arm:
+    - 100070
+    - 400070
+    L_Shoulder:
+    - 100072
+    - 400072
+    Head_Top:
+    - 100074
+    - 400074
+    Head:
+    - 100076
+    - 400076
+    Neck:
+    - 100078
+    - 400078
+    Spine_3:
+    - 100080
+    - 400080
+    Spine_2:
+    - 100082
+    - 400082
+    Spine_1:
+    - 100084
+    - 400084
+    Root 1:
+    - 100086
+    - 400086
+    - 13700000
+    Root:
+    - 100088
+    - 400088
+    MasterMover1:
+    - 100090
+    - 400090
+    L_LegL_Foot_CTRL:
+    - 100092
+    - 400092
+    R_LegR_Foot_CTRL:
+    - 100094
+    - 400094
+AssetImporter:
+  importerVersion: 1
+  fileIDToRecycleName:
+    4300000: Soldier
+    7400000: Take 001 //// Soldier
