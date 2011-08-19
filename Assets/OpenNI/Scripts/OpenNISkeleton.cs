@@ -39,7 +39,7 @@ public class OpenNISkeleton : MonoBehaviour
 	public bool UpdateRootPosition = false;
 	public bool UpdateOrientation = true;
 	public float RotationDamping = 15.0f;
-	public Vector3 Scale = new Vector3(0.001f,0.001f,-0.001f); 
+	public Vector3 Scale = new Vector3(0.001f,0.001f,0.001f); 
 	
 	private Transform[] transforms;
 	private Quaternion[] initialRotations;
@@ -100,6 +100,7 @@ public class OpenNISkeleton : MonoBehaviour
 	
 	public void UpdateRoot(Vector3 skelRoot)
 	{
+        // +Z is backwards in OpenNI coordinates, so reverse it
 		rootPosition = Vector3.Scale(new Vector3(skelRoot.x, skelRoot.y, -skelRoot.z), Scale);
 		if (UpdateRootPosition)
 		{
@@ -210,7 +211,6 @@ public class OpenNISkeleton : MonoBehaviour
 		sjo.X1 = 1.0f;
 		SkeletonJointPosition sjp = new SkeletonJointPosition();
 		SkeletonJointTransformation xform = new SkeletonJointTransformation();
-		// sorry, double cast required because c# is anal:
 		// object -> double ->float is okay, but object->float isn't
 		// (the object is a Double)
 		sjp.Position = new Point3D((float)(double)positionList[0],
