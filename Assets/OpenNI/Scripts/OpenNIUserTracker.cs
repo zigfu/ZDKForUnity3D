@@ -59,6 +59,7 @@ public class OpenNIUserTracker : MonoBehaviour
         this.poseDetectionCapability.PoseDetected += new EventHandler<PoseDetectedEventArgs>(poseDetectionCapability_PoseDetected);
         this.skeletonCapbility.CalibrationEnd += new EventHandler<CalibrationEndEventArgs>(skeletonCapbility_CalibrationEnd);
 	}
+
 	
 	private bool isTooClose = true;
 	private bool calibratedUserTooClose = true;
@@ -112,7 +113,7 @@ public class OpenNIUserTracker : MonoBehaviour
 				SkeletonJointTransformation skelTrans = new SkeletonJointTransformation();
 				skelTrans = skeletonCapbility.GetSkeletonJoint(e.ID, SkeletonJoint.Torso);
 				Point3D pos = skelTrans.Position.Position;
-				userCalibrationPosition[e.ID] = new Vector3(pos.X,pos.Y,pos.Z);
+				userCalibrationPosition[e.ID] = new Vector3(pos.X,pos.Y,-pos.Z);
 				
                 calibratedUsers.Add(e.ID);
             }
@@ -159,7 +160,7 @@ public class OpenNIUserTracker : MonoBehaviour
 		{
 			calibratingUsers.Remove(e.ID);
 		}
-		Debug.Log("User Lost, user count:" + allUsers.Count.ToString());
+
 		if (allUsers.Count == 0)
 		{			
 			SendMessage("AllUsersLost", e, SendMessageOptions.DontRequireReceiver);
@@ -214,7 +215,7 @@ public class OpenNIUserTracker : MonoBehaviour
 		else
 		{
 			Point3D pos = skelTrans.Position.Position;
-			Vector3 v3dpos = new Vector3(pos.X, pos.Y, pos.Z);
+			Vector3 v3dpos = new Vector3(pos.X, pos.Y, -pos.Z);
 			Vector3 calPos = userCalibrationPosition[userId];
 			skeleton.UpdateRoot(calPos - v3dpos); 
 		}

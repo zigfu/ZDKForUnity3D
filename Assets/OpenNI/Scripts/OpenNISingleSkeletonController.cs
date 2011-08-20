@@ -24,6 +24,13 @@ public class OpenNISingleSkeletonController : MonoBehaviour
 	
 	void Start()
 	{
+        if (!UserTracker) {
+            UserTracker = GetComponent<OpenNIUserTracker>();
+        }
+        if (!UserTracker) {
+            Debug.LogWarning("Missing a User Tracker. Adding...");
+            UserTracker = gameObject.AddComponent<OpenNIUserTracker>();
+        }
 	}
 	
 	// Update is called once per frame

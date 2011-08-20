@@ -34,7 +34,9 @@ public class OpenNIContext : MonoBehaviour
 	}
 
     public DepthGenerator Depth { get; private set; }
-	bool mirror
+
+	/*
+    public bool Mirror
 	{
 		get { return mirrorCap.IsMirrored(); }
 		set { if (!LoadFromRecording) mirrorCap.SetMirror(value); }
@@ -42,16 +44,19 @@ public class OpenNIContext : MonoBehaviour
 	
 	public static bool Mirror
 	{
-		get { return Instance.mirror; }
-		set { Instance.mirror = value; }
+		get { return Instance.Mirror; }
+		set { Instance.Mirror = value; }
 	}
-	
+	*/
+
+    private bool mirrorState;
+    public bool Mirror;
+
 	private MirrorCapability mirrorCap;
 	
 	public bool LoadFromRecording = false;
 	public string RecordingFilename = "";
 	public float RecordingFramerate = 30.0f;
-	public bool initialMirror = true;
 
     // Default key is NITE license from OpenNI.org
     public string LicenseKey = "0KOIk2JeIBYClPWVnMoRKn5cdY4=";
@@ -121,7 +126,10 @@ public class OpenNIContext : MonoBehaviour
 		
 		this.Depth = openNode(NodeType.Depth) as DepthGenerator;
 		this.mirrorCap = this.Depth.MirrorCapability;
-		if (!LoadFromRecording) this.mirrorCap.SetMirror(initialMirror);
+        if (!LoadFromRecording) {
+            this.mirrorCap.SetMirror(Mirror);
+            mirrorState = Mirror;
+        }
 	}
 	
 	IEnumerator ReadNextFrameFromRecording(Player player)
@@ -138,7 +146,10 @@ public class OpenNIContext : MonoBehaviour
 	public void Update () 
 	{
         if (null == context) return;
-
+        if (Mirror != mirrorState) {
+            mirrorCap.SetMirror(Mirror);
+            mirrorState = Mirror;
+        }
 		this.context.WaitNoneUpdateAll();
 	}
 	

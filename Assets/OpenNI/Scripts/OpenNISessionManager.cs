@@ -48,7 +48,7 @@ public class SessionManager : MonoBehaviour {
 
 	public static bool InSession
 	{
-		get { return Instance.inSession; }
+		get { return (instance != null && Instance.inSession); }
 	}
 
 	public bool DetectWave = true;
@@ -113,8 +113,8 @@ public class SessionManager : MonoBehaviour {
 
                 // TODO: make sure point is in a good position relative to the CoM of the user
                 // TODO: possibly take top user point into account?
-                Vector3 CoM = Point3DToVector3(userGenerator.GetCoM(user));
-                Vector3 gesturePoint = Point3DToVector3(e.IdentifiedPosition);
+                //Vector3 CoM = Point3DToVector3(userGenerator.GetCoM(user));
+                //Vector3 gesturePoint = Point3DToVector3(e.IdentifiedPosition);
                 this.hands.StartTracking(e.IdentifiedPosition);
             }
 

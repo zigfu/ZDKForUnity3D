@@ -6,7 +6,17 @@ public class OpenNIUsersRadar : MonoBehaviour {
 	public OpenNIUserTracker UserTracker;
 	public Vector2 RadarRealWorldDimensions = new Vector2(4000, 4000);
 	public int PixelsPerMeter = 35;
-		
+
+    void Start()
+    {
+        if (!UserTracker) {
+            UserTracker = GetComponent<OpenNIUserTracker>();
+        }
+        if (!UserTracker) {
+            UserTracker = gameObject.AddComponent<OpenNIUserTracker>();
+        }
+    }
+
 	void OnGUI () 
 	{
 		int width = (int)((float)PixelsPerMeter * (RadarRealWorldDimensions.x / 1000.0f));
@@ -29,7 +39,7 @@ public class OpenNIUsersRadar : MonoBehaviour {
 			radarPosition.y = Mathf.Clamp(radarPosition.y, 0.0f, 1.0f);
 
 			// we always want the radar to mirror the view, even if the depth doesn't
-			if (!OpenNIContext.Mirror)
+			if (!OpenNIContext.Instance.Mirror)
 			{
 				radarPosition.x = 1.0f - radarPosition.x;
 			}
