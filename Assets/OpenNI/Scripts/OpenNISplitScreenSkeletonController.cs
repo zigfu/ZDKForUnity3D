@@ -8,28 +8,25 @@ public class OpenNISplitScreenSkeletonController : MonoBehaviour
 	public OpenNISkeleton Skeleton1;
 	public OpenNISkeleton Skeleton2;
 	
-	public GUIText Skeleton1State;
-	public GUIText Skeleton2State;
-	
 	private int userId1;
 	private int userId2;
 	
 	// Use this for initialization
-	void OnEnable () 
+	void Start() 
 	{
-		if (null == UserTracker) return;
-		if (!UserTracker.enabled) UserTracker.enabled = true;
-		UserTracker.MaxCalibratedUsers = 2;
-	}
-	
-	void Start()
-	{
-		if (null != Skeleton1)
-		{
+        if (null == UserTracker) {
+            UserTracker = GetComponent<OpenNIUserTracker>();
+        }
+        if (null == UserTracker) {
+            UserTracker = gameObject.AddComponent<OpenNIUserTracker>();
+        }
+
+		UserTracker.MaxCalibratedUsers = Mathf.Max(2, UserTracker.MaxCalibratedUsers);
+
+        if (null != Skeleton1) {
 			Skeleton1.RotateToCalibrationPose();
 		}
-		if (null != Skeleton2)
-		{
+		if (null != Skeleton2) {
 			Skeleton2.RotateToCalibrationPose();
 		}
 	}
@@ -98,7 +95,7 @@ public class OpenNISplitScreenSkeletonController : MonoBehaviour
 		}
 		else 
 		{
-				GUILayout.Box(string.Format("User 1: Tracking"));
+			GUILayout.Box(string.Format("User 1: Tracking"));
 		}
 		
 		if (userId2 == 0)
@@ -114,7 +111,7 @@ public class OpenNISplitScreenSkeletonController : MonoBehaviour
 		}
 		else 
 		{
-				GUILayout.Box(string.Format("User 2: Tracking"));
+			GUILayout.Box(string.Format("User 2: Tracking"));
 		}
 	}
 }

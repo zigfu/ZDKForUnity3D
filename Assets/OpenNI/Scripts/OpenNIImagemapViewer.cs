@@ -33,8 +33,10 @@ public class OpenNIImagemapViewer : MonoBehaviour
         if (null != target) {
             // rendering to a mesh means the texture must be POT
             imageMapTexture = new Texture2D(Mathf.NextPowerOfTwo(Image.MapOutputMode.XRes), Mathf.NextPowerOfTwo(Image.MapOutputMode.YRes), TextureFormat.RGB24, false);
-		    float uScale =  Image.MapOutputMode.XRes / (float)Mathf.NextPowerOfTwo(Image.MapOutputMode.XRes);
-            float vScale = Image.MapOutputMode.YRes / (float)Mathf.NextPowerOfTwo(Image.MapOutputMode.YRes); 
+		    float uScale = Image.MapOutputMode.XRes / (float)Mathf.NextPowerOfTwo(Image.MapOutputMode.XRes);
+            float vScale = Image.MapOutputMode.YRes / (float)Mathf.NextPowerOfTwo(Image.MapOutputMode.YRes);
+            print("Uscale: " + uScale);
+            print("vscale: " + vScale);
             target.material.SetTextureScale("_MainTex", new Vector2(uScale, -vScale));
             target.material.SetTextureOffset("_MainTex", new Vector2(0.0f, vScale - 1.0f));
             target.material.mainTexture = imageMapTexture;
