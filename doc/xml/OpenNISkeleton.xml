@@ -1,0 +1,609 @@
+<Type Name="OpenNISkeleton" FullName="OpenNISkeleton">
+  <TypeSignature Language="C#" Value="public class OpenNISkeleton : UnityEngine.MonoBehaviour" />
+  <Base>
+    <BaseTypeName>UnityEngine.MonoBehaviour</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public OpenNISkeleton ();" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="absolute">
+      <MemberSignature Language="C#" Value="public bool absolute;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="Awake">
+      <MemberSignature Language="C#" Value="public void Awake ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetJointRealWorldPosition">
+      <MemberSignature Language="C#" Value="public OpenNI.Point3D GetJointRealWorldPosition (OpenNI.SkeletonJoint joint);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>OpenNI.Point3D</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="joint" Type="OpenNI.SkeletonJoint" />
+      </Parameters>
+      <Docs>
+        <param name="joint">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="Head">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform Head;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="JointFromJSON">
+      <MemberSignature Language="C#" Value="public void JointFromJSON (OpenNI.SkeletonJoint j, System.Collections.Hashtable dict);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="j" Type="OpenNI.SkeletonJoint" />
+        <Parameter Name="dict" Type="System.Collections.Hashtable" />
+      </Parameters>
+      <Docs>
+        <param name="j">To be added.</param>
+        <param name="dict">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="JSONJoint">
+      <MemberSignature Language="C#" Value="public System.Collections.Hashtable JSONJoint (OpenNI.SkeletonJoint j);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Collections.Hashtable</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="j" Type="OpenNI.SkeletonJoint" />
+      </Parameters>
+      <Docs>
+        <param name="j">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="JSONSkeleton">
+      <MemberSignature Language="C#" Value="public System.Collections.ArrayList JSONSkeleton ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.ArrayList</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="LeftAnkle">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform LeftAnkle;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="LeftCollar">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform LeftCollar;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="LeftElbow">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform LeftElbow;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="LeftFingertip">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform LeftFingertip;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="LeftFoot">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform LeftFoot;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="LeftHand">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform LeftHand;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="LeftHip">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform LeftHip;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="LeftKnee">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform LeftKnee;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="LeftShoulder">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform LeftShoulder;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="LeftWrist">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform LeftWrist;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="Neck">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform Neck;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="RightAnkle">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform RightAnkle;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="RightCollar">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform RightCollar;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="RightElbow">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform RightElbow;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="RightFingertip">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform RightFingertip;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="RightFoot">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform RightFoot;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="RightHand">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform RightHand;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="RightHip">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform RightHip;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="RightKnee">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform RightKnee;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="RightShoulder">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform RightShoulder;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="RightWrist">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform RightWrist;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="RotateToCalibrationPose">
+      <MemberSignature Language="C#" Value="public void RotateToCalibrationPose ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="RotationDamping">
+      <MemberSignature Language="C#" Value="public float RotationDamping;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Single</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="Scale">
+      <MemberSignature Language="C#" Value="public UnityEngine.Vector3 Scale;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Vector3</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="SkeletonFromJSON">
+      <MemberSignature Language="C#" Value="public void SkeletonFromJSON (System.Collections.ArrayList data);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="data" Type="System.Collections.ArrayList" />
+      </Parameters>
+      <Docs>
+        <param name="data">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Torso">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform Torso;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="UpdateJoint">
+      <MemberSignature Language="C#" Value="public void UpdateJoint (OpenNI.SkeletonJoint joint, OpenNI.SkeletonJointTransformation skelTrans);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="joint" Type="OpenNI.SkeletonJoint" />
+        <Parameter Name="skelTrans" Type="OpenNI.SkeletonJointTransformation" />
+      </Parameters>
+      <Docs>
+        <param name="joint">To be added.</param>
+        <param name="skelTrans">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="UpdateJointPositions">
+      <MemberSignature Language="C#" Value="public bool UpdateJointPositions;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="UpdateOrientation">
+      <MemberSignature Language="C#" Value="public bool UpdateOrientation;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="UpdateRoot">
+      <MemberSignature Language="C#" Value="public void UpdateRoot (UnityEngine.Vector3 skelRoot);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="skelRoot" Type="UnityEngine.Vector3" />
+      </Parameters>
+      <Docs>
+        <param name="skelRoot">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="UpdateRootPosition">
+      <MemberSignature Language="C#" Value="public bool UpdateRootPosition;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="Waist">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform Waist;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+  </Members>
+  <AssemblyInfo>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+</Type>

@@ -1,0 +1,71 @@
+<Type Name="OpenNISplitScreenSkeletonController" FullName="OpenNISplitScreenSkeletonController">
+  <TypeSignature Language="C#" Value="public class OpenNISplitScreenSkeletonController : UnityEngine.MonoBehaviour" />
+  <Base>
+    <BaseTypeName>UnityEngine.MonoBehaviour</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>Updates 2 OpenNISkeleton objects with the first 2 users to calibrate.</summary>
+    <remarks>After 2 users calibrate successfully all other users will be ignored. In case one of the calibrated users leaves the scene a new user will be able to calibrate. Requires an OpenNIUserTracker</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public OpenNISplitScreenSkeletonController ();" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Skeleton1">
+      <MemberSignature Language="C#" Value="public OpenNISkeleton Skeleton1;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>OpenNISkeleton</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Reference to first skeleton</summary>
+        <remarks />
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="Skeleton2">
+      <MemberSignature Language="C#" Value="public OpenNISkeleton Skeleton2;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>OpenNISkeleton</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Reference to second skeleton</summary>
+        <remarks />
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+    <Member MemberName="UserTracker">
+      <MemberSignature Language="C#" Value="public OpenNIUserTracker UserTracker;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>OpenNIUserTracker</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Reference to OpenNIUserTracker</summary>
+        <remarks />
+      </Docs>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+    </Member>
+  </Members>
+  <AssemblyInfo>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+</Type>

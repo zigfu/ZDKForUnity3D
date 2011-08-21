@@ -1,0 +1,221 @@
+<?xml version="1.0" ?><Type FullName="OpenNIContext" Name="OpenNIContext">
+  <TypeSignature Language="C#" Value="public class OpenNIContext : UnityEngine.MonoBehaviour"/>
+  <Base>
+    <BaseTypeName>UnityEngine.MonoBehaviour</BaseTypeName>
+  </Base>
+  <Interfaces/>
+  <Docs>
+    <summary>OpenNIContext is responsible for initializing and shutting down OpenNI, as well as opening 
+
+specific OpenNI streams. It is a singleton object and a scene should not have more than one 
+
+instance of it. An OpenNIContext will be implicitly added to the scene in runtime when using 
+
+OpenNI functionality, but it can be added explicitly to modify default behavior.
+
+OpenNI can be initialized in 3 different ways:
+1. Open the live sensor, and open streams when they are used
+2. Open an offline OpenNI file (.oni)
+3. Initialize OpenNI from an XML file
+
+By default the live sensor will be opened.
+</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    
+    
+    <Member MemberName="Context">
+      <MemberSignature Language="C#" Value="public static OpenNI.Context Context { get; }"/>
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>OpenNI.Context</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>The OpenNI context (Can be used with anything in OpenNI.NET)</summary>
+        <value>Context</value>
+        <remarks>No further comments. Move along now.</remarks>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="Depth">
+      <MemberSignature Language="C#" Value="public OpenNI.DepthGenerator Depth;"/>
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>OpenNI.NET Depth Generator</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Depth</summary>
+        <remarks/>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="Depth">
+      <MemberSignature Language="C#" Value="public OpenNI.DepthGenerator Depth { get; }"/>
+      <MemberType>Property</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>OpenNI.DepthGenerator</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="initialMirror">
+      <MemberSignature Language="C#" Value="public bool initialMirror;"/>
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Initial state of Mirror flag</summary>
+        <remarks/>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="Instance">
+      <MemberSignature Language="C#" Value="public static OpenNIContext Instance { get; }"/>
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>OpenNIContext</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Singleton instance of OpenNIContext</summary>
+        <value>Singleton</value>
+        <remarks/>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="LicenseKey">
+      <MemberSignature Language="C#" Value="public string LicenseKey;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="LicenseVendor">
+      <MemberSignature Language="C#" Value="public string LicenseVendor;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="LoadFromRecording">
+      <MemberSignature Language="C#" Value="public bool LoadFromRecording;"/>
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Set to True to initialize OpenNI from a recording (.oni file)</summary>
+        <remarks>You can create offline recordings using NIViewer</remarks>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="LoadFromXML">
+      <MemberSignature Language="C#" Value="public bool LoadFromXML;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Mirror">
+      <MemberSignature Language="C#" Value="public bool Mirror;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Mirror">
+      <MemberSignature Language="C#" Value="public static bool Mirror { set; get; }"/>
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Mirror flag from OpenNI</summary>
+        <value>True for On, False for Off</value>
+        <remarks>Mirror O'mercy</remarks>
+      </Docs>
+      
+    </Member>
+    
+    <Member MemberName="OpenNode">
+      <MemberSignature Language="C#" Value="public static OpenNI.ProductionNode OpenNode (OpenNI.NodeType nt);"/>
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>OpenNI.ProductionNode</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="nt" Type="OpenNI.NodeType"/>
+      </Parameters>
+      <Docs>
+        <param name="nt">OpenNI NodeType to open</param>
+        <summary>Opens an OpenNI stream of type NodeType. </summary>
+        <returns>The OpenNI ProductionNode</returns>
+        <remarks>Creates the ProductionNode if it isn't already open.</remarks>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="RecordingFilename">
+      <MemberSignature Language="C#" Value="public string RecordingFilename;"/>
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Name of offline file to use when LoadFromRecording is set to True</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="RecordingFramerate">
+      <MemberSignature Language="C#" Value="public float RecordingFramerate;"/>
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Single</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Framerate to play back an offline file when LoadFromRecording is set to True</summary>
+        <remarks/>
+      </Docs>
+      
+    </Member>
+    
+    <Member MemberName="XMLFilename">
+      <MemberSignature Language="C#" Value="public string XMLFilename;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  
+</Type>

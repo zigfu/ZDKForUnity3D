@@ -1,0 +1,126 @@
+<?xml version="1.0" ?><Type FullName="OpenNIUserTracker" Name="OpenNIUserTracker">
+  <TypeSignature Language="C#" Value="public class OpenNIUserTracker : UnityEngine.MonoBehaviour"/>
+  <Base>
+    <BaseTypeName>UnityEngine.MonoBehaviour</BaseTypeName>
+  </Base>
+  <Interfaces/>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    
+    <Member MemberName="AllUsers">
+      <MemberSignature Language="C#" Value="public System.Collections.Generic.IList&lt;int&gt; AllUsers { get; }"/>
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IList&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="CalibratedUsers">
+      <MemberSignature Language="C#" Value="public System.Collections.Generic.IList&lt;int&gt; CalibratedUsers { get; }"/>
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IList&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="CalibratingUsers">
+      <MemberSignature Language="C#" Value="public System.Collections.Generic.IList&lt;int&gt; CalibratingUsers { get; }"/>
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IList&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="GetUserCenterOfMass">
+      <MemberSignature Language="C#" Value="public UnityEngine.Vector3 GetUserCenterOfMass (int userId);"/>
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Vector3</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="userId" Type="System.Int32"/>
+      </Parameters>
+      <Docs>
+        <param name="userId">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="MaxCalibratedUsers">
+      <MemberSignature Language="C#" Value="public int MaxCalibratedUsers;"/>
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="UpdateSkeleton">
+      <MemberSignature Language="C#" Value="public void UpdateSkeleton (int userId, OpenNISkeleton skeleton);"/>
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="userId" Type="System.Int32"/>
+        <Parameter Name="skeleton" Type="OpenNISkeleton"/>
+      </Parameters>
+      <Docs>
+        <param name="userId">To be added.</param>
+        <param name="skeleton">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="UserCalibrationPosition">
+      <MemberSignature Language="C#" Value="public System.Collections.Generic.Dictionary&lt;int,UnityEngine.Vector3&gt; UserCalibrationPosition { get; }"/>
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.Dictionary&lt;System.Int32,UnityEngine.Vector3&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="UserTooCloseDistance">
+      <MemberSignature Language="C#" Value="public float UserTooCloseDistance;"/>
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Single</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      
+    </Member>
+  </Members>
+  
+</Type>

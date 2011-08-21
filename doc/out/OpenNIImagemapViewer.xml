@@ -1,0 +1,27 @@
+<?xml version="1.0" ?><Type FullName="OpenNIImagemapViewer" Name="OpenNIImagemapViewer">
+  <TypeSignature Language="C#" Value="public class OpenNIImagemapViewer : UnityEngine.MonoBehaviour"/>
+  <Base>
+    <BaseTypeName>UnityEngine.MonoBehaviour</BaseTypeName>
+  </Base>
+  <Interfaces/>
+  <Docs>
+    <summary>Renders an Image map</summary>
+    <remarks>If unity runs in OpenGL mode (&quot;unity.exe -force-opengl&quot;) a faster rendering method will be used (see WriteImageToTexture in the code for details)</remarks>
+  </Docs>
+  <Members>
+    
+    <Member MemberName="target">
+      <MemberSignature Language="C#" Value="public UnityEngine.Renderer target;"/>
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Renderer</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Renderer to draw depthmap to</summary>
+        <remarks>If not set the renderer attached to the GameObject will be used. If there is no renderer attached, the image map will be rendered to the GUI</remarks>
+      </Docs>
+      
+    </Member>
+  </Members>
+  
+</Type>

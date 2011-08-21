@@ -1,0 +1,593 @@
+<?xml version="1.0" ?><Type FullName="JSON" Name="JSON">
+  <TypeSignature Language="C#" Value="public class JSON"/>
+  
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces/>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public JSON ();"/>
+      <MemberType>Constructor</MemberType>
+      
+      <Parameters/>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="EatWhitespace">
+      <MemberSignature Language="C#" Value="protected void EatWhitespace (char[] json, ref int index);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="json" Type="System.Char[]"/>
+        <Parameter Name="index" RefType="ref" Type="System.Int32&amp;"/>
+      </Parameters>
+      <Docs>
+        <param name="json">To be added.</param>
+        <param name="index">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetLastErrorIndex">
+      <MemberSignature Language="C#" Value="public static int GetLastErrorIndex ();"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters/>
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetLastErrorSnippet">
+      <MemberSignature Language="C#" Value="public static string GetLastErrorSnippet ();"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters/>
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetLastIndexOfNumber">
+      <MemberSignature Language="C#" Value="protected int GetLastIndexOfNumber (char[] json, int index);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="json" Type="System.Char[]"/>
+        <Parameter Name="index" Type="System.Int32"/>
+      </Parameters>
+      <Docs>
+        <param name="json">To be added.</param>
+        <param name="index">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="instance">
+      <MemberSignature Language="C#" Value="protected static JSON instance;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>JSON</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsNumeric">
+      <MemberSignature Language="C#" Value="protected bool IsNumeric (object o);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="o" Type="System.Object"/>
+      </Parameters>
+      <Docs>
+        <param name="o">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="JsonDecode">
+      <MemberSignature Language="C#" Value="public static object JsonDecode (string json);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Object</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="json" Type="System.String"/>
+      </Parameters>
+      <Docs>
+        <param name="json">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="JsonEncode">
+      <MemberSignature Language="C#" Value="public static string JsonEncode (object json);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="json" Type="System.Object"/>
+      </Parameters>
+      <Docs>
+        <param name="json">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="lastDecode">
+      <MemberSignature Language="C#" Value="protected string lastDecode;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="LastDecodeSuccessful">
+      <MemberSignature Language="C#" Value="public static bool LastDecodeSuccessful ();"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters/>
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="lastErrorIndex">
+      <MemberSignature Language="C#" Value="protected int lastErrorIndex;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="LookAhead">
+      <MemberSignature Language="C#" Value="protected int LookAhead (char[] json, int index);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="json" Type="System.Char[]"/>
+        <Parameter Name="index" Type="System.Int32"/>
+      </Parameters>
+      <Docs>
+        <param name="json">To be added.</param>
+        <param name="index">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NextToken">
+      <MemberSignature Language="C#" Value="protected int NextToken (char[] json, ref int index);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="json" Type="System.Char[]"/>
+        <Parameter Name="index" RefType="ref" Type="System.Int32&amp;"/>
+      </Parameters>
+      <Docs>
+        <param name="json">To be added.</param>
+        <param name="index">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ParseArray">
+      <MemberSignature Language="C#" Value="protected System.Collections.ArrayList ParseArray (char[] json, ref int index);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Collections.ArrayList</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="json" Type="System.Char[]"/>
+        <Parameter Name="index" RefType="ref" Type="System.Int32&amp;"/>
+      </Parameters>
+      <Docs>
+        <param name="json">To be added.</param>
+        <param name="index">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ParseNumber">
+      <MemberSignature Language="C#" Value="protected double ParseNumber (char[] json, ref int index);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="json" Type="System.Char[]"/>
+        <Parameter Name="index" RefType="ref" Type="System.Int32&amp;"/>
+      </Parameters>
+      <Docs>
+        <param name="json">To be added.</param>
+        <param name="index">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ParseObject">
+      <MemberSignature Language="C#" Value="protected System.Collections.Hashtable ParseObject (char[] json, ref int index);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Collections.Hashtable</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="json" Type="System.Char[]"/>
+        <Parameter Name="index" RefType="ref" Type="System.Int32&amp;"/>
+      </Parameters>
+      <Docs>
+        <param name="json">To be added.</param>
+        <param name="index">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ParseString">
+      <MemberSignature Language="C#" Value="protected string ParseString (char[] json, ref int index);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="json" Type="System.Char[]"/>
+        <Parameter Name="index" RefType="ref" Type="System.Int32&amp;"/>
+      </Parameters>
+      <Docs>
+        <param name="json">To be added.</param>
+        <param name="index">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ParseValue">
+      <MemberSignature Language="C#" Value="protected object ParseValue (char[] json, ref int index, ref bool success);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Object</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="json" Type="System.Char[]"/>
+        <Parameter Name="index" RefType="ref" Type="System.Int32&amp;"/>
+        <Parameter Name="success" RefType="ref" Type="System.Boolean&amp;"/>
+      </Parameters>
+      <Docs>
+        <param name="json">To be added.</param>
+        <param name="index">To be added.</param>
+        <param name="success">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SerializeArray">
+      <MemberSignature Language="C#" Value="protected bool SerializeArray (System.Collections.ArrayList anArray, System.Text.StringBuilder builder);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="anArray" Type="System.Collections.ArrayList"/>
+        <Parameter Name="builder" Type="System.Text.StringBuilder"/>
+      </Parameters>
+      <Docs>
+        <param name="anArray">To be added.</param>
+        <param name="builder">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SerializeNumber">
+      <MemberSignature Language="C#" Value="protected void SerializeNumber (double number, System.Text.StringBuilder builder);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="number" Type="System.Double"/>
+        <Parameter Name="builder" Type="System.Text.StringBuilder"/>
+      </Parameters>
+      <Docs>
+        <param name="number">To be added.</param>
+        <param name="builder">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SerializeObject">
+      <MemberSignature Language="C#" Value="protected bool SerializeObject (System.Collections.Hashtable anObject, System.Text.StringBuilder builder);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="anObject" Type="System.Collections.Hashtable"/>
+        <Parameter Name="builder" Type="System.Text.StringBuilder"/>
+      </Parameters>
+      <Docs>
+        <param name="anObject">To be added.</param>
+        <param name="builder">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SerializeObjectOrArray">
+      <MemberSignature Language="C#" Value="protected bool SerializeObjectOrArray (object objectOrArray, System.Text.StringBuilder builder);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="objectOrArray" Type="System.Object"/>
+        <Parameter Name="builder" Type="System.Text.StringBuilder"/>
+      </Parameters>
+      <Docs>
+        <param name="objectOrArray">To be added.</param>
+        <param name="builder">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SerializeString">
+      <MemberSignature Language="C#" Value="protected void SerializeString (string aString, System.Text.StringBuilder builder);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="aString" Type="System.String"/>
+        <Parameter Name="builder" Type="System.Text.StringBuilder"/>
+      </Parameters>
+      <Docs>
+        <param name="aString">To be added.</param>
+        <param name="builder">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SerializeValue">
+      <MemberSignature Language="C#" Value="protected bool SerializeValue (object value, System.Text.StringBuilder builder);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="System.Object"/>
+        <Parameter Name="builder" Type="System.Text.StringBuilder"/>
+      </Parameters>
+      <Docs>
+        <param name="value">To be added.</param>
+        <param name="builder">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TOKEN_COLON">
+      <MemberSignature Language="C#" Value="public const int TOKEN_COLON = 5;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>5</MemberValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TOKEN_COMMA">
+      <MemberSignature Language="C#" Value="public const int TOKEN_COMMA = 6;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>6</MemberValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TOKEN_CURLY_CLOSE">
+      <MemberSignature Language="C#" Value="public const int TOKEN_CURLY_CLOSE = 2;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>2</MemberValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TOKEN_CURLY_OPEN">
+      <MemberSignature Language="C#" Value="public const int TOKEN_CURLY_OPEN = 1;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>1</MemberValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TOKEN_FALSE">
+      <MemberSignature Language="C#" Value="public const int TOKEN_FALSE = 10;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>10</MemberValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TOKEN_NONE">
+      <MemberSignature Language="C#" Value="public const int TOKEN_NONE = 0;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>0</MemberValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TOKEN_NULL">
+      <MemberSignature Language="C#" Value="public const int TOKEN_NULL = 11;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>11</MemberValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TOKEN_NUMBER">
+      <MemberSignature Language="C#" Value="public const int TOKEN_NUMBER = 8;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>8</MemberValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TOKEN_SQUARED_CLOSE">
+      <MemberSignature Language="C#" Value="public const int TOKEN_SQUARED_CLOSE = 4;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>4</MemberValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TOKEN_SQUARED_OPEN">
+      <MemberSignature Language="C#" Value="public const int TOKEN_SQUARED_OPEN = 3;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>3</MemberValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TOKEN_STRING">
+      <MemberSignature Language="C#" Value="public const int TOKEN_STRING = 7;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>7</MemberValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TOKEN_TRUE">
+      <MemberSignature Language="C#" Value="public const int TOKEN_TRUE = 9;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>9</MemberValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

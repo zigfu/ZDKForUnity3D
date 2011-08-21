@@ -1,0 +1,1871 @@
+<html>
+  <head>
+    <title>OpenNISkeleton</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+      a { text-decoration: none }
+
+      div.SideBar {
+        padding-left: 1em;
+        padding-right: 1em;
+        right: 0;
+        float: right;
+        border: thin solid black;
+        background-color: #f2f2f2;
+      }
+    
+      .CollectionTitle { font-weight: bold }
+      .PageTitle { font-size: 150%; font-weight: bold }
+
+      .Summary { }
+      .Signature { }          
+      .Remarks { }
+      .Members { }
+      .Copyright { }
+      
+      .Section { font-size: 125%; font-weight: bold }
+      p.Summary {
+        margin-left: 1em;
+      }
+      .SectionBox { margin-left: 2em }
+      .NamespaceName { font-size: 105%; font-weight: bold }
+      .NamespaceSumary { }
+      .MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+      .Subsection { font-size: 105%; font-weight: bold }
+      .SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+      .CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+      
+      .TypesListing {
+        border-collapse: collapse;
+      }
+
+      td {
+        vertical-align: top;
+      }
+      th {
+        text-align: left;
+      }
+
+      .TypesListing td { 
+        margin: 0px;  
+        padding: .25em;
+        border: solid gray 1px;
+      }
+
+      .TypesListing th { 
+        margin: 0px;  
+        padding: .25em;
+        background-color: #f2f2f2;
+        border: solid gray 1px;
+      }
+
+      div.Footer {
+        border-top: 1px solid gray;
+        margin-top: 1.5em;
+        padding-top: 0.6em;
+        text-align: center;
+        color: gray;
+      }
+
+      span.NotEntered /* Documentation for this section has not yet been entered */ {
+        font-style: italic;
+        color: red;	
+      }
+
+      div.Header {
+        background: #B0C4DE;
+        border: double;
+        border-color: white;
+        border-width: 7px;
+        padding: 0.5em;
+      }
+
+      div.Header * {
+        font-size: smaller;
+      }
+
+      div.Note {
+      }
+
+      i.ParamRef {
+      }
+
+      i.subtitle {
+      }
+
+      ul.TypeMembersIndex {
+        text-align: left;
+        background: #F8F8F8;
+      }
+
+      ul.TypeMembersIndex li {
+        display: inline;
+        margin:  0.5em;
+      }
+
+      table.HeaderTable {
+      }
+
+      table.SignatureTable {
+      }
+
+      table.Documentation, table.Enumeration, table.TypeDocumentation {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      table.Documentation tr th, table.TypeMembers tr th, table.Enumeration tr th, table.TypeDocumentation tr th {
+        background: whitesmoke;
+        padding: 0.8em;
+        border: 1px solid gray;
+        text-align: left;
+        vertical-align: bottom;
+      }
+
+      table.Documentation tr td, table.TypeMembers tr td, table.Enumeration tr td, table.TypeDocumentation tr td {
+        padding: 0.5em;
+        border: 1px solid gray;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      table.TypeMembers {
+        border: 1px solid #C0C0C0;
+        width: 100%;
+      }
+
+      table.TypeMembers tr td {
+        background: #F8F8F8;
+        border: white;
+      }
+
+      table.Documentation {
+      }
+
+      table.TypeMembers {
+      }
+
+      div.CodeExample {
+        width: 100%;
+        border: 1px solid #DDDDDD;
+        background-color: #F8F8F8;
+      }
+
+      div.CodeExample p {
+        margin: 0.5em;
+        border-bottom: 1px solid #DDDDDD;
+      }
+
+      div.CodeExample div {
+        margin: 0.5em;
+      }
+
+      h4 {
+        margin-bottom: 0;
+      }
+
+      div.Signature {
+        border: 1px solid #C0C0C0;
+        background: #F2F2F2;
+        padding: 1em;
+      }
+    </style>
+    <script type="text/JavaScript">
+      function toggle_display (block) {
+        var w = document.getElementById (block);
+        var t = document.getElementById (block + ":toggle");
+        if (w.style.display == "none") {
+          w.style.display = "block";
+          t.innerHTML = "⊟";
+        } else {
+          w.style.display = "none";
+          t.innerHTML = "⊞";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="index.html">
+      </a> : <a href="index.html"> Namespace</a></div>
+    <div class="SideBar">
+      <p>
+        <a href="#T:OpenNISkeleton">Overview</a>
+      </p>
+      <p>
+        <a href="#T:OpenNISkeleton:Signature">Signature</a>
+      </p>
+      <p>
+        <a href="#T:OpenNISkeleton:Docs">Remarks</a>
+      </p>
+      <p>
+        <a href="#Members">Members</a>
+      </p>
+      <p>
+        <a href="#T:OpenNISkeleton:Members">Member Details</a>
+      </p>
+    </div>
+    <h1 class="PageTitle" id="T:OpenNISkeleton">OpenNISkeleton  Class</h1>
+    <p class="Summary" id="T:OpenNISkeleton:Summary">
+      <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+    </p>
+    <div id="T:OpenNISkeleton:Signature">
+      <div class="Signature">public class  <b>OpenNISkeleton</b> : <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.MonoBehaviour</a></div>
+    </div>
+    <div class="Remarks" id="T:OpenNISkeleton:Docs">
+      <h4 class="Subsection">
+        <a href="javascript:toggle_display('T:OpenNISkeleton:Docs:Remarks')">
+          <span id="T:OpenNISkeleton:Docs:Remarks:toggle">⊟</span> Remarks</a>
+      </h4>
+      <blockquote class="SubsectionBox" id="T:OpenNISkeleton:Docs:Remarks">
+        <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+      </blockquote>
+      <h4 class="Subsection">
+        <a href="javascript:toggle_display('T:OpenNISkeleton:Docs:Version Information')">
+          <span id="T:OpenNISkeleton:Docs:Version Information:toggle">⊟</span> Requirements</a>
+      </h4>
+      <blockquote class="SubsectionBox" id="T:OpenNISkeleton:Docs:Version Information">
+        <b>Namespace: </b>
+      </blockquote>
+      <h2 class="Section" id="Members">
+        <a href="javascript:toggle_display('_Members')">
+          <span id="_Members:toggle">⊟</span> Members</a>
+      </h2>
+      <blockquote class="SectionBox" id="_Members">
+        <p>
+								See Also: Inherited members from
+								<a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.MonoBehaviour</a>.
+							</p>
+        <h3>
+          <a href="javascript:toggle_display('Public Fields')">
+            <span id="Public Fields:toggle">⊟</span> Public Fields</a>
+        </h3>
+        <blockquote id="Public Fields">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.absolute">absolute</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.Head">Head</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.LeftAnkle">LeftAnkle</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.LeftCollar">LeftCollar</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.LeftElbow">LeftElbow</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.LeftFingertip">LeftFingertip</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.LeftFoot">LeftFoot</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.LeftHand">LeftHand</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.LeftHip">LeftHip</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.LeftKnee">LeftKnee</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.LeftShoulder">LeftShoulder</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.LeftWrist">LeftWrist</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.Neck">Neck</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.RightAnkle">RightAnkle</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.RightCollar">RightCollar</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.RightElbow">RightElbow</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.RightFingertip">RightFingertip</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.RightFoot">RightFoot</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.RightHand">RightHand</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.RightHip">RightHip</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.RightKnee">RightKnee</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.RightShoulder">RightShoulder</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.RightWrist">RightWrist</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.RotationDamping">RotationDamping</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Single">float</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.Scale">Scale</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.Torso">Torso</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.UpdateJointPositions">UpdateJointPositions</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.UpdateOrientation">UpdateOrientation</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.UpdateRootPosition">UpdateRootPosition</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:OpenNISkeleton.Waist">Waist</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+            </table>
+          </div>
+        </blockquote>
+        <h3>
+          <a href="javascript:toggle_display('Public Methods')">
+            <span id="Public Methods:toggle">⊟</span> Public Methods</a>
+        </h3>
+        <blockquote id="Public Methods">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:OpenNISkeleton.GetJointRealWorldPosition(OpenNI.SkeletonJoint)">GetJointRealWorldPosition</a>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.SkeletonJoint</a>)<nobr> : <a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.Point3D</a></nobr><blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:OpenNISkeleton.JointFromJSON(OpenNI.SkeletonJoint,System.Collections.Hashtable)">JointFromJSON</a>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.SkeletonJoint</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Hashtable">Hashtable</a>)<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:OpenNISkeleton.JSONJoint(OpenNI.SkeletonJoint)">JSONJoint</a>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.SkeletonJoint</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Hashtable">Hashtable</a></nobr><blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:OpenNISkeleton.JSONSkeleton">JSONSkeleton</a>
+                  </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.ArrayList">ArrayList</a></nobr><blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:OpenNISkeleton.RotateToCalibrationPose">RotateToCalibrationPose</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:OpenNISkeleton.SkeletonFromJSON(System.Collections.ArrayList)">SkeletonFromJSON</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.ArrayList">ArrayList</a>)<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:OpenNISkeleton.UpdateJoint(OpenNI.SkeletonJoint,OpenNI.SkeletonJointTransformation)">UpdateJoint</a>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.SkeletonJoint</a>, <a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.SkeletonJointTransformation</a>)<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:OpenNISkeleton.UpdateRoot(UnityEngine.Vector3)">UpdateRoot</a>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a>)<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+            </table>
+          </div>
+        </blockquote>
+      </blockquote>
+    </div>
+    <div class="Members" id="T:OpenNISkeleton:Members">
+      <h2 class="Section" id="MemberDetails">
+        <a href="javascript:toggle_display('_MemberDetails')">
+          <span id="_MemberDetails:toggle">⊟</span> Member Details</a>
+      </h2>
+      <blockquote class="SectionBox" id="_MemberDetails">
+        <h3 id="F:OpenNISkeleton.absolute">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.absolute:member')">
+            <span id="F:OpenNISkeleton.absolute:member:toggle">⊟</span> absolute Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.absolute:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>absolute</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.absolute:Remarks')">
+              <span id="F:OpenNISkeleton.absolute:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.absolute:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.absolute:Version Information')">
+              <span id="F:OpenNISkeleton.absolute:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.absolute:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:OpenNISkeleton.GetJointRealWorldPosition(OpenNI.SkeletonJoint)">
+          <a href="javascript:toggle_display('M:OpenNISkeleton.GetJointRealWorldPosition(OpenNI.SkeletonJoint):member')">
+            <span id="M:OpenNISkeleton.GetJointRealWorldPosition(OpenNI.SkeletonJoint):member:toggle">⊟</span> GetJointRealWorldPosition Method</a>
+        </h3>
+        <blockquote id="M:OpenNISkeleton.GetJointRealWorldPosition(OpenNI.SkeletonJoint):member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.Point3D</a> <b>GetJointRealWorldPosition</b> (<a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.SkeletonJoint</a> joint)</div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.GetJointRealWorldPosition(OpenNI.SkeletonJoint):Parameters')">
+              <span id="M:OpenNISkeleton.GetJointRealWorldPosition(OpenNI.SkeletonJoint):Parameters:toggle">⊟</span> Parameters</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.GetJointRealWorldPosition(OpenNI.SkeletonJoint):Parameters">
+            <dl>
+              <dt>
+                <i>joint</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.GetJointRealWorldPosition(OpenNI.SkeletonJoint):Returns')">
+              <span id="M:OpenNISkeleton.GetJointRealWorldPosition(OpenNI.SkeletonJoint):Returns:toggle">⊟</span> Returns</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.GetJointRealWorldPosition(OpenNI.SkeletonJoint):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.GetJointRealWorldPosition(OpenNI.SkeletonJoint):Remarks')">
+              <span id="M:OpenNISkeleton.GetJointRealWorldPosition(OpenNI.SkeletonJoint):Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.GetJointRealWorldPosition(OpenNI.SkeletonJoint):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.GetJointRealWorldPosition(OpenNI.SkeletonJoint):Version Information')">
+              <span id="M:OpenNISkeleton.GetJointRealWorldPosition(OpenNI.SkeletonJoint):Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.GetJointRealWorldPosition(OpenNI.SkeletonJoint):Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.Head">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.Head:member')">
+            <span id="F:OpenNISkeleton.Head:member:toggle">⊟</span> Head Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.Head:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>Head</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.Head:Remarks')">
+              <span id="F:OpenNISkeleton.Head:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.Head:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.Head:Version Information')">
+              <span id="F:OpenNISkeleton.Head:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.Head:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:OpenNISkeleton.JointFromJSON(OpenNI.SkeletonJoint,System.Collections.Hashtable)">
+          <a href="javascript:toggle_display('M:OpenNISkeleton.JointFromJSON(OpenNI.SkeletonJoint,System.Collections.Hashtable):member')">
+            <span id="M:OpenNISkeleton.JointFromJSON(OpenNI.SkeletonJoint,System.Collections.Hashtable):member:toggle">⊟</span> JointFromJSON Method</a>
+        </h3>
+        <blockquote id="M:OpenNISkeleton.JointFromJSON(OpenNI.SkeletonJoint,System.Collections.Hashtable):member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>JointFromJSON</b> (<a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.SkeletonJoint</a> j, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Hashtable">Hashtable</a> dict)</div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.JointFromJSON(OpenNI.SkeletonJoint,System.Collections.Hashtable):Parameters')">
+              <span id="M:OpenNISkeleton.JointFromJSON(OpenNI.SkeletonJoint,System.Collections.Hashtable):Parameters:toggle">⊟</span> Parameters</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.JointFromJSON(OpenNI.SkeletonJoint,System.Collections.Hashtable):Parameters">
+            <dl>
+              <dt>
+                <i>j</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+              <dt>
+                <i>dict</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.JointFromJSON(OpenNI.SkeletonJoint,System.Collections.Hashtable):Remarks')">
+              <span id="M:OpenNISkeleton.JointFromJSON(OpenNI.SkeletonJoint,System.Collections.Hashtable):Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.JointFromJSON(OpenNI.SkeletonJoint,System.Collections.Hashtable):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.JointFromJSON(OpenNI.SkeletonJoint,System.Collections.Hashtable):Version Information')">
+              <span id="M:OpenNISkeleton.JointFromJSON(OpenNI.SkeletonJoint,System.Collections.Hashtable):Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.JointFromJSON(OpenNI.SkeletonJoint,System.Collections.Hashtable):Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:OpenNISkeleton.JSONJoint(OpenNI.SkeletonJoint)">
+          <a href="javascript:toggle_display('M:OpenNISkeleton.JSONJoint(OpenNI.SkeletonJoint):member')">
+            <span id="M:OpenNISkeleton.JSONJoint(OpenNI.SkeletonJoint):member:toggle">⊟</span> JSONJoint Method</a>
+        </h3>
+        <blockquote id="M:OpenNISkeleton.JSONJoint(OpenNI.SkeletonJoint):member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Hashtable">Hashtable</a> <b>JSONJoint</b> (<a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.SkeletonJoint</a> j)</div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.JSONJoint(OpenNI.SkeletonJoint):Parameters')">
+              <span id="M:OpenNISkeleton.JSONJoint(OpenNI.SkeletonJoint):Parameters:toggle">⊟</span> Parameters</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.JSONJoint(OpenNI.SkeletonJoint):Parameters">
+            <dl>
+              <dt>
+                <i>j</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.JSONJoint(OpenNI.SkeletonJoint):Returns')">
+              <span id="M:OpenNISkeleton.JSONJoint(OpenNI.SkeletonJoint):Returns:toggle">⊟</span> Returns</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.JSONJoint(OpenNI.SkeletonJoint):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.JSONJoint(OpenNI.SkeletonJoint):Remarks')">
+              <span id="M:OpenNISkeleton.JSONJoint(OpenNI.SkeletonJoint):Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.JSONJoint(OpenNI.SkeletonJoint):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.JSONJoint(OpenNI.SkeletonJoint):Version Information')">
+              <span id="M:OpenNISkeleton.JSONJoint(OpenNI.SkeletonJoint):Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.JSONJoint(OpenNI.SkeletonJoint):Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:OpenNISkeleton.JSONSkeleton">
+          <a href="javascript:toggle_display('M:OpenNISkeleton.JSONSkeleton:member')">
+            <span id="M:OpenNISkeleton.JSONSkeleton:member:toggle">⊟</span> JSONSkeleton Method</a>
+        </h3>
+        <blockquote id="M:OpenNISkeleton.JSONSkeleton:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.ArrayList">ArrayList</a> <b>JSONSkeleton</b> ()</div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.JSONSkeleton:Returns')">
+              <span id="M:OpenNISkeleton.JSONSkeleton:Returns:toggle">⊟</span> Returns</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.JSONSkeleton:Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.JSONSkeleton:Remarks')">
+              <span id="M:OpenNISkeleton.JSONSkeleton:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.JSONSkeleton:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.JSONSkeleton:Version Information')">
+              <span id="M:OpenNISkeleton.JSONSkeleton:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.JSONSkeleton:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.LeftAnkle">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.LeftAnkle:member')">
+            <span id="F:OpenNISkeleton.LeftAnkle:member:toggle">⊟</span> LeftAnkle Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.LeftAnkle:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>LeftAnkle</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftAnkle:Remarks')">
+              <span id="F:OpenNISkeleton.LeftAnkle:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftAnkle:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftAnkle:Version Information')">
+              <span id="F:OpenNISkeleton.LeftAnkle:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftAnkle:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.LeftCollar">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.LeftCollar:member')">
+            <span id="F:OpenNISkeleton.LeftCollar:member:toggle">⊟</span> LeftCollar Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.LeftCollar:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>LeftCollar</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftCollar:Remarks')">
+              <span id="F:OpenNISkeleton.LeftCollar:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftCollar:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftCollar:Version Information')">
+              <span id="F:OpenNISkeleton.LeftCollar:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftCollar:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.LeftElbow">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.LeftElbow:member')">
+            <span id="F:OpenNISkeleton.LeftElbow:member:toggle">⊟</span> LeftElbow Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.LeftElbow:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>LeftElbow</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftElbow:Remarks')">
+              <span id="F:OpenNISkeleton.LeftElbow:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftElbow:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftElbow:Version Information')">
+              <span id="F:OpenNISkeleton.LeftElbow:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftElbow:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.LeftFingertip">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.LeftFingertip:member')">
+            <span id="F:OpenNISkeleton.LeftFingertip:member:toggle">⊟</span> LeftFingertip Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.LeftFingertip:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>LeftFingertip</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftFingertip:Remarks')">
+              <span id="F:OpenNISkeleton.LeftFingertip:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftFingertip:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftFingertip:Version Information')">
+              <span id="F:OpenNISkeleton.LeftFingertip:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftFingertip:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.LeftFoot">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.LeftFoot:member')">
+            <span id="F:OpenNISkeleton.LeftFoot:member:toggle">⊟</span> LeftFoot Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.LeftFoot:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>LeftFoot</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftFoot:Remarks')">
+              <span id="F:OpenNISkeleton.LeftFoot:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftFoot:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftFoot:Version Information')">
+              <span id="F:OpenNISkeleton.LeftFoot:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftFoot:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.LeftHand">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.LeftHand:member')">
+            <span id="F:OpenNISkeleton.LeftHand:member:toggle">⊟</span> LeftHand Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.LeftHand:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>LeftHand</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftHand:Remarks')">
+              <span id="F:OpenNISkeleton.LeftHand:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftHand:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftHand:Version Information')">
+              <span id="F:OpenNISkeleton.LeftHand:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftHand:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.LeftHip">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.LeftHip:member')">
+            <span id="F:OpenNISkeleton.LeftHip:member:toggle">⊟</span> LeftHip Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.LeftHip:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>LeftHip</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftHip:Remarks')">
+              <span id="F:OpenNISkeleton.LeftHip:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftHip:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftHip:Version Information')">
+              <span id="F:OpenNISkeleton.LeftHip:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftHip:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.LeftKnee">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.LeftKnee:member')">
+            <span id="F:OpenNISkeleton.LeftKnee:member:toggle">⊟</span> LeftKnee Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.LeftKnee:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>LeftKnee</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftKnee:Remarks')">
+              <span id="F:OpenNISkeleton.LeftKnee:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftKnee:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftKnee:Version Information')">
+              <span id="F:OpenNISkeleton.LeftKnee:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftKnee:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.LeftShoulder">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.LeftShoulder:member')">
+            <span id="F:OpenNISkeleton.LeftShoulder:member:toggle">⊟</span> LeftShoulder Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.LeftShoulder:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>LeftShoulder</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftShoulder:Remarks')">
+              <span id="F:OpenNISkeleton.LeftShoulder:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftShoulder:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftShoulder:Version Information')">
+              <span id="F:OpenNISkeleton.LeftShoulder:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftShoulder:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.LeftWrist">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.LeftWrist:member')">
+            <span id="F:OpenNISkeleton.LeftWrist:member:toggle">⊟</span> LeftWrist Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.LeftWrist:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>LeftWrist</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftWrist:Remarks')">
+              <span id="F:OpenNISkeleton.LeftWrist:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftWrist:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.LeftWrist:Version Information')">
+              <span id="F:OpenNISkeleton.LeftWrist:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.LeftWrist:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.Neck">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.Neck:member')">
+            <span id="F:OpenNISkeleton.Neck:member:toggle">⊟</span> Neck Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.Neck:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>Neck</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.Neck:Remarks')">
+              <span id="F:OpenNISkeleton.Neck:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.Neck:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.Neck:Version Information')">
+              <span id="F:OpenNISkeleton.Neck:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.Neck:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.RightAnkle">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.RightAnkle:member')">
+            <span id="F:OpenNISkeleton.RightAnkle:member:toggle">⊟</span> RightAnkle Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.RightAnkle:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>RightAnkle</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightAnkle:Remarks')">
+              <span id="F:OpenNISkeleton.RightAnkle:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightAnkle:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightAnkle:Version Information')">
+              <span id="F:OpenNISkeleton.RightAnkle:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightAnkle:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.RightCollar">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.RightCollar:member')">
+            <span id="F:OpenNISkeleton.RightCollar:member:toggle">⊟</span> RightCollar Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.RightCollar:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>RightCollar</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightCollar:Remarks')">
+              <span id="F:OpenNISkeleton.RightCollar:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightCollar:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightCollar:Version Information')">
+              <span id="F:OpenNISkeleton.RightCollar:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightCollar:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.RightElbow">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.RightElbow:member')">
+            <span id="F:OpenNISkeleton.RightElbow:member:toggle">⊟</span> RightElbow Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.RightElbow:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>RightElbow</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightElbow:Remarks')">
+              <span id="F:OpenNISkeleton.RightElbow:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightElbow:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightElbow:Version Information')">
+              <span id="F:OpenNISkeleton.RightElbow:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightElbow:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.RightFingertip">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.RightFingertip:member')">
+            <span id="F:OpenNISkeleton.RightFingertip:member:toggle">⊟</span> RightFingertip Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.RightFingertip:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>RightFingertip</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightFingertip:Remarks')">
+              <span id="F:OpenNISkeleton.RightFingertip:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightFingertip:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightFingertip:Version Information')">
+              <span id="F:OpenNISkeleton.RightFingertip:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightFingertip:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.RightFoot">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.RightFoot:member')">
+            <span id="F:OpenNISkeleton.RightFoot:member:toggle">⊟</span> RightFoot Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.RightFoot:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>RightFoot</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightFoot:Remarks')">
+              <span id="F:OpenNISkeleton.RightFoot:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightFoot:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightFoot:Version Information')">
+              <span id="F:OpenNISkeleton.RightFoot:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightFoot:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.RightHand">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.RightHand:member')">
+            <span id="F:OpenNISkeleton.RightHand:member:toggle">⊟</span> RightHand Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.RightHand:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>RightHand</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightHand:Remarks')">
+              <span id="F:OpenNISkeleton.RightHand:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightHand:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightHand:Version Information')">
+              <span id="F:OpenNISkeleton.RightHand:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightHand:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.RightHip">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.RightHip:member')">
+            <span id="F:OpenNISkeleton.RightHip:member:toggle">⊟</span> RightHip Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.RightHip:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>RightHip</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightHip:Remarks')">
+              <span id="F:OpenNISkeleton.RightHip:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightHip:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightHip:Version Information')">
+              <span id="F:OpenNISkeleton.RightHip:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightHip:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.RightKnee">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.RightKnee:member')">
+            <span id="F:OpenNISkeleton.RightKnee:member:toggle">⊟</span> RightKnee Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.RightKnee:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>RightKnee</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightKnee:Remarks')">
+              <span id="F:OpenNISkeleton.RightKnee:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightKnee:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightKnee:Version Information')">
+              <span id="F:OpenNISkeleton.RightKnee:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightKnee:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.RightShoulder">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.RightShoulder:member')">
+            <span id="F:OpenNISkeleton.RightShoulder:member:toggle">⊟</span> RightShoulder Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.RightShoulder:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>RightShoulder</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightShoulder:Remarks')">
+              <span id="F:OpenNISkeleton.RightShoulder:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightShoulder:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightShoulder:Version Information')">
+              <span id="F:OpenNISkeleton.RightShoulder:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightShoulder:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.RightWrist">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.RightWrist:member')">
+            <span id="F:OpenNISkeleton.RightWrist:member:toggle">⊟</span> RightWrist Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.RightWrist:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>RightWrist</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightWrist:Remarks')">
+              <span id="F:OpenNISkeleton.RightWrist:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightWrist:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RightWrist:Version Information')">
+              <span id="F:OpenNISkeleton.RightWrist:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RightWrist:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:OpenNISkeleton.RotateToCalibrationPose">
+          <a href="javascript:toggle_display('M:OpenNISkeleton.RotateToCalibrationPose:member')">
+            <span id="M:OpenNISkeleton.RotateToCalibrationPose:member:toggle">⊟</span> RotateToCalibrationPose Method</a>
+        </h3>
+        <blockquote id="M:OpenNISkeleton.RotateToCalibrationPose:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>RotateToCalibrationPose</b> ()</div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.RotateToCalibrationPose:Remarks')">
+              <span id="M:OpenNISkeleton.RotateToCalibrationPose:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.RotateToCalibrationPose:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.RotateToCalibrationPose:Version Information')">
+              <span id="M:OpenNISkeleton.RotateToCalibrationPose:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.RotateToCalibrationPose:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.RotationDamping">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.RotationDamping:member')">
+            <span id="F:OpenNISkeleton.RotationDamping:member:toggle">⊟</span> RotationDamping Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.RotationDamping:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Single">float</a> <b>RotationDamping</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RotationDamping:Remarks')">
+              <span id="F:OpenNISkeleton.RotationDamping:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RotationDamping:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.RotationDamping:Version Information')">
+              <span id="F:OpenNISkeleton.RotationDamping:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.RotationDamping:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.Scale">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.Scale:member')">
+            <span id="F:OpenNISkeleton.Scale:member:toggle">⊟</span> Scale Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.Scale:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a> <b>Scale</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.Scale:Remarks')">
+              <span id="F:OpenNISkeleton.Scale:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.Scale:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.Scale:Version Information')">
+              <span id="F:OpenNISkeleton.Scale:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.Scale:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:OpenNISkeleton.SkeletonFromJSON(System.Collections.ArrayList)">
+          <a href="javascript:toggle_display('M:OpenNISkeleton.SkeletonFromJSON(System.Collections.ArrayList):member')">
+            <span id="M:OpenNISkeleton.SkeletonFromJSON(System.Collections.ArrayList):member:toggle">⊟</span> SkeletonFromJSON Method</a>
+        </h3>
+        <blockquote id="M:OpenNISkeleton.SkeletonFromJSON(System.Collections.ArrayList):member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>SkeletonFromJSON</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.ArrayList">ArrayList</a> data)</div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.SkeletonFromJSON(System.Collections.ArrayList):Parameters')">
+              <span id="M:OpenNISkeleton.SkeletonFromJSON(System.Collections.ArrayList):Parameters:toggle">⊟</span> Parameters</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.SkeletonFromJSON(System.Collections.ArrayList):Parameters">
+            <dl>
+              <dt>
+                <i>data</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.SkeletonFromJSON(System.Collections.ArrayList):Remarks')">
+              <span id="M:OpenNISkeleton.SkeletonFromJSON(System.Collections.ArrayList):Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.SkeletonFromJSON(System.Collections.ArrayList):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.SkeletonFromJSON(System.Collections.ArrayList):Version Information')">
+              <span id="M:OpenNISkeleton.SkeletonFromJSON(System.Collections.ArrayList):Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.SkeletonFromJSON(System.Collections.ArrayList):Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.Torso">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.Torso:member')">
+            <span id="F:OpenNISkeleton.Torso:member:toggle">⊟</span> Torso Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.Torso:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>Torso</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.Torso:Remarks')">
+              <span id="F:OpenNISkeleton.Torso:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.Torso:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.Torso:Version Information')">
+              <span id="F:OpenNISkeleton.Torso:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.Torso:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:OpenNISkeleton.UpdateJoint(OpenNI.SkeletonJoint,OpenNI.SkeletonJointTransformation)">
+          <a href="javascript:toggle_display('M:OpenNISkeleton.UpdateJoint(OpenNI.SkeletonJoint,OpenNI.SkeletonJointTransformation):member')">
+            <span id="M:OpenNISkeleton.UpdateJoint(OpenNI.SkeletonJoint,OpenNI.SkeletonJointTransformation):member:toggle">⊟</span> UpdateJoint Method</a>
+        </h3>
+        <blockquote id="M:OpenNISkeleton.UpdateJoint(OpenNI.SkeletonJoint,OpenNI.SkeletonJointTransformation):member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>UpdateJoint</b> (<a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.SkeletonJoint</a> joint, <a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.SkeletonJointTransformation</a> skelTrans)</div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.UpdateJoint(OpenNI.SkeletonJoint,OpenNI.SkeletonJointTransformation):Parameters')">
+              <span id="M:OpenNISkeleton.UpdateJoint(OpenNI.SkeletonJoint,OpenNI.SkeletonJointTransformation):Parameters:toggle">⊟</span> Parameters</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.UpdateJoint(OpenNI.SkeletonJoint,OpenNI.SkeletonJointTransformation):Parameters">
+            <dl>
+              <dt>
+                <i>joint</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+              <dt>
+                <i>skelTrans</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.UpdateJoint(OpenNI.SkeletonJoint,OpenNI.SkeletonJointTransformation):Remarks')">
+              <span id="M:OpenNISkeleton.UpdateJoint(OpenNI.SkeletonJoint,OpenNI.SkeletonJointTransformation):Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.UpdateJoint(OpenNI.SkeletonJoint,OpenNI.SkeletonJointTransformation):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.UpdateJoint(OpenNI.SkeletonJoint,OpenNI.SkeletonJointTransformation):Version Information')">
+              <span id="M:OpenNISkeleton.UpdateJoint(OpenNI.SkeletonJoint,OpenNI.SkeletonJointTransformation):Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.UpdateJoint(OpenNI.SkeletonJoint,OpenNI.SkeletonJointTransformation):Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.UpdateJointPositions">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.UpdateJointPositions:member')">
+            <span id="F:OpenNISkeleton.UpdateJointPositions:member:toggle">⊟</span> UpdateJointPositions Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.UpdateJointPositions:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>UpdateJointPositions</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.UpdateJointPositions:Remarks')">
+              <span id="F:OpenNISkeleton.UpdateJointPositions:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.UpdateJointPositions:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.UpdateJointPositions:Version Information')">
+              <span id="F:OpenNISkeleton.UpdateJointPositions:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.UpdateJointPositions:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.UpdateOrientation">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.UpdateOrientation:member')">
+            <span id="F:OpenNISkeleton.UpdateOrientation:member:toggle">⊟</span> UpdateOrientation Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.UpdateOrientation:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>UpdateOrientation</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.UpdateOrientation:Remarks')">
+              <span id="F:OpenNISkeleton.UpdateOrientation:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.UpdateOrientation:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.UpdateOrientation:Version Information')">
+              <span id="F:OpenNISkeleton.UpdateOrientation:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.UpdateOrientation:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:OpenNISkeleton.UpdateRoot(UnityEngine.Vector3)">
+          <a href="javascript:toggle_display('M:OpenNISkeleton.UpdateRoot(UnityEngine.Vector3):member')">
+            <span id="M:OpenNISkeleton.UpdateRoot(UnityEngine.Vector3):member:toggle">⊟</span> UpdateRoot Method</a>
+        </h3>
+        <blockquote id="M:OpenNISkeleton.UpdateRoot(UnityEngine.Vector3):member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>UpdateRoot</b> (<a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a> skelRoot)</div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.UpdateRoot(UnityEngine.Vector3):Parameters')">
+              <span id="M:OpenNISkeleton.UpdateRoot(UnityEngine.Vector3):Parameters:toggle">⊟</span> Parameters</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.UpdateRoot(UnityEngine.Vector3):Parameters">
+            <dl>
+              <dt>
+                <i>skelRoot</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.UpdateRoot(UnityEngine.Vector3):Remarks')">
+              <span id="M:OpenNISkeleton.UpdateRoot(UnityEngine.Vector3):Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.UpdateRoot(UnityEngine.Vector3):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:OpenNISkeleton.UpdateRoot(UnityEngine.Vector3):Version Information')">
+              <span id="M:OpenNISkeleton.UpdateRoot(UnityEngine.Vector3):Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:OpenNISkeleton.UpdateRoot(UnityEngine.Vector3):Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.UpdateRootPosition">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.UpdateRootPosition:member')">
+            <span id="F:OpenNISkeleton.UpdateRootPosition:member:toggle">⊟</span> UpdateRootPosition Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.UpdateRootPosition:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>UpdateRootPosition</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.UpdateRootPosition:Remarks')">
+              <span id="F:OpenNISkeleton.UpdateRootPosition:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.UpdateRootPosition:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.UpdateRootPosition:Version Information')">
+              <span id="F:OpenNISkeleton.UpdateRootPosition:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.UpdateRootPosition:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:OpenNISkeleton.Waist">
+          <a href="javascript:toggle_display('F:OpenNISkeleton.Waist:member')">
+            <span id="F:OpenNISkeleton.Waist:member:toggle">⊟</span> Waist Field</a>
+        </h3>
+        <blockquote id="F:OpenNISkeleton.Waist:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Transform</a> <b>Waist</b> </div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.Waist:Remarks')">
+              <span id="F:OpenNISkeleton.Waist:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.Waist:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('F:OpenNISkeleton.Waist:Version Information')">
+              <span id="F:OpenNISkeleton.Waist:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="F:OpenNISkeleton.Waist:Version Information">
+            <b>Namespace: </b>
+          </blockquote>
+          <hr size="1" />
+        </blockquote>
+      </blockquote>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

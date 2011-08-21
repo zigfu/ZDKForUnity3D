@@ -1,0 +1,75 @@
+<?xml version="1.0" ?><Type FullName="OpenNIDepthmapViewer" Name="OpenNIDepthmapViewer">
+  <TypeSignature Language="C#" Value="public class OpenNIDepthmapViewer : UnityEngine.MonoBehaviour"/>
+  <Base>
+    <BaseTypeName>UnityEngine.MonoBehaviour</BaseTypeName>
+  </Base>
+  <Interfaces/>
+  <Docs>
+    <summary>Renders a depth map histogram</summary>
+    <remarks>The depthmap viewer is still CPU intensive</remarks>
+  </Docs>
+  <Members>
+    
+    <Member MemberName="DrawHand">
+      <MemberSignature Language="C#" Value="public bool DrawHand;"/>
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Draw hand point on depthmap during a Hand Point Session (See OpenNISessionManager)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="factor">
+      <MemberSignature Language="C#" Value="public int factor;"/>
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Downscale factor when drawing depthmap. 1 for no downscale</summary>
+        <remarks>Increase the number to decrease CPU usage</remarks>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="handColor">
+      <MemberSignature Language="C#" Value="public UnityEngine.Color32 handColor;"/>
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Color32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Color of hand to use when DrawHand is True</summary>
+        <remarks/>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="handPixSize">
+      <MemberSignature Language="C#" Value="public int handPixSize;"/>
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Size of hand to use when DrawHand is True</summary>
+        <remarks/>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="target">
+      <MemberSignature Language="C#" Value="public UnityEngine.Renderer target;"/>
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>UnityEngine.Renderer</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Renderer to draw depthmap to</summary>
+        <remarks>If not set the renderer attached to the GameObject will be used. If there is no renderer attached, the depthmap will be rendered to the GUI</remarks>
+      </Docs>
+      
+    </Member>
+  </Members>
+  
+</Type>

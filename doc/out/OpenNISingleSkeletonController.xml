@@ -1,0 +1,52 @@
+<?xml version="1.0" ?><Type FullName="OpenNISingleSkeletonController" Name="OpenNISingleSkeletonController">
+  <TypeSignature Language="C#" Value="public class OpenNISingleSkeletonController : UnityEngine.MonoBehaviour"/>
+  <Base>
+    <BaseTypeName>UnityEngine.MonoBehaviour</BaseTypeName>
+  </Base>
+  <Interfaces/>
+  <Docs>
+    <summary>Updates a list of OpenNISkeleton objects with skeleton data from a single user</summary>
+    <remarks>See OpenNISplitScreenSkeletonController for 2 player games</remarks>
+  </Docs>
+  <Members>
+    
+    <Member MemberName="IsTracking">
+      <MemberSignature Language="C#" Value="public bool IsTracking { get; }"/>
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Is a user currently being tracked?</summary>
+        <value>True when a user is being tracked</value>
+        <remarks/>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="Skeletons">
+      <MemberSignature Language="C#" Value="public OpenNISkeleton[] Skeletons;"/>
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>OpenNISkeleton[]</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>List of OpenNISkeleton's to be updated with the user skeleton data</summary>
+        <remarks>All OpenNISkeleton's will be updated with the same skeleton data from a single user</remarks>
+      </Docs>
+      
+    </Member>
+    <Member MemberName="UserTracker">
+      <MemberSignature Language="C#" Value="public OpenNIUserTracker UserTracker;"/>
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>OpenNIUserTracker</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Reference to OpenNIUserTracker</summary>
+        <remarks/>
+      </Docs>
+      
+    </Member>
+  </Members>
+  
+</Type>
