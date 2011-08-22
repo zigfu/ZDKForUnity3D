@@ -10,7 +10,7 @@
 OpenNIContext is responsible for initializing and shutting down OpenNI, as well as opening specific OpenNI streams. It is a singleton object and a scene should not have more than one instance of it. An OpenNIContext will be implicitly added to the scene in runtime when using OpenNI functionality, but it can be added explicitly to modify default behavior.</block>
       <block>
 OpenNI can be initialized in 3 different ways:
-<list type="bullet"><item><term><b>1. Live Sensor</b>Open the live sensor, and open streams when they are used</description></item><item><term>2. Offline File</term><description>Open an offline OpenNI file (.oni)</description></item><item><term>3. External XML File</term><description>Initialize OpenNI from an XML file</description></item></list>
+<list type="bullet"><item><term><b>1. Live Sensor</b> - Open the live sensor, and open streams when they are used</term></item><item><term><b>2. Offline File</b> - Open an offline OpenNI file (.oni)</term></item><item><term><b>3. External XML File</b> - Initialize OpenNI from an XML file</term></item></list>
 By default the live sensor will be opened.
 </block>
     </summary>
