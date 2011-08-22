@@ -19,13 +19,13 @@
       </head>
       <body>
         <!-- HEADER -->
-        <xsl:call-template name="create-default-collection-title" />
-        <xsl:call-template name="create-index" />
+        <!--<xsl:call-template name="create-default-collection-title" />-->
+        <!--<xsl:call-template name="create-index" />-->
         <xsl:call-template name="create-default-title" />
         <xsl:call-template name="create-default-summary" />
         <xsl:call-template name="create-default-signature" />
         <xsl:call-template name="create-default-remarks" />
-        <xsl:call-template name="create-default-members" />
+        <!--<xsl:call-template name="create-default-members" />-->
         <hr size="1" />
         <xsl:call-template name="create-default-copyright" />
       </body>
