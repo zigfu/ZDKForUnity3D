@@ -1,8 +1,11 @@
 from xml.dom import minidom
 
 #will be removed from all monobehaviours
-members_to_remove = set([".ctor", "Start", "Update", "Awake", "OnApplicationQuit",
+MEMBERS_TO_REMOVE = set([".ctor", "Start", "Update", "Awake", "OnApplicationQuit",
                      "FixedUpdate", "LateUpdate", "OnGUI"])
+
+INDEX_FILE = "index.xml"
+OUT_DIR = "out"
 
 def remove_node(node):
     node.parentNode.removeChild(node)
@@ -21,7 +24,7 @@ def get_base_class(type_root):
 
 def remove_monobehavior_members(type_root):
     for member in type_root.getElementsByTagName("Member"):
-        if member.getAttribute("MemberName") in members_to_remove:
+        if member.getAttribute("MemberName") in MEMBERS_TO_REMOVE:
             print "removing member <%s>" % member.getAttribute("MemberName")
             remove_node(member)
 
@@ -42,30 +45,55 @@ def fix_xml_file(file_path):
         fix_type(class_type)
     return root.toxml()
 
+def fix_index_file(src, dst, whitelist):
+    root = minidom.parse(src)
+    types = root.getElementsByTagName("Type")
+    for type_node in types:
+        if type_node.getAttribute("Name") not in whitelist:
+            print 'Removing type %s from index' % type_node.getAttribute('Name')
+            remove_node(type_node)
+    with open(dst, "w") as f:
+        f.write(root.toxml())
+
 def main():
     
     import sys
     from os import path, makedirs
     import glob
-    print 'Warning: script does not preserve directory trees'    
     # parse command-line
     if (len(sys.argv) != 2):
-        print 'usage: %s <xml file or directory with xmls>' % sys.argv[0]
+        print 'usage: %s <directory with xmls>' % sys.argv[0]
         print '       will output into working directory/out'
         print '       directory scanning is NOT recursive'
         return
     file = sys.argv[1]
     out_dir = 'out'
     if (path.isfile(file)):
-        file_list = [file]
+        print 'Eek - name is a file and not a directory!'
+        sys.exit(1)
     else:
         file_list = glob.glob(path.join(file, "*.xml"))
+        
     # prepare output
     try:
-        makedirs("out") # hard-code output dir for now
+        makedirs(OUT_DIR) # hard-code output dir for now
     except OSError:
-        print 'Failed to create output dir. Already exists?'
-    # do stuff 
+        print 'Faild to create output dir. Already exists?'
+
+    whitelist = set(line.strip() for line in open("docs.txt") if not line.startswith(";"))
+
+    # modify index.xml - special case
+    print file_list
+    print path.join(file, INDEX_FILE)
+    file_list.remove(path.join(file, INDEX_FILE))
+
+    fix_index_file(path.join(file, INDEX_FILE), path.join(OUT_DIR, INDEX_FILE), whitelist)
+
+    # filter class files from file list
+    whitelist_files = set(cls + ".xml" for cls in whitelist)
+    file_list = set(f for f in file_list if path.split(f)[-1] in whitelist_files)
+
+    # modify all other xmls
     for file_path in file_list:
         print 'handling file: %s' % file_path
         new_data = fix_xml_file(file_path)
