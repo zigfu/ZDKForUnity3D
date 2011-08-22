@@ -5,22 +5,19 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>OpenNIContext is responsible for initializing and shutting down OpenNI, as well as opening 
-
-specific OpenNI streams. It is a singleton object and a scene should not have more than one 
-
-instance of it. An OpenNIContext will be implicitly added to the scene in runtime when using 
-
-OpenNI functionality, but it can be added explicitly to modify default behavior.
-
+    <summary>
+      <block>
+OpenNIContext is responsible for initializing and shutting down OpenNI, as well as opening specific OpenNI streams. It is a singleton object and a scene should not have more than one instance of it. An OpenNIContext will be implicitly added to the scene in runtime when using OpenNI functionality, but it can be added explicitly to modify default behavior.</block>
+      <block>
 OpenNI can be initialized in 3 different ways:
-1. Open the live sensor, and open streams when they are used
-2. Open an offline OpenNI file (.oni)
-3. Initialize OpenNI from an XML file
-
+<list type="bullet"><item><term><b>1. Live Sensor</b>Open the live sensor, and open streams when they are used</description></item><item><term>2. Offline File</term><description>Open an offline OpenNI file (.oni)</description></item><item><term>3. External XML File</term><description>Initialize OpenNI from an XML file</description></item></list>
 By default the live sensor will be opened.
-</summary>
-    <remarks>To be added.</remarks>
+</block>
+    </summary>
+    <remarks><block>
+Offline recordings (.oni files) can be created using NIViewer, supplied with OpenNI
+</block>
+</remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -57,25 +54,11 @@ By default the live sensor will be opened.
         <ReturnType>OpenNI.Context</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>The OpenNI context (Can be used with anything in OpenNI.NET)</summary>
-        <value>Context</value>
-        <remarks>No further comments. Move along now.</remarks>
+        <summary>The OpenNI context (OpenNI.NET)</summary>
       </Docs>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
       </AssemblyInfo>
-    </Member>
-    <Member MemberName="Depth">
-      <MemberSignature Language="C#" Value="public OpenNI.DepthGenerator Depth;" />
-      <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>OpenNI.NET Depth Generator</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>Depth</summary>
-        <remarks />
-      </Docs>
-      <AssemblyInfo />
     </Member>
     <Member MemberName="Depth">
       <MemberSignature Language="C#" Value="public OpenNI.DepthGenerator Depth { get; }" />
@@ -87,22 +70,8 @@ By default the live sensor will be opened.
         <ReturnType>OpenNI.DepthGenerator</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>OpenNI depth generator (OpenNI.NET) </summary>
       </Docs>
-    </Member>
-    <Member MemberName="initialMirror">
-      <MemberSignature Language="C#" Value="public bool initialMirror;" />
-      <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Boolean</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>Initial state of Mirror flag</summary>
-        <remarks />
-      </Docs>
-      <AssemblyInfo />
     </Member>
     <Member MemberName="Instance">
       <MemberSignature Language="C#" Value="public static OpenNIContext Instance { get; }" />
@@ -129,8 +98,7 @@ By default the live sensor will be opened.
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>License key to use when initializing OpenNI. Default key is taken from OpenNI.org</summary>
       </Docs>
     </Member>
     <Member MemberName="LicenseVendor">
@@ -143,8 +111,7 @@ By default the live sensor will be opened.
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>Vendor to use when initializing OpenNI. Default vendor is taken from OpenNI.org</summary>
       </Docs>
     </Member>
     <Member MemberName="LoadFromRecording">
@@ -155,7 +122,6 @@ By default the live sensor will be opened.
       </ReturnValue>
       <Docs>
         <summary>Set to True to initialize OpenNI from a recording (.oni file)</summary>
-        <remarks>You can create offline recordings using NIViewer</remarks>
       </Docs>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -196,9 +162,8 @@ By default the live sensor will be opened.
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Mirror flag from OpenNI</summary>
+        <summary>Mirror flag (for depth)</summary>
         <value>True for On, False for Off</value>
-        <remarks>Mirror O'mercy</remarks>
       </Docs>
       <AssemblyInfo />
     </Member>
@@ -228,9 +193,7 @@ By default the live sensor will be opened.
       </Parameters>
       <Docs>
         <param name="nt">OpenNI NodeType to open</param>
-        <summary>Opens an OpenNI stream of type NodeType. </summary>
-        <returns>The OpenNI ProductionNode</returns>
-        <remarks>Creates the ProductionNode if it isn't already open.</remarks>
+        <summary>Opens an OpenNI stream of type NodeType. (Creates the ProductionNode if it isn't already open). </summary>
       </Docs>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -244,7 +207,6 @@ By default the live sensor will be opened.
       </ReturnValue>
       <Docs>
         <summary>Name of offline file to use when LoadFromRecording is set to True</summary>
-        <remarks>To be added.</remarks>
       </Docs>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -289,8 +251,7 @@ By default the live sensor will be opened.
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>Filename of external XML file to use when initializing OpenNI</summary>
       </Docs>
     </Member>
   </Members>

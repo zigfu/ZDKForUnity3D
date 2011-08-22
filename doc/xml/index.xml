@@ -1,6 +1,6 @@
 <Overview>
-  <Remarks>To be added.</Remarks>
-  <Copyright>To be added.</Copyright>
+  <Remarks>The Unity OpenNI Bindings bring the power of OpenNI and depth sensors to your Unity powered game. The Unity OpenNI Bindings are based on the Unity Wrapper published at OpenNI.org</Remarks>
+  <Copyright>Motion Arcade Inc © 2011</Copyright>
   <Types>
     <Namespace Name="">
       <Type Name="ExitOnEscape" Kind="Class" />
