@@ -1,0 +1,9 @@
+; documents only the following classes
+OpenNIContext
+OpenNIDepthmapViewer
+OpenNIImagemapViewer
+OpenNISingleSkeletonController
+OpenNISkeleton
+OpenNISplitScreenSkeletonController
+OpenNIUsersRadar
+OpenNIUserTracker
