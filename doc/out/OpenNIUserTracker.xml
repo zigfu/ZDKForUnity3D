@@ -5,7 +5,7 @@
   </Base>
   <Interfaces/>
   <Docs>
-    <summary>To be added.</summary>
+    <summary>The OpenNIUserTracker wraps the OpenNI User Generator. </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -17,7 +17,7 @@
         <ReturnType>System.Collections.Generic.IList&lt;System.Int32&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>List of all users in scene</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -30,7 +30,7 @@
         <ReturnType>System.Collections.Generic.IList&lt;System.Int32&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>List of calibrated users in the scene</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -43,7 +43,7 @@
         <ReturnType>System.Collections.Generic.IList&lt;System.Int32&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>List of calibrating users in the scene</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -59,8 +59,8 @@
         <Parameter Name="userId" Type="System.Int32"/>
       </Parameters>
       <Docs>
-        <param name="userId">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="userId">User we are querying</param>
+        <summary>Get center of mass of user in real world units (mm from sensor)</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -73,7 +73,7 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Max number of users to try and calibrate. Once this number of calibrated users is reached, no more users will be able to calibrate</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -89,9 +89,9 @@
         <Parameter Name="skeleton" Type="OpenNISkeleton"/>
       </Parameters>
       <Docs>
-        <param name="userId">To be added.</param>
-        <param name="skeleton">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="userId">UserId to take data from</param>
+        <param name="skeleton">OpenNISkeleton to set</param>
+        <summary>Update the transforms in OpenNISkeleton will skeleton data from openNI for a given user</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -103,7 +103,7 @@
         <ReturnType>System.Collections.Generic.Dictionary&lt;System.Int32,UnityEngine.Vector3&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Map of users to their initial calibration position</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -116,7 +116,7 @@
         <ReturnType>System.Single</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Distance from sensor for UserTooClose message</summary>
         <remarks>To be added.</remarks>
       </Docs>
       

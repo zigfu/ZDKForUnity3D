@@ -65,9 +65,9 @@
         <Parameter Name="dict" Type="System.Collections.Hashtable"/>
       </Parameters>
       <Docs>
-        <param name="j">To be added.</param>
-        <param name="dict">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="j">OpenNI joint</param>
+        <param name="dict">JSON data</param>
+        <summary>Set joint transform based on JSON data</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -82,8 +82,8 @@
         <Parameter Name="j" Type="OpenNI.SkeletonJoint"/>
       </Parameters>
       <Docs>
-        <param name="j">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="j">OpenNI joint</param>
+        <summary>Get JSON data for OpenNI joint</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -97,7 +97,7 @@
       </ReturnValue>
       <Parameters/>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Serialize skeleton to JSON</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -431,9 +431,11 @@
         <Parameter Name="skelTrans" Type="OpenNI.SkeletonJointTransformation"/>
       </Parameters>
       <Docs>
-        <param name="joint">To be added.</param>
-        <param name="skelTrans">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="joint">
+        </param>
+        <param name="skelTrans">
+        </param>
+        <summary>Called from OpenNIUserTracker</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -472,8 +474,9 @@
         <Parameter Name="skelRoot" Type="UnityEngine.Vector3"/>
       </Parameters>
       <Docs>
-        <param name="skelRoot">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="skelRoot">
+        </param>
+        <summary>Called from OpenNIUserTracker</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

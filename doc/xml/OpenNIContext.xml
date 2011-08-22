@@ -15,9 +15,7 @@ By default the live sensor will be opened.
 </block>
     </summary>
     <remarks>
-      <block>
-Offline recordings (.oni files) can be created using NIViewer, supplied with OpenNI
-</block>
+Offline recordings (.oni files) can be created using NIViewer - Part of the  OpenNI package
     </remarks>
   </Docs>
   <Members>
@@ -145,7 +143,7 @@ Offline recordings (.oni files) can be created using NIViewer, supplied with Ope
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Set to True to initialize OpenNI from an external XML file</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -159,7 +157,7 @@ Offline recordings (.oni files) can be created using NIViewer, supplied with Ope
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Depth mirror flag</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -170,7 +168,7 @@ Offline recordings (.oni files) can be created using NIViewer, supplied with Ope
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Mirror flag (for depth)</summary>
+        <summary>Depth mirror flag</summary>
         <value>True for On, False for Off</value>
       </Docs>
       <AssemblyInfo />
