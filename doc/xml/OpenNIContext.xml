@@ -14,10 +14,11 @@ OpenNI can be initialized in 3 different ways:
 By default the live sensor will be opened.
 </block>
     </summary>
-    <remarks><block>
+    <remarks>
+      <block>
 Offline recordings (.oni files) can be created using NIViewer, supplied with OpenNI
 </block>
-</remarks>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -55,6 +56,8 @@ Offline recordings (.oni files) can be created using NIViewer, supplied with Ope
       </ReturnValue>
       <Docs>
         <summary>The OpenNI context (OpenNI.NET)</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
       </Docs>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -71,6 +74,8 @@ Offline recordings (.oni files) can be created using NIViewer, supplied with Ope
       </ReturnValue>
       <Docs>
         <summary>OpenNI depth generator (OpenNI.NET) </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Instance">
@@ -99,6 +104,7 @@ Offline recordings (.oni files) can be created using NIViewer, supplied with Ope
       </ReturnValue>
       <Docs>
         <summary>License key to use when initializing OpenNI. Default key is taken from OpenNI.org</summary>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="LicenseVendor">
@@ -112,6 +118,7 @@ Offline recordings (.oni files) can be created using NIViewer, supplied with Ope
       </ReturnValue>
       <Docs>
         <summary>Vendor to use when initializing OpenNI. Default vendor is taken from OpenNI.org</summary>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="LoadFromRecording">
@@ -122,6 +129,7 @@ Offline recordings (.oni files) can be created using NIViewer, supplied with Ope
       </ReturnValue>
       <Docs>
         <summary>Set to True to initialize OpenNI from a recording (.oni file)</summary>
+        <remarks>To be added.</remarks>
       </Docs>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -194,6 +202,8 @@ Offline recordings (.oni files) can be created using NIViewer, supplied with Ope
       <Docs>
         <param name="nt">OpenNI NodeType to open</param>
         <summary>Opens an OpenNI stream of type NodeType. (Creates the ProductionNode if it isn't already open). </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
       </Docs>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -207,6 +217,7 @@ Offline recordings (.oni files) can be created using NIViewer, supplied with Ope
       </ReturnValue>
       <Docs>
         <summary>Name of offline file to use when LoadFromRecording is set to True</summary>
+        <remarks>To be added.</remarks>
       </Docs>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -252,6 +263,7 @@ Offline recordings (.oni files) can be created using NIViewer, supplied with Ope
       </ReturnValue>
       <Docs>
         <summary>Filename of external XML file to use when initializing OpenNI</summary>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
   </Members>

@@ -5,8 +5,9 @@
   </Base>
   <Interfaces/>
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>The OpenNISkeleton represents skeleton data for a single user. When an OpenNISkeleton is referenced by a controller (see OpenNISingleSkeletonController) the transforms it contains will reflect the OpenNI skeleton associated with it. The mapping from OpenNI skeleton data to the Unity Transforms is different for every OpenNISkeleton instance and depends on its exact configuration
+	</summary>
+    <remarks>Joints that aren't provided by OpenNI will not be modified.</remarks>
   </Docs>
   <Members>
     
@@ -17,7 +18,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Is the root position absolute (distance from sensor) or relative to the calibration point</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -33,8 +34,8 @@
         <Parameter Name="joint" Type="OpenNI.SkeletonJoint"/>
       </Parameters>
       <Docs>
-        <param name="joint">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="joint">OpenNI Joint</param>
+        <summary>Returns the Real World position of a joint (in millimeters, relative to the sensor)</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -47,7 +48,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -55,6 +56,7 @@
     <Member MemberName="JointFromJSON">
       <MemberSignature Language="C#" Value="public void JointFromJSON (OpenNI.SkeletonJoint j, System.Collections.Hashtable dict);"/>
       <MemberType>Method</MemberType>
+      
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
@@ -68,11 +70,11 @@
         <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
-      
     </Member>
     <Member MemberName="JSONJoint">
       <MemberSignature Language="C#" Value="public System.Collections.Hashtable JSONJoint (OpenNI.SkeletonJoint j);"/>
       <MemberType>Method</MemberType>
+      
       <ReturnValue>
         <ReturnType>System.Collections.Hashtable</ReturnType>
       </ReturnValue>
@@ -85,7 +87,6 @@
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
-      
     </Member>
     <Member MemberName="JSONSkeleton">
       <MemberSignature Language="C#" Value="public System.Collections.ArrayList JSONSkeleton ();"/>
@@ -108,7 +109,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -120,7 +121,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -132,7 +133,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -144,7 +145,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -156,7 +157,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -168,7 +169,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -180,7 +181,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -192,7 +193,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -204,7 +205,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -216,7 +217,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -228,7 +229,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -240,7 +241,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -252,7 +253,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -264,7 +265,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -276,7 +277,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -288,7 +289,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -300,7 +301,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -312,7 +313,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -324,7 +325,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -336,7 +337,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -348,7 +349,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -361,7 +362,7 @@
       </ReturnValue>
       <Parameters/>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Rotates a skeleton to the &quot;Psi&quot; calibration pose. Assumes skeleton is in &quot;T&quot; pose.</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -373,7 +374,7 @@
         <ReturnType>System.Single</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Damping factor for smoothing joint orientation. [Only if UpdateOrientation is true]</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -385,7 +386,7 @@
         <ReturnType>UnityEngine.Vector3</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Scale to apply to transform positions. [Only if UpdateJointPositions is true]</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -401,8 +402,8 @@
         <Parameter Name="data" Type="System.Collections.ArrayList"/>
       </Parameters>
       <Docs>
-        <param name="data">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="data">JSON string</param>
+        <summary>Load skeleton data from JSON string</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -413,7 +414,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -421,6 +422,7 @@
     <Member MemberName="UpdateJoint">
       <MemberSignature Language="C#" Value="public void UpdateJoint (OpenNI.SkeletonJoint joint, OpenNI.SkeletonJointTransformation skelTrans);"/>
       <MemberType>Method</MemberType>
+      
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
@@ -434,7 +436,6 @@
         <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
-      
     </Member>
     <Member MemberName="UpdateJointPositions">
       <MemberSignature Language="C#" Value="public bool UpdateJointPositions;"/>
@@ -443,7 +444,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Should Transform positions be updated? (should be false when retargeting a 3d model)</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -455,7 +456,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Should transform rotation be updated? (should be true when retargeting a 3d model)</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -463,6 +464,7 @@
     <Member MemberName="UpdateRoot">
       <MemberSignature Language="C#" Value="public void UpdateRoot (UnityEngine.Vector3 skelRoot);"/>
       <MemberType>Method</MemberType>
+      
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
@@ -474,7 +476,6 @@
         <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
-      
     </Member>
     <Member MemberName="UpdateRootPosition">
       <MemberSignature Language="C#" Value="public bool UpdateRootPosition;"/>
@@ -483,7 +484,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Should root position be updated? (see also absolute)</summary>
         <remarks>To be added.</remarks>
       </Docs>
       
@@ -495,7 +496,7 @@
         <ReturnType>UnityEngine.Transform</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Skeleton data</summary>
         <remarks>To be added.</remarks>
       </Docs>
       

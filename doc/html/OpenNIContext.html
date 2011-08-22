@@ -2,224 +2,54 @@
   <head>
     <title>OpenNIContext</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <style>
-      a { text-decoration: none }
-
-      div.SideBar {
-        padding-left: 1em;
-        padding-right: 1em;
-        right: 0;
-        float: right;
-        border: thin solid black;
-        background-color: #f2f2f2;
-      }
-    
-      .CollectionTitle { font-weight: bold }
-      .PageTitle { font-size: 150%; font-weight: bold }
-
-      .Summary { }
-      .Signature { }          
-      .Remarks { }
-      .Members { }
-      .Copyright { }
-      
-      .Section { font-size: 125%; font-weight: bold }
-      p.Summary {
-        margin-left: 1em;
-      }
-      .SectionBox { margin-left: 2em }
-      .NamespaceName { font-size: 105%; font-weight: bold }
-      .NamespaceSumary { }
-      .MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
-      .Subsection { font-size: 105%; font-weight: bold }
-      .SubsectionBox { margin-left: 2em; margin-bottom: 1em }
-
-      .CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
-      
-      .TypesListing {
-        border-collapse: collapse;
-      }
-
-      td {
-        vertical-align: top;
-      }
-      th {
-        text-align: left;
-      }
-
-      .TypesListing td { 
-        margin: 0px;  
-        padding: .25em;
-        border: solid gray 1px;
-      }
-
-      .TypesListing th { 
-        margin: 0px;  
-        padding: .25em;
-        background-color: #f2f2f2;
-        border: solid gray 1px;
-      }
-
-      div.Footer {
-        border-top: 1px solid gray;
-        margin-top: 1.5em;
-        padding-top: 0.6em;
-        text-align: center;
-        color: gray;
-      }
-
-      span.NotEntered /* Documentation for this section has not yet been entered */ {
-        font-style: italic;
-        color: red;	
-      }
-
-      div.Header {
-        background: #B0C4DE;
-        border: double;
-        border-color: white;
-        border-width: 7px;
-        padding: 0.5em;
-      }
-
-      div.Header * {
-        font-size: smaller;
-      }
-
-      div.Note {
-      }
-
-      i.ParamRef {
-      }
-
-      i.subtitle {
-      }
-
-      ul.TypeMembersIndex {
-        text-align: left;
-        background: #F8F8F8;
-      }
-
-      ul.TypeMembersIndex li {
-        display: inline;
-        margin:  0.5em;
-      }
-
-      table.HeaderTable {
-      }
-
-      table.SignatureTable {
-      }
-
-      table.Documentation, table.Enumeration, table.TypeDocumentation {
-        border-collapse: collapse;
-        width: 100%;
-      }
-
-      table.Documentation tr th, table.TypeMembers tr th, table.Enumeration tr th, table.TypeDocumentation tr th {
-        background: whitesmoke;
-        padding: 0.8em;
-        border: 1px solid gray;
-        text-align: left;
-        vertical-align: bottom;
-      }
-
-      table.Documentation tr td, table.TypeMembers tr td, table.Enumeration tr td, table.TypeDocumentation tr td {
-        padding: 0.5em;
-        border: 1px solid gray;
-        text-align: left;
-        vertical-align: top;
-      }
-
-      table.TypeMembers {
-        border: 1px solid #C0C0C0;
-        width: 100%;
-      }
-
-      table.TypeMembers tr td {
-        background: #F8F8F8;
-        border: white;
-      }
-
-      table.Documentation {
-      }
-
-      table.TypeMembers {
-      }
-
-      div.CodeExample {
-        width: 100%;
-        border: 1px solid #DDDDDD;
-        background-color: #F8F8F8;
-      }
-
-      div.CodeExample p {
-        margin: 0.5em;
-        border-bottom: 1px solid #DDDDDD;
-      }
-
-      div.CodeExample div {
-        margin: 0.5em;
-      }
-
-      h4 {
-        margin-bottom: 0;
-      }
-
-      div.Signature {
-        border: 1px solid #C0C0C0;
-        background: #F2F2F2;
-        padding: 1em;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../docstyle.css" />
     <script type="text/JavaScript">
-      function toggle_display (block) {
+	function removeElementsByClassName(name)
+	{
+		var children = document.getElementsByClassName(name);
+		for (var childIter in children)
+		{
+			var child = children[childIter];
+			var parent = child.parentNode;
+			if (parent !== undefined) parent.removeChild(child);
+		}
+	}
+	function removeRequirements()
+	{
+		var remarks = document.getElementsByClassName('Remarks')[0];
+		if (remarks.children[2].className == "TypesListing")
+			return;
+		remarks.removeChild(remarks.children[2]); //requirements
+		remarks.removeChild(remarks.children[2]); //namespaces
+	}
+    function toggle_display (block) 
+	{
         var w = document.getElementById (block);
         var t = document.getElementById (block + ":toggle");
-        if (w.style.display == "none") {
-          w.style.display = "block";
-          t.innerHTML = "⊟";
-        } else {
-          w.style.display = "none";
-          t.innerHTML = "⊞";
+        if (w.style.display == "none") 
+		{
+			w.style.display = "block";
+			t.innerHTML = "⊟";
+        } 
+		else 
+		{
+			w.style.display = "none";
+			t.innerHTML = "⊞";
         }
-      }
+    }
+	function onBodyLoad()
+	{
+		removeElementsByClassName('Members');
+		removeRequirements();
+	}
     </script>
   </head>
-  <body>
-    <div class="CollectionTitle">
-      <a href="index.html">
-      </a> : <a href="index.html"> Namespace</a></div>
-    <div class="SideBar">
-      <p>
-        <a href="#T:OpenNIContext">Overview</a>
-      </p>
-      <p>
-        <a href="#T:OpenNIContext:Signature">Signature</a>
-      </p>
-      <p>
-        <a href="#T:OpenNIContext:Docs">Remarks</a>
-      </p>
-      <p>
-        <a href="#Members">Members</a>
-      </p>
-      <p>
-        <a href="#T:OpenNIContext:Members">Member Details</a>
-      </p>
-    </div>
+  <body onload="onBodyLoad()">
     <h1 class="PageTitle" id="T:OpenNIContext">OpenNIContext  Class</h1>
-    <p class="Summary" id="T:OpenNIContext:Summary">OpenNIContext is responsible for initializing and shutting down OpenNI, as well as opening 
-
-specific OpenNI streams. It is a singleton object and a scene should not have more than one 
-
-instance of it. An OpenNIContext will be implicitly added to the scene in runtime when using 
-
-OpenNI functionality, but it can be added explicitly to modify default behavior.
-
+    <p class="Summary" id="T:OpenNIContext:Summary">
+OpenNIContext is responsible for initializing and shutting down OpenNI, as well as opening specific OpenNI streams. It is a singleton object and a scene should not have more than one instance of it. An OpenNIContext will be implicitly added to the scene in runtime when using OpenNI functionality, but it can be added explicitly to modify default behavior.
 OpenNI can be initialized in 3 different ways:
-1. Open the live sensor, and open streams when they are used
-2. Open an offline OpenNI file (.oni)
-3. Initialize OpenNI from an XML file
-
+<ul><li>1. Live Sensor - Open the live sensor, and open streams when they are used</li><li>2. Offline File - Open an offline OpenNI file (.oni)</li><li>3. External XML File - Initialize OpenNI from an XML file</li></ul>
 By default the live sensor will be opened.
 </p>
     <div id="T:OpenNIContext:Signature">
@@ -231,8 +61,8 @@ By default the live sensor will be opened.
           <span id="T:OpenNIContext:Docs:Remarks:toggle">⊟</span> Remarks</a>
       </h4>
       <blockquote class="SubsectionBox" id="T:OpenNIContext:Docs:Remarks">
-        <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-      </blockquote>
+Offline recordings (.oni files) can be created using NIViewer, supplied with OpenNI
+</blockquote>
       <h4 class="Subsection">
         <a href="javascript:toggle_display('T:OpenNIContext:Docs:Version Information')">
           <span id="T:OpenNIContext:Docs:Version Information:toggle">⊟</span> Requirements</a>
@@ -263,43 +93,13 @@ By default the live sensor will be opened.
                 </td>
                 <td>
                   <b>
-                    <a href="#F:OpenNIContext.Depth">Depth</a>
-                  </b>
-                </td>
-                <td>
-                  <i>
-                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.NET Depth Generator</a>
-                  </i>. Depth</td>
-              </tr>
-              <tr valign="top">
-                <td>
-                  <div>
-                  </div>
-                </td>
-                <td>
-                  <b>
-                    <a href="#F:OpenNIContext.initialMirror">initialMirror</a>
-                  </b>
-                </td>
-                <td>
-                  <i>
-                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
-                  </i>. Initial state of Mirror flag</td>
-              </tr>
-              <tr valign="top">
-                <td>
-                  <div>
-                  </div>
-                </td>
-                <td>
-                  <b>
                     <a href="#F:OpenNIContext.LicenseKey">LicenseKey</a>
                   </b>
                 </td>
                 <td>
                   <i>
                     <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
-                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+                  </i>. License key to use when initializing OpenNI. Default key is taken from OpenNI.org</td>
               </tr>
               <tr valign="top">
                 <td>
@@ -314,7 +114,7 @@ By default the live sensor will be opened.
                 <td>
                   <i>
                     <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
-                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+                  </i>. Vendor to use when initializing OpenNI. Default vendor is taken from OpenNI.org</td>
               </tr>
               <tr valign="top">
                 <td>
@@ -404,7 +204,7 @@ By default the live sensor will be opened.
                 <td>
                   <i>
                     <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
-                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+                  </i>. Filename of external XML file to use when initializing OpenNI</td>
               </tr>
             </table>
           </div>
@@ -426,7 +226,7 @@ By default the live sensor will be opened.
                 <td>
                   <i>
                     <a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.Context</a>
-                  </i>. The OpenNI context (Can be used with anything in OpenNI.NET)</td>
+                  </i>. The OpenNI context (OpenNI.NET)</td>
               </tr>
               <tr valign="top">
                 <td>[read-only]<div></div></td>
@@ -438,7 +238,7 @@ By default the live sensor will be opened.
                 <td>
                   <i>
                     <a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.DepthGenerator</a>
-                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+                  </i>. OpenNI depth generator (OpenNI.NET) </td>
               </tr>
               <tr valign="top">
                 <td>[read-only]<div>static </div></td>
@@ -464,7 +264,7 @@ By default the live sensor will be opened.
                 <td>
                   <i>
                     <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
-                  </i>. Mirror flag from OpenNI</td>
+                  </i>. Mirror flag (for depth)</td>
               </tr>
             </table>
           </div>
@@ -483,402 +283,10 @@ By default the live sensor will be opened.
                 <td colspan="2">
                   <b>
                     <a href="#M:OpenNIContext.OpenNode(OpenNI.NodeType)">OpenNode</a>
-                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.NodeType</a>)<nobr> : <a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.ProductionNode</a></nobr><blockquote>Opens an OpenNI stream of type NodeType. </blockquote></td>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.NodeType</a>)<nobr> : <a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.ProductionNode</a></nobr><blockquote>Opens an OpenNI stream of type NodeType. (Creates the ProductionNode if it isn't already open). </blockquote></td>
               </tr>
             </table>
           </div>
-        </blockquote>
-      </blockquote>
-    </div>
-    <div class="Members" id="T:OpenNIContext:Members">
-      <h2 class="Section" id="MemberDetails">
-        <a href="javascript:toggle_display('_MemberDetails')">
-          <span id="_MemberDetails:toggle">⊟</span> Member Details</a>
-      </h2>
-      <blockquote class="SectionBox" id="_MemberDetails">
-        <h3 id="P:OpenNIContext.Context">
-          <a href="javascript:toggle_display('P:OpenNIContext.Context:member')">
-            <span id="P:OpenNIContext.Context:member:toggle">⊟</span> Context Property</a>
-        </h3>
-        <blockquote id="P:OpenNIContext.Context:member">
-          <p class="Summary">The OpenNI context (Can be used with anything in OpenNI.NET)</p>
-          <div class="Signature">public static <a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.Context</a> <b>Context</b>  { get; }</div>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('P:OpenNIContext.Context:Value')">
-              <span id="P:OpenNIContext.Context:Value:toggle">⊟</span> Value</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="P:OpenNIContext.Context:Value">Context</blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('P:OpenNIContext.Context:Remarks')">
-              <span id="P:OpenNIContext.Context:Remarks:toggle">⊟</span> Remarks</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="P:OpenNIContext.Context:Remarks">No further comments. Move along now.</blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('P:OpenNIContext.Context:Version Information')">
-              <span id="P:OpenNIContext.Context:Version Information:toggle">⊟</span> Requirements</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="P:OpenNIContext.Context:Version Information">
-            <b>Namespace: </b>
-          </blockquote>
-          <hr size="1" />
-        </blockquote>
-        <h3 id="F:OpenNIContext.Depth">
-          <a href="javascript:toggle_display('F:OpenNIContext.Depth:member')">
-            <span id="F:OpenNIContext.Depth:member:toggle">⊟</span> Depth Field</a>
-        </h3>
-        <blockquote id="F:OpenNIContext.Depth:member">
-          <p class="Summary">Depth</p>
-          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.NET Depth Generator</a> <b>Depth</b> </div>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.Depth:Remarks')">
-              <span id="F:OpenNIContext.Depth:Remarks:toggle">⊟</span> Remarks</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.Depth:Remarks">
-          </blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.Depth:Version Information')">
-              <span id="F:OpenNIContext.Depth:Version Information:toggle">⊟</span> Requirements</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.Depth:Version Information">
-            <b>Namespace: </b>
-          </blockquote>
-          <hr size="1" />
-        </blockquote>
-        <h3 id="P:OpenNIContext.Depth">
-          <a href="javascript:toggle_display('P:OpenNIContext.Depth:member')">
-            <span id="P:OpenNIContext.Depth:member:toggle">⊟</span> Depth Property</a>
-        </h3>
-        <blockquote id="P:OpenNIContext.Depth:member">
-          <p class="Summary">
-            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-          </p>
-          <div class="Signature">public <a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.DepthGenerator</a> <b>Depth</b>  { get; }</div>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('P:OpenNIContext.Depth:Value')">
-              <span id="P:OpenNIContext.Depth:Value:toggle">⊟</span> Value</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="P:OpenNIContext.Depth:Value">
-            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-          </blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('P:OpenNIContext.Depth:Remarks')">
-              <span id="P:OpenNIContext.Depth:Remarks:toggle">⊟</span> Remarks</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="P:OpenNIContext.Depth:Remarks">
-            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-          </blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('P:OpenNIContext.Depth:Version Information')">
-              <span id="P:OpenNIContext.Depth:Version Information:toggle">⊟</span> Requirements</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="P:OpenNIContext.Depth:Version Information">
-            <b>Namespace: </b>
-          </blockquote>
-          <hr size="1" />
-        </blockquote>
-        <h3 id="F:OpenNIContext.initialMirror">
-          <a href="javascript:toggle_display('F:OpenNIContext.initialMirror:member')">
-            <span id="F:OpenNIContext.initialMirror:member:toggle">⊟</span> initialMirror Field</a>
-        </h3>
-        <blockquote id="F:OpenNIContext.initialMirror:member">
-          <p class="Summary">Initial state of Mirror flag</p>
-          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>initialMirror</b> </div>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.initialMirror:Remarks')">
-              <span id="F:OpenNIContext.initialMirror:Remarks:toggle">⊟</span> Remarks</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.initialMirror:Remarks">
-          </blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.initialMirror:Version Information')">
-              <span id="F:OpenNIContext.initialMirror:Version Information:toggle">⊟</span> Requirements</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.initialMirror:Version Information">
-            <b>Namespace: </b>
-          </blockquote>
-          <hr size="1" />
-        </blockquote>
-        <h3 id="P:OpenNIContext.Instance">
-          <a href="javascript:toggle_display('P:OpenNIContext.Instance:member')">
-            <span id="P:OpenNIContext.Instance:member:toggle">⊟</span> Instance Property</a>
-        </h3>
-        <blockquote id="P:OpenNIContext.Instance:member">
-          <p class="Summary">Singleton instance of OpenNIContext</p>
-          <div class="Signature">public static <a href="OpenNIContext.html">OpenNIContext</a> <b>Instance</b>  { get; }</div>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('P:OpenNIContext.Instance:Value')">
-              <span id="P:OpenNIContext.Instance:Value:toggle">⊟</span> Value</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="P:OpenNIContext.Instance:Value">Singleton</blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('P:OpenNIContext.Instance:Remarks')">
-              <span id="P:OpenNIContext.Instance:Remarks:toggle">⊟</span> Remarks</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="P:OpenNIContext.Instance:Remarks">
-          </blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('P:OpenNIContext.Instance:Version Information')">
-              <span id="P:OpenNIContext.Instance:Version Information:toggle">⊟</span> Requirements</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="P:OpenNIContext.Instance:Version Information">
-            <b>Namespace: </b>
-          </blockquote>
-          <hr size="1" />
-        </blockquote>
-        <h3 id="F:OpenNIContext.LicenseKey">
-          <a href="javascript:toggle_display('F:OpenNIContext.LicenseKey:member')">
-            <span id="F:OpenNIContext.LicenseKey:member:toggle">⊟</span> LicenseKey Field</a>
-        </h3>
-        <blockquote id="F:OpenNIContext.LicenseKey:member">
-          <p class="Summary">
-            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-          </p>
-          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>LicenseKey</b> </div>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.LicenseKey:Remarks')">
-              <span id="F:OpenNIContext.LicenseKey:Remarks:toggle">⊟</span> Remarks</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.LicenseKey:Remarks">
-            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-          </blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.LicenseKey:Version Information')">
-              <span id="F:OpenNIContext.LicenseKey:Version Information:toggle">⊟</span> Requirements</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.LicenseKey:Version Information">
-            <b>Namespace: </b>
-          </blockquote>
-          <hr size="1" />
-        </blockquote>
-        <h3 id="F:OpenNIContext.LicenseVendor">
-          <a href="javascript:toggle_display('F:OpenNIContext.LicenseVendor:member')">
-            <span id="F:OpenNIContext.LicenseVendor:member:toggle">⊟</span> LicenseVendor Field</a>
-        </h3>
-        <blockquote id="F:OpenNIContext.LicenseVendor:member">
-          <p class="Summary">
-            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-          </p>
-          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>LicenseVendor</b> </div>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.LicenseVendor:Remarks')">
-              <span id="F:OpenNIContext.LicenseVendor:Remarks:toggle">⊟</span> Remarks</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.LicenseVendor:Remarks">
-            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-          </blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.LicenseVendor:Version Information')">
-              <span id="F:OpenNIContext.LicenseVendor:Version Information:toggle">⊟</span> Requirements</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.LicenseVendor:Version Information">
-            <b>Namespace: </b>
-          </blockquote>
-          <hr size="1" />
-        </blockquote>
-        <h3 id="F:OpenNIContext.LoadFromRecording">
-          <a href="javascript:toggle_display('F:OpenNIContext.LoadFromRecording:member')">
-            <span id="F:OpenNIContext.LoadFromRecording:member:toggle">⊟</span> LoadFromRecording Field</a>
-        </h3>
-        <blockquote id="F:OpenNIContext.LoadFromRecording:member">
-          <p class="Summary">Set to True to initialize OpenNI from a recording (.oni file)</p>
-          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>LoadFromRecording</b> </div>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.LoadFromRecording:Remarks')">
-              <span id="F:OpenNIContext.LoadFromRecording:Remarks:toggle">⊟</span> Remarks</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.LoadFromRecording:Remarks">You can create offline recordings using NIViewer</blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.LoadFromRecording:Version Information')">
-              <span id="F:OpenNIContext.LoadFromRecording:Version Information:toggle">⊟</span> Requirements</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.LoadFromRecording:Version Information">
-            <b>Namespace: </b>
-          </blockquote>
-          <hr size="1" />
-        </blockquote>
-        <h3 id="F:OpenNIContext.LoadFromXML">
-          <a href="javascript:toggle_display('F:OpenNIContext.LoadFromXML:member')">
-            <span id="F:OpenNIContext.LoadFromXML:member:toggle">⊟</span> LoadFromXML Field</a>
-        </h3>
-        <blockquote id="F:OpenNIContext.LoadFromXML:member">
-          <p class="Summary">
-            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-          </p>
-          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>LoadFromXML</b> </div>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.LoadFromXML:Remarks')">
-              <span id="F:OpenNIContext.LoadFromXML:Remarks:toggle">⊟</span> Remarks</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.LoadFromXML:Remarks">
-            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-          </blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.LoadFromXML:Version Information')">
-              <span id="F:OpenNIContext.LoadFromXML:Version Information:toggle">⊟</span> Requirements</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.LoadFromXML:Version Information">
-            <b>Namespace: </b>
-          </blockquote>
-          <hr size="1" />
-        </blockquote>
-        <h3 id="F:OpenNIContext.Mirror">
-          <a href="javascript:toggle_display('F:OpenNIContext.Mirror:member')">
-            <span id="F:OpenNIContext.Mirror:member:toggle">⊟</span> Mirror Field</a>
-        </h3>
-        <blockquote id="F:OpenNIContext.Mirror:member">
-          <p class="Summary">
-            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-          </p>
-          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>Mirror</b> </div>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.Mirror:Remarks')">
-              <span id="F:OpenNIContext.Mirror:Remarks:toggle">⊟</span> Remarks</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.Mirror:Remarks">
-            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-          </blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.Mirror:Version Information')">
-              <span id="F:OpenNIContext.Mirror:Version Information:toggle">⊟</span> Requirements</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.Mirror:Version Information">
-            <b>Namespace: </b>
-          </blockquote>
-          <hr size="1" />
-        </blockquote>
-        <h3 id="P:OpenNIContext.Mirror">
-          <a href="javascript:toggle_display('P:OpenNIContext.Mirror:member')">
-            <span id="P:OpenNIContext.Mirror:member:toggle">⊟</span> Mirror Property</a>
-        </h3>
-        <blockquote id="P:OpenNIContext.Mirror:member">
-          <p class="Summary">Mirror flag from OpenNI</p>
-          <div class="Signature">public static <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>Mirror</b>  { set; get; }</div>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('P:OpenNIContext.Mirror:Value')">
-              <span id="P:OpenNIContext.Mirror:Value:toggle">⊟</span> Value</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="P:OpenNIContext.Mirror:Value">True for On, False for Off</blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('P:OpenNIContext.Mirror:Remarks')">
-              <span id="P:OpenNIContext.Mirror:Remarks:toggle">⊟</span> Remarks</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="P:OpenNIContext.Mirror:Remarks">Mirror O'mercy</blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('P:OpenNIContext.Mirror:Version Information')">
-              <span id="P:OpenNIContext.Mirror:Version Information:toggle">⊟</span> Requirements</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="P:OpenNIContext.Mirror:Version Information">
-            <b>Namespace: </b>
-          </blockquote>
-          <hr size="1" />
-        </blockquote>
-        <h3 id="M:OpenNIContext.OpenNode(OpenNI.NodeType)">
-          <a href="javascript:toggle_display('M:OpenNIContext.OpenNode(OpenNI.NodeType):member')">
-            <span id="M:OpenNIContext.OpenNode(OpenNI.NodeType):member:toggle">⊟</span> OpenNode Method</a>
-        </h3>
-        <blockquote id="M:OpenNIContext.OpenNode(OpenNI.NodeType):member">
-          <p class="Summary">Opens an OpenNI stream of type NodeType. </p>
-          <div class="Signature">public static <a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.ProductionNode</a> <b>OpenNode</b> (<a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.NodeType</a> nt)</div>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('M:OpenNIContext.OpenNode(OpenNI.NodeType):Parameters')">
-              <span id="M:OpenNIContext.OpenNode(OpenNI.NodeType):Parameters:toggle">⊟</span> Parameters</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="M:OpenNIContext.OpenNode(OpenNI.NodeType):Parameters">
-            <dl>
-              <dt>
-                <i>nt</i>
-              </dt>
-              <dd>OpenNI NodeType to open</dd>
-            </dl>
-          </blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('M:OpenNIContext.OpenNode(OpenNI.NodeType):Returns')">
-              <span id="M:OpenNIContext.OpenNode(OpenNI.NodeType):Returns:toggle">⊟</span> Returns</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="M:OpenNIContext.OpenNode(OpenNI.NodeType):Returns">The OpenNI ProductionNode</blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('M:OpenNIContext.OpenNode(OpenNI.NodeType):Remarks')">
-              <span id="M:OpenNIContext.OpenNode(OpenNI.NodeType):Remarks:toggle">⊟</span> Remarks</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="M:OpenNIContext.OpenNode(OpenNI.NodeType):Remarks">Creates the ProductionNode if it isn't already open.</blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('M:OpenNIContext.OpenNode(OpenNI.NodeType):Version Information')">
-              <span id="M:OpenNIContext.OpenNode(OpenNI.NodeType):Version Information:toggle">⊟</span> Requirements</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="M:OpenNIContext.OpenNode(OpenNI.NodeType):Version Information">
-            <b>Namespace: </b>
-          </blockquote>
-          <hr size="1" />
-        </blockquote>
-        <h3 id="F:OpenNIContext.RecordingFilename">
-          <a href="javascript:toggle_display('F:OpenNIContext.RecordingFilename:member')">
-            <span id="F:OpenNIContext.RecordingFilename:member:toggle">⊟</span> RecordingFilename Field</a>
-        </h3>
-        <blockquote id="F:OpenNIContext.RecordingFilename:member">
-          <p class="Summary">Name of offline file to use when LoadFromRecording is set to True</p>
-          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>RecordingFilename</b> </div>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.RecordingFilename:Remarks')">
-              <span id="F:OpenNIContext.RecordingFilename:Remarks:toggle">⊟</span> Remarks</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.RecordingFilename:Remarks">
-            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-          </blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.RecordingFilename:Version Information')">
-              <span id="F:OpenNIContext.RecordingFilename:Version Information:toggle">⊟</span> Requirements</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.RecordingFilename:Version Information">
-            <b>Namespace: </b>
-          </blockquote>
-          <hr size="1" />
-        </blockquote>
-        <h3 id="F:OpenNIContext.RecordingFramerate">
-          <a href="javascript:toggle_display('F:OpenNIContext.RecordingFramerate:member')">
-            <span id="F:OpenNIContext.RecordingFramerate:member:toggle">⊟</span> RecordingFramerate Field</a>
-        </h3>
-        <blockquote id="F:OpenNIContext.RecordingFramerate:member">
-          <p class="Summary">Framerate to play back an offline file when LoadFromRecording is set to True</p>
-          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Single">float</a> <b>RecordingFramerate</b> </div>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.RecordingFramerate:Remarks')">
-              <span id="F:OpenNIContext.RecordingFramerate:Remarks:toggle">⊟</span> Remarks</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.RecordingFramerate:Remarks">
-          </blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.RecordingFramerate:Version Information')">
-              <span id="F:OpenNIContext.RecordingFramerate:Version Information:toggle">⊟</span> Requirements</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.RecordingFramerate:Version Information">
-            <b>Namespace: </b>
-          </blockquote>
-          <hr size="1" />
-        </blockquote>
-        <h3 id="F:OpenNIContext.XMLFilename">
-          <a href="javascript:toggle_display('F:OpenNIContext.XMLFilename:member')">
-            <span id="F:OpenNIContext.XMLFilename:member:toggle">⊟</span> XMLFilename Field</a>
-        </h3>
-        <blockquote id="F:OpenNIContext.XMLFilename:member">
-          <p class="Summary">
-            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-          </p>
-          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>XMLFilename</b> </div>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.XMLFilename:Remarks')">
-              <span id="F:OpenNIContext.XMLFilename:Remarks:toggle">⊟</span> Remarks</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.XMLFilename:Remarks">
-            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-          </blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('F:OpenNIContext.XMLFilename:Version Information')">
-              <span id="F:OpenNIContext.XMLFilename:Version Information:toggle">⊟</span> Requirements</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="F:OpenNIContext.XMLFilename:Version Information">
-            <b>Namespace: </b>
-          </blockquote>
-          <hr size="1" />
         </blockquote>
       </blockquote>
     </div>
