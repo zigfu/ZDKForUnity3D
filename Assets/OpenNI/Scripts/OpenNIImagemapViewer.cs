@@ -1,5 +1,3 @@
-#define RENDER_WITH_OPENGL
-
 using UnityEngine;
 using System;
 using System.Collections;
@@ -15,7 +13,8 @@ public class OpenNIImagemapViewer : MonoBehaviour
 	private int imageLastFrameId;
     byte[] rawImageMap;
     Color32[] imageMapPixels;
-
+    Vector2 inputSize;
+    Vector2 outputSize;
     bool openGl;
 
 	// Use this for initialization
@@ -26,17 +25,18 @@ public class OpenNIImagemapViewer : MonoBehaviour
         }
 
 		Image = OpenNIContext.OpenNode(NodeType.Image) as ImageGenerator;
-		imageMapTexture = new Texture2D( Image.MapOutputMode.XRes,  Image.MapOutputMode.YRes, TextureFormat.RGB24, false);
+        inputSize = new Vector2(Image.MapOutputMode.XRes, Image.MapOutputMode.YRes);
+        outputSize = (null != target) ?
+            new Vector2(Mathf.NextPowerOfTwo((int)inputSize.x), Mathf.NextPowerOfTwo((int)inputSize.y)) :
+            new Vector2(inputSize.x, inputSize.y);
+
+		imageMapTexture = new Texture2D((int)outputSize.x, (int)outputSize.y, TextureFormat.RGB24, false);
         rawImageMap = new byte[Image.GetMetaData().BytesPerPixel * Image.MapOutputMode.XRes * Image.MapOutputMode.YRes];
-        imageMapPixels = new Color32[Image.MapOutputMode.XRes * Image.MapOutputMode.YRes];
+        imageMapPixels = new Color32[(int)(outputSize.x * outputSize.y)];
 
         if (null != target) {
-            // rendering to a mesh means the texture must be POT
-            imageMapTexture = new Texture2D(Mathf.NextPowerOfTwo(Image.MapOutputMode.XRes), Mathf.NextPowerOfTwo(Image.MapOutputMode.YRes), TextureFormat.RGB24, false);
-		    float uScale = Image.MapOutputMode.XRes / (float)Mathf.NextPowerOfTwo(Image.MapOutputMode.XRes);
-            float vScale = Image.MapOutputMode.YRes / (float)Mathf.NextPowerOfTwo(Image.MapOutputMode.YRes);
-            print("Uscale: " + uScale);
-            print("vscale: " + vScale);
+		    float uScale = inputSize.x / outputSize.x;
+            float vScale = inputSize.y / outputSize.y;
             target.material.SetTextureScale("_MainTex", new Vector2(uScale, -vScale));
             target.material.SetTextureOffset("_MainTex", new Vector2(0.0f, vScale - 1.0f));
             target.material.mainTexture = imageMapTexture;
@@ -63,15 +63,24 @@ public class OpenNIImagemapViewer : MonoBehaviour
         // NOTE: The native texture id needs a +1 if we are rendering to GUI
         if (openGl) {
             Gl.glBindTexture(Gl.GL_TEXTURE_2D, (null == target) ? tex.GetNativeTextureID() + 1 : tex.GetNativeTextureID());
-            Gl.glTexSubImage2D(Gl.GL_TEXTURE_2D, 0, 0, 0, Image.MapOutputMode.XRes, Image.MapOutputMode.YRes, Gl.GL_RGB, Gl.GL_UNSIGNED_BYTE, Image.ImageMapPtr);
+            Gl.glTexSubImage2D(Gl.GL_TEXTURE_2D, 0, 0, 0, (int)inputSize.x, (int)inputSize.y, Gl.GL_RGB, Gl.GL_UNSIGNED_BYTE, Image.ImageMapPtr);
             return;
         }
 
+        // The slow method: copy image map data to a manager buffer, and then create a Color32
+        // for each pixel
         Marshal.Copy(Image.ImageMapPtr, rawImageMap, 0, rawImageMap.Length);
         int src = 0;
-        for (int i = 0; i < Image.MapOutputMode.XRes * Image.MapOutputMode.YRes; i++, src += 3) {
-            new Color32(rawImageMap[src], rawImageMap[src + 1], rawImageMap[src + 2], 255);
+        int dst = 0;
+        for (int row = 0; row < (int)inputSize.y; row++) {
+            for (int col = 0; col < (int)inputSize.x; col++) {
+                imageMapPixels[dst] = new Color32(rawImageMap[src], rawImageMap[src + 1], rawImageMap[src + 2], 255);
+                src += 3;
+                dst++;
+            }
+            dst += (int)(outputSize.x - inputSize.x);
         }
+
         tex.SetPixels32(imageMapPixels);
         tex.Apply();
     }
