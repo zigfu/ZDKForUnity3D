@@ -1,0 +1,63 @@
+<?xml version="1.0" ?><Type FullName="FollowHandPoint" Name="FollowHandPoint">
+  <TypeSignature Language="C#" Value="public class FollowHandPoint : UnityEngine.MonoBehaviour"/>
+  
+  <Base>
+    <BaseTypeName>UnityEngine.MonoBehaviour</BaseTypeName>
+  </Base>
+  <Interfaces/>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    
+    <Member MemberName="bias">
+      <MemberSignature Language="C#" Value="public UnityEngine.Vector3 bias;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>UnityEngine.Vector3</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="bounds">
+      <MemberSignature Language="C#" Value="public UnityEngine.Vector3 bounds;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>UnityEngine.Vector3</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="damping">
+      <MemberSignature Language="C#" Value="public float damping;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Single</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Scale">
+      <MemberSignature Language="C#" Value="public UnityEngine.Vector3 Scale;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>UnityEngine.Vector3</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

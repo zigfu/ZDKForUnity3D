@@ -1,0 +1,154 @@
+<html>
+  <head>
+    <title>HandPointControl</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="../docstyle.css" />
+    <script type="text/JavaScript">
+	function removeElementsByClassName(name)
+	{
+		var children = document.getElementsByClassName(name);
+		for (var childIter in children)
+		{
+			var child = children[childIter];
+			var parent = child.parentNode;
+			if (parent !== undefined) parent.removeChild(child);
+		}
+	}
+	function removeRequirements()
+	{
+		var remarks = document.getElementsByClassName('Remarks')[0];
+		if (remarks.children[2].className == "TypesListing")
+			return;
+		remarks.removeChild(remarks.children[2]); //requirements
+		remarks.removeChild(remarks.children[2]); //namespaces
+	}
+    function toggle_display (block) 
+	{
+        var w = document.getElementById (block);
+        var t = document.getElementById (block + ":toggle");
+        if (w.style.display == "none") 
+		{
+			w.style.display = "block";
+			t.innerHTML = "⊟";
+        } 
+		else 
+		{
+			w.style.display = "none";
+			t.innerHTML = "⊞";
+        }
+    }
+	function onBodyLoad()
+	{
+		removeElementsByClassName('Members');
+		removeRequirements();
+	}
+    </script>
+  </head>
+  <body onload="onBodyLoad()">
+    <h1 class="PageTitle" id="T:HandPointControl">HandPointControl  Class</h1>
+    <p class="Summary" id="T:HandPointControl:Summary">
+      <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+    </p>
+    <div id="T:HandPointControl:Signature">
+      <div class="Signature">public class  <b>HandPointControl</b> : <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.MonoBehaviour</a></div>
+    </div>
+    <div class="Remarks" id="T:HandPointControl:Docs">
+      <h4 class="Subsection">
+        <a href="javascript:toggle_display('T:HandPointControl:Docs:Remarks')">
+          <span id="T:HandPointControl:Docs:Remarks:toggle">⊟</span> Remarks</a>
+      </h4>
+      <blockquote class="SubsectionBox" id="T:HandPointControl:Docs:Remarks">
+        <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+      </blockquote>
+      <h4 class="Subsection">
+        <a href="javascript:toggle_display('T:HandPointControl:Docs:Version Information')">
+          <span id="T:HandPointControl:Docs:Version Information:toggle">⊟</span> Requirements</a>
+      </h4>
+      <blockquote class="SubsectionBox" id="T:HandPointControl:Docs:Version Information">
+        <b>Namespace: </b>
+      </blockquote>
+      <h2 class="Section" id="Members">
+        <a href="javascript:toggle_display('_Members')">
+          <span id="_Members:toggle">⊟</span> Members</a>
+      </h2>
+      <blockquote class="SectionBox" id="_Members">
+        <p>
+								See Also: Inherited members from
+								<a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.MonoBehaviour</a>.
+							</p>
+        <h3>
+          <a href="javascript:toggle_display('Public Fields')">
+            <span id="Public Fields:toggle">⊟</span> Public Fields</a>
+        </h3>
+        <blockquote id="Public Fields">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:HandPointControl.ActiveOnStart">ActiveOnStart</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+            </table>
+          </div>
+        </blockquote>
+        <h3>
+          <a href="javascript:toggle_display('Public Properties')">
+            <span id="Public Properties:toggle">⊟</span> Public Properties</a>
+        </h3>
+        <blockquote id="Public Properties">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>[read-only]<div></div></td>
+                <td>
+                  <b>
+                    <a href="#P:HandPointControl.IsActive">IsActive</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+            </table>
+          </div>
+        </blockquote>
+        <h3>
+          <a href="javascript:toggle_display('Protected Properties')">
+            <span id="Protected Properties:toggle">⊟</span> Protected Properties</a>
+        </h3>
+        <blockquote id="Protected Properties">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>[read-only]<div></div></td>
+                <td>
+                  <b>
+                    <a href="#P:HandPointControl.FocusPoint">FocusPoint</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+            </table>
+          </div>
+        </blockquote>
+      </blockquote>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

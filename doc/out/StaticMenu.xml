@@ -1,0 +1,69 @@
+<?xml version="1.0" ?><Type FullName="StaticMenu" Name="StaticMenu">
+  <TypeSignature Language="C#" Value="public class StaticMenu : UnityEngine.MonoBehaviour"/>
+  
+  <Base>
+    <BaseTypeName>UnityEngine.MonoBehaviour</BaseTypeName>
+  </Base>
+  <Interfaces/>
+  <Attributes>
+    <Attribute>
+      <AttributeName>UnityEngine.RequireComponent(typeof(Fader))</AttributeName>
+    </Attribute>
+  </Attributes>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    
+    <Member MemberName="ActiveItemIndex">
+      <MemberSignature Language="C#" Value="public int ActiveItemIndex { set; get; }"/>
+      <MemberType>Property</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="fader">
+      <MemberSignature Language="C#" Value="public Fader fader;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>Fader</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="items">
+      <MemberSignature Language="C#" Value="public UnityEngine.Transform[] items;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>UnityEngine.Transform[]</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SelectOnPush">
+      <MemberSignature Language="C#" Value="public bool SelectOnPush;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

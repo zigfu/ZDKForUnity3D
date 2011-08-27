@@ -1,0 +1,412 @@
+<html>
+  <head>
+    <title>SessionManager</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="../docstyle.css" />
+    <script type="text/JavaScript">
+	function removeElementsByClassName(name)
+	{
+		var children = document.getElementsByClassName(name);
+		for (var childIter in children)
+		{
+			var child = children[childIter];
+			var parent = child.parentNode;
+			if (parent !== undefined) parent.removeChild(child);
+		}
+	}
+	function removeRequirements()
+	{
+		var remarks = document.getElementsByClassName('Remarks')[0];
+		if (remarks.children[2].className == "TypesListing")
+			return;
+		remarks.removeChild(remarks.children[2]); //requirements
+		remarks.removeChild(remarks.children[2]); //namespaces
+	}
+    function toggle_display (block) 
+	{
+        var w = document.getElementById (block);
+        var t = document.getElementById (block + ":toggle");
+        if (w.style.display == "none") 
+		{
+			w.style.display = "block";
+			t.innerHTML = "⊟";
+        } 
+		else 
+		{
+			w.style.display = "none";
+			t.innerHTML = "⊞";
+        }
+    }
+	function onBodyLoad()
+	{
+		removeElementsByClassName('Members');
+		removeRequirements();
+	}
+    </script>
+  </head>
+  <body onload="onBodyLoad()">
+    <h1 class="PageTitle" id="T:SessionManager">SessionManager  Class</h1>
+    <p class="Summary" id="T:SessionManager:Summary">
+      <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+    </p>
+    <div id="T:SessionManager:Signature">
+      <div class="Signature">public class  <b>SessionManager</b> : <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.MonoBehaviour</a></div>
+    </div>
+    <div class="Remarks" id="T:SessionManager:Docs">
+      <h4 class="Subsection">
+        <a href="javascript:toggle_display('T:SessionManager:Docs:Remarks')">
+          <span id="T:SessionManager:Docs:Remarks:toggle">⊟</span> Remarks</a>
+      </h4>
+      <blockquote class="SubsectionBox" id="T:SessionManager:Docs:Remarks">
+        <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+      </blockquote>
+      <h4 class="Subsection">
+        <a href="javascript:toggle_display('T:SessionManager:Docs:Version Information')">
+          <span id="T:SessionManager:Docs:Version Information:toggle">⊟</span> Requirements</a>
+      </h4>
+      <blockquote class="SubsectionBox" id="T:SessionManager:Docs:Version Information">
+        <b>Namespace: </b>
+      </blockquote>
+      <h2 class="Section" id="Members">
+        <a href="javascript:toggle_display('_Members')">
+          <span id="_Members:toggle">⊟</span> Members</a>
+      </h2>
+      <blockquote class="SectionBox" id="_Members">
+        <p>
+								See Also: Inherited members from
+								<a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.MonoBehaviour</a>.
+							</p>
+        <h3>
+          <a href="javascript:toggle_display('Public Fields')">
+            <span id="Public Fields:toggle">⊟</span> Public Fields</a>
+        </h3>
+        <blockquote id="Public Fields">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:SessionManager.DetectPush">DetectPush</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:SessionManager.DetectWave">DetectWave</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:SessionManager.ExperimentalGestureless">ExperimentalGestureless</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:SessionManager.RotateToUser">RotateToUser</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:SessionManager.SessionBoundingBox">SessionBoundingBox</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:SessionManager.SessionBounds">SessionBounds</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:SessionManager.StealOnWave">StealOnWave</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+            </table>
+          </div>
+        </blockquote>
+        <h3>
+          <a href="javascript:toggle_display('Public Properties')">
+            <span id="Public Properties:toggle">⊟</span> Public Properties</a>
+        </h3>
+        <blockquote id="Public Properties">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>[read-only]<div></div></td>
+                <td>
+                  <b>
+                    <a href="#P:SessionManager.focusPoint">focusPoint</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>[read-only]<div>static </div></td>
+                <td>
+                  <b>
+                    <a href="#P:SessionManager.FocusPoint">FocusPoint</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>[read-only]<div>static </div></td>
+                <td>
+                  <b>
+                    <a href="#P:SessionManager.HandPosition">HandPosition</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>[read-only]<div></div></td>
+                <td>
+                  <b>
+                    <a href="#P:SessionManager.inSession">inSession</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>[read-only]<div>static </div></td>
+                <td>
+                  <b>
+                    <a href="#P:SessionManager.InSession">InSession</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>[read-only]<div>static </div></td>
+                <td>
+                  <b>
+                    <a href="#P:SessionManager.Instance">Instance</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="SessionManager.html">SessionManager</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>[read-only]<div></div></td>
+                <td>
+                  <b>
+                    <a href="#P:SessionManager.lastRawPoint">lastRawPoint</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.Point3D</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>[read-only]<div>static </div></td>
+                <td>
+                  <b>
+                    <a href="#P:SessionManager.LastRawPoint">LastRawPoint</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.Point3D</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+            </table>
+          </div>
+        </blockquote>
+        <h3>
+          <a href="javascript:toggle_display('Public Methods')">
+            <span id="Public Methods:toggle">⊟</span> Public Methods</a>
+        </h3>
+        <blockquote id="Public Methods">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:SessionManager.AddListener(UnityEngine.GameObject)">AddListener</a>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.GameObject</a>)<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:SessionManager.DebugDrawListeners">DebugDrawListeners</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:SessionManager.EndSession">EndSession</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:SessionManager.Point3DToVector3(OpenNI.Point3D)">Point3DToVector3</a>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.Point3D</a>)<nobr> : <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a></nobr><blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:SessionManager.RemoveListener(UnityEngine.GameObject)">RemoveListener</a>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.GameObject</a>)<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:SessionManager.RotateHandPoint(OpenNI.Point3D)">RotateHandPoint</a>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.Point3D</a>)<nobr> : <a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.Point3D</a></nobr><blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:SessionManager.StartSession(OpenNI.Point3D)">StartSession</a>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.Point3D</a>)<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:SessionManager.Vector3ToPoint3D(UnityEngine.Vector3)">Vector3ToPoint3D</a>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a>)<nobr> : <a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.Point3D</a></nobr><blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:SessionManager.WhichUserDoesThisPointBelongTo(OpenNI.Point3D)">WhichUserDoesThisPointBelongTo</a>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">OpenNI.Point3D</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:SessionManager.WhichUserDoesThisPointBelongTo(UnityEngine.Vector3)">WhichUserDoesThisPointBelongTo</a>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+            </table>
+          </div>
+        </blockquote>
+      </blockquote>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

@@ -5,6 +5,13 @@
     <Namespace Name="">
       
       
+      
+      
+      <Type Kind="Class" Name="Fader"/>
+      <Type Kind="Class" Name="FollowHandPoint"/>
+      <Type Kind="Class" Name="HandPointControl"/>
+      <Type Kind="Class" Name="ItemSelector"/>
+      
       <Type Kind="Class" Name="OpenNIContext"/>
       <Type Kind="Class" Name="OpenNIDepthmapViewer"/>
       <Type Kind="Class" Name="OpenNIImagemapViewer"/>
@@ -13,7 +20,11 @@
       <Type Kind="Class" Name="OpenNISplitScreenSkeletonController"/>
       <Type Kind="Class" Name="OpenNIUsersRadar"/>
       <Type Kind="Class" Name="OpenNIUserTracker"/>
+      <Type Kind="Class" Name="PushDetector"/>
+      <Type Kind="Class" Name="SessionManager"/>
+      <Type Kind="Class" Name="SessionManagerVisualizer"/>
       
+      <Type Kind="Class" Name="StaticMenu"/>
     </Namespace>
   </Types>
   <Title>ZigFu Unity OpenNI Bindings</Title>

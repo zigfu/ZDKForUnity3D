@@ -3,7 +3,14 @@
   <Copyright>Motion Arcade Inc &amp;#0169; 2011</Copyright>
   <Types>
     <Namespace Name="">
+      <Type Name="ChangeColor" Kind="Class" />
+      <Type Name="ChangeColorOnHighlight" Kind="Class" />
+      <Type Name="eventPrinter" Kind="Class" />
       <Type Name="ExitOnEscape" Kind="Class" />
+      <Type Name="Fader" Kind="Class" />
+      <Type Name="FollowHandPoint" Kind="Class" />
+      <Type Name="HandPointControl" Kind="Class" />
+      <Type Name="ItemSelector" Kind="Class" />
       <Type Name="objectPerUser" Kind="Class" />
       <Type Kind="Class" Name="OpenNIContext" />
       <Type Kind="Class" Name="OpenNIDepthmapViewer" />
@@ -13,7 +20,11 @@
       <Type Kind="Class" Name="OpenNISplitScreenSkeletonController" />
       <Type Kind="Class" Name="OpenNIUsersRadar" />
       <Type Kind="Class" Name="OpenNIUserTracker" />
+      <Type Name="PushDetector" Kind="Class" />
       <Type Name="SessionManager" Kind="Class" />
+      <Type Name="SessionManagerVisualizer" Kind="Class" />
+      <Type Name="StartSessionMessage" Kind="Class" />
+      <Type Name="StaticMenu" Kind="Class" />
     </Namespace>
   </Types>
   <Title>ZigFu Unity OpenNI Bindings</Title>

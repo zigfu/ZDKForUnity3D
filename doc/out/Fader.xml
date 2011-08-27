@@ -1,0 +1,153 @@
+<?xml version="1.0" ?><Type FullName="Fader" Name="Fader">
+  <TypeSignature Language="C#" Value="public class Fader : UnityEngine.MonoBehaviour"/>
+  
+  <Base>
+    <BaseTypeName>UnityEngine.MonoBehaviour</BaseTypeName>
+  </Base>
+  <Interfaces/>
+  <Attributes>
+    <Attribute>
+      <AttributeName>UnityEngine.RequireComponent(typeof(HandPointControl))</AttributeName>
+    </Attribute>
+  </Attributes>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    
+    <Member MemberName="direction">
+      <MemberSignature Language="C#" Value="public UnityEngine.Vector3 direction;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>UnityEngine.Vector3</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetPosition">
+      <MemberSignature Language="C#" Value="public UnityEngine.Vector3 GetPosition (float val);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>UnityEngine.Vector3</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="val" Type="System.Single"/>
+      </Parameters>
+      <Docs>
+        <param name="val">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetValue">
+      <MemberSignature Language="C#" Value="public float GetValue (UnityEngine.Vector3 pos);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Single</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="pos" Type="UnityEngine.Vector3"/>
+      </Parameters>
+      <Docs>
+        <param name="pos">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Hand_Update">
+      <MemberSignature Language="C#" Value="public void Hand_Update (UnityEngine.Vector3 pos);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="pos" Type="UnityEngine.Vector3"/>
+      </Parameters>
+      <Docs>
+        <param name="pos">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="initialValue">
+      <MemberSignature Language="C#" Value="public float initialValue;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Single</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MoveTo">
+      <MemberSignature Language="C#" Value="public void MoveTo (UnityEngine.Vector3 pos, float val);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="pos" Type="UnityEngine.Vector3"/>
+        <Parameter Name="val" Type="System.Single"/>
+      </Parameters>
+      <Docs>
+        <param name="pos">To be added.</param>
+        <param name="val">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MoveToContain">
+      <MemberSignature Language="C#" Value="public void MoveToContain (UnityEngine.Vector3 pos);"/>
+      <MemberType>Method</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="pos" Type="UnityEngine.Vector3"/>
+      </Parameters>
+      <Docs>
+        <param name="pos">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="size">
+      <MemberSignature Language="C#" Value="public float size;"/>
+      <MemberType>Field</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Single</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="value">
+      <MemberSignature Language="C#" Value="public float value { get; }"/>
+      <MemberType>Property</MemberType>
+      
+      <ReturnValue>
+        <ReturnType>System.Single</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

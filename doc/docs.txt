@@ -7,3 +7,11 @@ OpenNISkeleton
 OpenNISplitScreenSkeletonController
 OpenNIUsersRadar
 OpenNIUserTracker
+StaticMenu
+SessionManagerVisualizer
+PushDetector
+ItemSelector
+HandPointControl
+FollowHandPoint
+Fader
+SessionManager

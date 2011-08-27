@@ -1,0 +1,222 @@
+<html>
+  <head>
+    <title>Fader</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="../docstyle.css" />
+    <script type="text/JavaScript">
+	function removeElementsByClassName(name)
+	{
+		var children = document.getElementsByClassName(name);
+		for (var childIter in children)
+		{
+			var child = children[childIter];
+			var parent = child.parentNode;
+			if (parent !== undefined) parent.removeChild(child);
+		}
+	}
+	function removeRequirements()
+	{
+		var remarks = document.getElementsByClassName('Remarks')[0];
+		if (remarks.children[2].className == "TypesListing")
+			return;
+		remarks.removeChild(remarks.children[2]); //requirements
+		remarks.removeChild(remarks.children[2]); //namespaces
+	}
+    function toggle_display (block) 
+	{
+        var w = document.getElementById (block);
+        var t = document.getElementById (block + ":toggle");
+        if (w.style.display == "none") 
+		{
+			w.style.display = "block";
+			t.innerHTML = "⊟";
+        } 
+		else 
+		{
+			w.style.display = "none";
+			t.innerHTML = "⊞";
+        }
+    }
+	function onBodyLoad()
+	{
+		removeElementsByClassName('Members');
+		removeRequirements();
+	}
+    </script>
+  </head>
+  <body onload="onBodyLoad()">
+    <h1 class="PageTitle" id="T:Fader">Fader  Class</h1>
+    <p class="Summary" id="T:Fader:Summary">
+      <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+    </p>
+    <div id="T:Fader:Signature">
+      <div class="Signature">[UnityEngine.RequireComponent(typeof(HandPointControl))]<br />public class  <b>Fader</b> : <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.MonoBehaviour</a></div>
+    </div>
+    <div class="Remarks" id="T:Fader:Docs">
+      <h4 class="Subsection">
+        <a href="javascript:toggle_display('T:Fader:Docs:Remarks')">
+          <span id="T:Fader:Docs:Remarks:toggle">⊟</span> Remarks</a>
+      </h4>
+      <blockquote class="SubsectionBox" id="T:Fader:Docs:Remarks">
+        <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+      </blockquote>
+      <h4 class="Subsection">
+        <a href="javascript:toggle_display('T:Fader:Docs:Version Information')">
+          <span id="T:Fader:Docs:Version Information:toggle">⊟</span> Requirements</a>
+      </h4>
+      <blockquote class="SubsectionBox" id="T:Fader:Docs:Version Information">
+        <b>Namespace: </b>
+      </blockquote>
+      <h2 class="Section" id="Members">
+        <a href="javascript:toggle_display('_Members')">
+          <span id="_Members:toggle">⊟</span> Members</a>
+      </h2>
+      <blockquote class="SectionBox" id="_Members">
+        <p>
+								See Also: Inherited members from
+								<a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.MonoBehaviour</a>.
+							</p>
+        <h3>
+          <a href="javascript:toggle_display('Public Fields')">
+            <span id="Public Fields:toggle">⊟</span> Public Fields</a>
+        </h3>
+        <blockquote id="Public Fields">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:Fader.direction">direction</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:Fader.initialValue">initialValue</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Single">float</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:Fader.size">size</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Single">float</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+            </table>
+          </div>
+        </blockquote>
+        <h3>
+          <a href="javascript:toggle_display('Public Properties')">
+            <span id="Public Properties:toggle">⊟</span> Public Properties</a>
+        </h3>
+        <blockquote id="Public Properties">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>[read-only]<div></div></td>
+                <td>
+                  <b>
+                    <a href="#P:Fader.value">value</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Single">float</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+            </table>
+          </div>
+        </blockquote>
+        <h3>
+          <a href="javascript:toggle_display('Public Methods')">
+            <span id="Public Methods:toggle">⊟</span> Public Methods</a>
+        </h3>
+        <blockquote id="Public Methods">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:Fader.GetPosition(System.Single)">GetPosition</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Single">float</a>)<nobr> : <a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a></nobr><blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:Fader.GetValue(UnityEngine.Vector3)">GetValue</a>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Single">float</a></nobr><blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:Fader.Hand_Update(UnityEngine.Vector3)">Hand_Update</a>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a>)<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:Fader.MoveTo(UnityEngine.Vector3,System.Single)">MoveTo</a>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Single">float</a>)<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:Fader.MoveToContain(UnityEngine.Vector3)">MoveToContain</a>
+                  </b>(<a href="javascript:alert(&quot;Documentation not found.&quot;)">UnityEngine.Vector3</a>)<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+            </table>
+          </div>
+        </blockquote>
+      </blockquote>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>
