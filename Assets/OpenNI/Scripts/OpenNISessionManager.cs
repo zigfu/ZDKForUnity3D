@@ -6,7 +6,6 @@ using OpenNI;
 
 public class SessionManager : MonoBehaviour {
 	// singleton
-
     static SessionManager instance;
     public static SessionManager Instance
     {
@@ -227,7 +226,7 @@ public class SessionManager : MonoBehaviour {
 	
 	void OnSessionStarted(Point3D pos)
 	{
-		Debug.Log("MotionOS: Hand point session started");
+		Debug.Log("Hand point session started");
 		inSession = true;
 		focusPoint = Point3DToVector3(pos);
 		
@@ -240,7 +239,7 @@ public class SessionManager : MonoBehaviour {
 	
 	void OnSessionEnded()
 	{
-		Debug.Log("MotionOS: Hand point Session ended");
+		Debug.Log("Hand point Session ended");
 		inSession = false;
 		foreach (GameObject obj in new List<GameObject>(Listeners)) {
             if (!obj) continue;
