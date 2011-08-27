@@ -9,38 +9,45 @@ public class Fader : MonoBehaviour {
 
     public float value { get; private set; }
 
+    Vector3 mirrorIndependentDirection {
+        get {
+            return (OpenNIContext.Instance.Mirror) ? direction : Vector3.Scale(direction, new Vector3(-1, 1, 1));
+        }
+    }
+
     Vector3 start;
 	
 	// move the slider to contain pos within its bounds
 	public void MoveToContain(Vector3 pos)
 	{
-		float dot = Vector3.Dot(direction, pos - start);
+		float dot = Vector3.Dot(mirrorIndependentDirection, pos - start);
 		if (dot > size)
 		{
-			start += direction * (dot - size);
+			start += mirrorIndependentDirection * (dot - size);
 		}
 		if (dot < 0)
 		{
-			start += direction * dot;
+			start += mirrorIndependentDirection * dot;
 		}
 	}
 	
 	// move the slider so that pos will be mapped to val (0-1)
 	public void MoveTo(Vector3 pos, float val)
 	{
-		start = pos - (direction * (val * size));
+        start = pos - (mirrorIndependentDirection * (val * size));
 	}
 	
 	public float GetValue(Vector3 pos)
 	{
-		float dot = Vector3.Dot(direction, pos - start);
+		float dot = Vector3.Dot(mirrorIndependentDirection, pos - start);
         float val = Mathf.Clamp01(dot / size);
-		return (OpenNIContext.Instance.Mirror) ? val : 1.0f - val;
+        return val;
+		//return (OpenNIContext.Instance.Mirror) ? val : 1.0f - val;
 	}
 	
 	public Vector3 GetPosition(float val)
 	{
-		return start + (direction * (val * size));
+        return start + (mirrorIndependentDirection * (val * size));
 	}
 
     // hand point control messages
@@ -50,7 +57,7 @@ public class Fader : MonoBehaviour {
         value = initialValue;
     }
 
-    void Hand_Update(Vector3 pos)
+    public void Hand_Update(Vector3 pos)
     {
         value = GetValue(pos);
     }
@@ -63,5 +70,11 @@ public class Fader : MonoBehaviour {
     void Start()
     {
         value = initialValue;
+    }
+
+    void SessionManager_Visualize()
+    {
+        GUILayout.Label("- Fader");
+        GUILayout.HorizontalSlider(value, 0.0f, 1.0f);
     }
 }
