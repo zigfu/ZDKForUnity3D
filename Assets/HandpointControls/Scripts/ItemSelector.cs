@@ -128,6 +128,14 @@ public class ItemSelector : MonoBehaviour {
         SendMessage("ItemSelector_StopScrolling", SendMessageOptions.DontRequireReceiver);
     }
 
+    void Hand_Destroy()
+    {
+        if (scrolling) {
+            StopScrolling();
+            scrolling = false;
+        }
+    }
+
     void SessionManager_Visualize()
     {
         GUILayout.Label("- Item Selector");
