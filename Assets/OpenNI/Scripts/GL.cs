@@ -4,10 +4,15 @@ using System.Collections;
 using System.Runtime.InteropServices;
 
 public class GL {
+    internal const string OpenGLPathMac = "/System/Library/Frameworks/OpenGL.framework/OpenGL";
+    internal const string OpenGLPathWindows = "opengl32.dll";
 #if UNITY_STANDALONE_OSX
-    internal const string glLibrary = "/System/Library/Frameworks/OpenGL.framework/OpenGL";
+    // if building OSX exe, always use OSX 
+    internal const string glLibrary = OpenGLPathMac;
+#elif UNITY_STANDALONE_WINDOWS
+    internal const string glLibrary = OpenGLPathWindows;
 #else
-    internal const string glLibrary = "opengl32.dll";
+    internal const string glLibrary = (Environment.OSVersion.Platform == PlatformID.MacOSX) ? OpenGLPathMac : OpenGLPathWindows;
 #endif
 
     public const Int32 RGB = 0x1907;
