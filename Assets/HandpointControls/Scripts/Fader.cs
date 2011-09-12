@@ -42,8 +42,7 @@ public class Fader : MonoBehaviour {
 		float dot = Vector3.Dot(mirrorIndependentDirection, pos - start);
         float val = Mathf.Clamp01(dot / size);
         return val;
-		//return (OpenNIContext.Instance.Mirror) ? val : 1.0f - val;
-	}
+    }
 	
 	public Vector3 GetPosition(float val)
 	{

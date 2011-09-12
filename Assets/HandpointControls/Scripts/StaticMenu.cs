@@ -61,8 +61,10 @@ public class StaticMenu : MonoBehaviour {
 
     void PushDetector_Click()
     {
-        items[ActiveItemIndex].SendMessage("MenuItem_Select", SendMessageOptions.DontRequireReceiver);
-        SendMessage("Menu_Select", items[ActiveItemIndex], SendMessageOptions.DontRequireReceiver);
+        if (SelectOnPush) {
+            items[ActiveItemIndex].SendMessage("MenuItem_Select", SendMessageOptions.DontRequireReceiver);
+            SendMessage("Menu_Select", items[ActiveItemIndex], SendMessageOptions.DontRequireReceiver);
+        }
     }
 
     //-------------------------------------------------------------------------
