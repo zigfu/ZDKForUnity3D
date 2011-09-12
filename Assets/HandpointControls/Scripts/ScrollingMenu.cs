@@ -11,7 +11,7 @@ public class ScrollingMenu : MonoBehaviour
     public int WindowSize;
     public float damping = 5.0f;
     public bool RepositionBasedOnBounds = false;
-    public float scrollRegionSize = 0.2f;
+    public float scrollRegionSize = 0.15f;
 
     List<Transform> items = new List<Transform>();
     ItemSelector selector;
