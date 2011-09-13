@@ -11,7 +11,7 @@ public class GL {
         implementation = new GLMac();
 #elif UNITY_STANDALONE_WINDOWS
         implementation = new GLWin();
-#else
+#else // assume editor - other platforms will be solved later
         if (Environment.OSVersion.Platform == PlatformID.MacOSX) {
             implementation = new GLMac();
         }
@@ -68,7 +68,7 @@ public class GL {
         public void BindTexture(Int32 target, Int32 texture) {
             glBindTexture(target, texture);
         }
-        internal const string glLibrary = "/System/Library/Frameworks/OpenGL.framework/OpenGL";
+        internal const string glLibrary = "opengl32.dll";
         [DllImport(glLibrary, EntryPoint = "glBindTexture", ExactSpelling = true)]
         extern public static void glBindTexture(Int32 target, Int32 texture);
 
