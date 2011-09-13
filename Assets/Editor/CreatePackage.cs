@@ -10,6 +10,7 @@ public class CreatePackage {
                                "Assets/_Scenes",
                                "Assets/HandpointControls",
                                "Assets/OpenNI",
+							   "Assets/SlideViewer",
                            };
     static string PackageName = "UnityOpenNIBindings.unitypackage";
 
