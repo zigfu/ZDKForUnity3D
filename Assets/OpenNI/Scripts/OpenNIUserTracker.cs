@@ -58,6 +58,12 @@ public class OpenNIUserTracker : MonoBehaviour
         this.userGenerator.LostUser += new EventHandler<UserLostEventArgs>(userGenerator_LostUser);
         this.poseDetectionCapability.PoseDetected += new EventHandler<PoseDetectedEventArgs>(poseDetectionCapability_PoseDetected);
         this.skeletonCapbility.CalibrationEnd += new EventHandler<CalibrationEndEventArgs>(skeletonCapbility_CalibrationEnd);
+		
+		foreach (int userId in userGenerator.GetUsers())
+		{
+			allUsers.Add(userId);
+		}
+		AttemptCalibrationForAllUsers();
 	}
 
 	
