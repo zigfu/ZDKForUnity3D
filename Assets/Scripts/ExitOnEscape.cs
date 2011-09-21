@@ -12,6 +12,16 @@ public class ExitOnEscape : MonoBehaviour {
         }
         return System.IO.Path.Combine("Screenshots", "Screenshot" + i + ".png");
     }
+	
+	void Start()
+	{
+		foreach (string cmd in System.Environment.GetCommandLineArgs())
+		{
+			if ("wide" == cmd) {
+				Screen.SetResolution(1280, 720, true);
+			}
+		}
+	}
 
     void OnGUI()
     {
