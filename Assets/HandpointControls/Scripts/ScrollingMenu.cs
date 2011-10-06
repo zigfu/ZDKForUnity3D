@@ -56,7 +56,7 @@ public class ScrollingMenu : MonoBehaviour
 
     int firstOnScreenIndex = 0;
     int lastActiveItemIndex = 0;
-    int activeItemIndex = -1;
+    public int activeItemIndex = -1;
     public int ActiveItemIndex
     {
         get { return activeItemIndex; }
@@ -87,6 +87,18 @@ public class ScrollingMenu : MonoBehaviour
             CenterIndex = (float)firstOnScreenIndex + (((float)WindowSize - 1) / 2.0f);
         }
     }
+
+	public bool CanScrollForward {
+		get {
+			return  (items.Count > 0 && ActiveItemIndex < items.Count - 1);
+		}
+	}
+	
+	public bool CanScrollBack {
+		get {
+			return  (items.Count > 0 && ActiveItemIndex > 0);
+		}
+	}
 
     void Awake()
     {
@@ -140,6 +152,17 @@ public class ScrollingMenu : MonoBehaviour
         if (items.Count == 1) {
             HighlightItem(0);
         }
+		
+		ActiveItemIndex = ActiveItemIndex;
+    }
+	
+	public void Clear()
+	{
+		foreach (Transform item in items)
+		{
+			Destroy(item.gameObject);
+		}
+		items.Clear();
     }
 
     void RepositionItems()

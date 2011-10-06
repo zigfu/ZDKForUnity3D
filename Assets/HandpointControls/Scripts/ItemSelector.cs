@@ -29,19 +29,19 @@ public class ItemSelector : MonoBehaviour {
 		}
 	}
 	
-	float minValue {
+	public float minValue {
 		get {
             return (selectionIndex == 0) ? scrollRegion : scrollRegion + (selectionIndex * itemWidth) - hysterisis;
 		}
 	}
 	
-	float maxValue {
+	public float maxValue {
 		get {
             return (selectionIndex == numItems - 1) ? 1.0f - scrollRegion : scrollRegion + ((selectionIndex + 1) * itemWidth) + hysterisis;
 		}
 	}
 	
-	float itemWidth {
+	public float itemWidth {
 		get {
 			return (1.0f - (2 * scrollRegion)) / (float)numItems;
 		}

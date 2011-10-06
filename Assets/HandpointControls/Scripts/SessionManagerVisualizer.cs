@@ -3,8 +3,16 @@ using System.Collections;
 using System.Reflection;
 
 public class SessionManagerVisualizer : MonoBehaviour {
+	public bool Visible;
 	void OnGUI()
 	{
-		SessionManager.Instance.DebugDrawListeners();
+		if (Event.current.Equals(Event.KeyboardEvent("f1"))) {
+			Visible = !Visible;
+			Event.current.Use();
+		}
+		
+		if (Visible) {
+			SessionManager.Instance.DebugDrawListeners();
+		}
 	}
 }
