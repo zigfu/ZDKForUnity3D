@@ -207,6 +207,13 @@ public class OpenNIUserTracker : MonoBehaviour
 		foreach (int id in CalibratedUsers) {
 			skeletonCapbility.StopTracking(id);	
 		}
+		calibratedUsers.Clear();
+	}
+	
+	public void ResetTracker()
+	{
+		LoseAllUsers();
+		AttemptCalibrationForAllUsers();
 	}
 			
 	public void UpdateSkeleton(int userId, OpenNISkeleton skeleton)
@@ -249,5 +256,4 @@ public class OpenNIUserTracker : MonoBehaviour
 		Point3D com = userGenerator.GetCoM(userId);
 		return new Vector3(com.X, com.Y, -com.Z);
 	}
-	
 }
