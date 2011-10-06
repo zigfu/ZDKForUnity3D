@@ -42,6 +42,10 @@ public class PushDetector : MonoBehaviour {
 		pushFader.MoveToContain(pos);
         pushFader.Hand_Update(pos);
 	
+		
+		// quick out if in cooldown
+		if (SessionManager.Instance.CoolingDown) return;
+		
 		// click logic
 		if (!IsClicked)
         {
