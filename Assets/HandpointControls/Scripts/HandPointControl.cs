@@ -32,6 +32,18 @@ public class HandPointControl : MonoBehaviour
         started = true;
     }
 
+	public void Activate()
+	{
+		IsActive = true;
+		SessionManager.AddListener(this.gameObject);
+	}
+	
+	public void Deactivate()
+	{
+        IsActive = false;
+		SessionManager.RemoveListener(this.gameObject);
+	}
+
 	void OnEnable()
 	{
 		// only add to session manager by default if not navigable
@@ -51,14 +63,12 @@ public class HandPointControl : MonoBehaviour
 	
 	void Navigator_Activate()
 	{
-        IsActive = true;
-		SessionManager.AddListener(this.gameObject);
+		Activate();
 	}
 
 	void Navigator_Deactivate()
 	{
-        IsActive = false;
-		SessionManager.RemoveListener(this.gameObject);
+		Deactivate();
 	}
 	
 	protected Vector3 FocusPoint { get { return SessionManager.FocusPoint; } }
