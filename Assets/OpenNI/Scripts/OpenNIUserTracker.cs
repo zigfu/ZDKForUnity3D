@@ -202,6 +202,13 @@ public class OpenNIUserTracker : MonoBehaviour
 		}
 	}
 	
+	void LoseAllUsers()
+	{
+		foreach (int id in CalibratedUsers) {
+			skeletonCapbility.StopTracking(id);	
+		}
+	}
+			
 	public void UpdateSkeleton(int userId, OpenNISkeleton skeleton)
 	{
 		// make sure we have skeleton data for this user
