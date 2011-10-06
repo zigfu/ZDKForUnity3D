@@ -81,10 +81,6 @@ public class OpenNISkeleton : MonoBehaviour
 	    transforms[(int)SkeletonJoint.RightAnkle] = RightAnkle;
 		transforms[(int)SkeletonJoint.RightFoot] = RightFoot;
 		
-    }
-
-    void Start() 
-    {
 		// save all initial rotations
 		// NOTE: Assumes skeleton model is in "T" pose since all rotations are relative to that pose
 		foreach (SkeletonJoint j in Enum.GetValues(typeof(SkeletonJoint)))
@@ -97,7 +93,10 @@ public class OpenNISkeleton : MonoBehaviour
 				initialRotations[(int)j] = Quaternion.Inverse(transform.rotation) * transforms[(int)j].rotation;
 			}
 		}
-		
+    }
+
+    void Start() 
+    {
 		// start out in calibration pose
 		RotateToCalibrationPose();
 	}
