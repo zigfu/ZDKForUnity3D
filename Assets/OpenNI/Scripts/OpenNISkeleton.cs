@@ -184,9 +184,12 @@ public class OpenNISkeleton : MonoBehaviour
 		orientationList.Add(jointData[(int)j].Orientation.Z1);
 		orientationList.Add(jointData[(int)j].Orientation.Z2);
 		orientationList.Add(jointData[(int)j].Orientation.Z3);
+		Hashtable ori = new Hashtable();
+		ori.Add("Confidence", jointData[(int)j].Orientation.Confidence);
+		ori.Add("Data", orientationList);
 		Hashtable ret = new Hashtable();
 		ret.Add("Position", positionList);
-		ret.Add("Orientation", orientationList);
+		ret.Add("Orientation", ori);
 		return ret;
 	}
     public ArrayList JSONSkeleton()
@@ -208,14 +211,16 @@ public class OpenNISkeleton : MonoBehaviour
 	public void JointFromJSON(SkeletonJoint j, Hashtable dict) {
 		
 		ArrayList positionList = (ArrayList)dict["Position"];
-
-		ArrayList orientationList = (ArrayList)dict["Orientation"];
+		
+		Hashtable oriHash = (Hashtable) dict["Orientation"];
+		ArrayList orientationList = (ArrayList) oriHash["Data"];
 		SkeletonJointOrientation sjo = new SkeletonJointOrientation();
 		sjo.X1 = 1.0f;
 		SkeletonJointPosition sjp = new SkeletonJointPosition();
 		SkeletonJointTransformation xform = new SkeletonJointTransformation();
 		// object -> double ->float is okay, but object->float isn't
 		// (the object is a Double)
+		
 		sjp.Position = new Point3D((float)(double)positionList[0],
 		                           (float)(double)positionList[1],
 		                           (float)(double)positionList[2]);
@@ -228,6 +233,7 @@ public class OpenNISkeleton : MonoBehaviour
 		sjo.Z1 = (float)(double)orientationList[6];
 		sjo.Z2 = (float)(double)orientationList[7];
 		sjo.Z3 = (float)(double)orientationList[8];
+		sjo.Confidence = (float)(double)oriHash["Confidence"];
 		xform.Orientation = sjo;
 		xform.Position = sjp;
 		UpdateJoint(j, xform);
