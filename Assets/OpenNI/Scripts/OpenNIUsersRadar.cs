@@ -12,6 +12,9 @@ public class OpenNIUsersRadar : MonoBehaviour {
         if (!UserTracker) {
             UserTracker = GetComponent<OpenNIUserTracker>();
         }
+		if (!UserTracker) {
+			UserTracker = GameObject.FindObjectOfType(typeof(OpenNIUserTracker)) as OpenNIUserTracker;
+		}
         if (!UserTracker) {
             UserTracker = gameObject.AddComponent<OpenNIUserTracker>();
         }
