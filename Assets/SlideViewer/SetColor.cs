@@ -4,17 +4,17 @@ using System.Collections;
 public class SetColor : MonoBehaviour
 {
     public Color color;
-    public bool Smooth = true;
-    public float rate = 5.0f;
+	public Renderer target;
 
+	void Awake()
+	{
+		if (null == target) {
+			target = GetComponent<Renderer>();
+		}
+	}
 	
-
-    void Update()
+    void Start()
     {
-        if (Smooth) {
-            renderer.material.color = Color.Lerp(renderer.material.color, color, Time.deltaTime * rate);
-        } else {
-            renderer.material.color = color;
-        }
+        target.material.color = color;
     }
 }
