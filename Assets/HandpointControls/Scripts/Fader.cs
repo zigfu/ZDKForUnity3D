@@ -52,7 +52,7 @@ public class Fader : MonoBehaviour {
     // hand point control messages
     void Hand_Create(Vector3 pos)
     {
-        MoveTo(SessionManager.FocusPoint, initialValue);
+        MoveTo(OpenNISessionManager.FocusPoint, initialValue);
         value = initialValue;
     }
 

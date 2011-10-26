@@ -54,7 +54,7 @@ public class Navigator : MonoBehaviour {
 	void ActivateItem(Transform obj)
 	{
         if (TriggerCooldown) {
-            SessionManager.Instance.StartCooldown(CooldownTime);
+            OpenNISessionManager.Instance.StartCooldown(CooldownTime);
         }
 		ActiveItem = obj;
 		obj.SendMessage("Navigator_Activate", SendMessageOptions.DontRequireReceiver);

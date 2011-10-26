@@ -4,20 +4,20 @@ using System.Collections;
 using System.Collections.Generic;
 using OpenNI;
 
-public class SessionManager : MonoBehaviour {
+public class OpenNISessionManager : MonoBehaviour {
 	// singleton
-    static SessionManager instance;
-    public static SessionManager Instance
+    static OpenNISessionManager instance;
+    public static OpenNISessionManager Instance
     {
         get
         {
             if (null == instance) {
-                instance = FindObjectOfType(typeof(SessionManager)) as SessionManager;
+                instance = FindObjectOfType(typeof(OpenNISessionManager)) as OpenNISessionManager;
                 if (null == instance) {
                     GameObject container = new GameObject();
                     DontDestroyOnLoad(container);
                     container.name = "SessionManagerContainer";
-                    instance = container.AddComponent<SessionManager>();
+                    instance = container.AddComponent<OpenNISessionManager>();
                 }
                 DontDestroyOnLoad(instance);
             }
@@ -158,7 +158,7 @@ public class SessionManager : MonoBehaviour {
 
         // see if we're out of our session bounds
         if (SessionBoundingBox && !currentSessionBounds.Contains(Point3DToVector3(handPos))) {
-            SessionManager.Instance.EndSession();
+            OpenNISessionManager.Instance.EndSession();
 			Debug.Log("Session Ended by out of Bounds");
             return;
         }
@@ -184,25 +184,25 @@ public class SessionManager : MonoBehaviour {
 
 	public static void AddListener(GameObject obj)
 	{
-		if (!SessionManager.Instance.Listeners.Contains(obj)) {
-			SessionManager.Instance.Listeners.Add(obj);
+		if (!OpenNISessionManager.Instance.Listeners.Contains(obj)) {
+			OpenNISessionManager.Instance.Listeners.Add(obj);
 		}
 		
-		if (SessionManager.InSession) {
-			SessionManager.Instance.NotifyHandCreate(obj, SessionManager.Instance.handPos);
+		if (OpenNISessionManager.InSession) {
+			OpenNISessionManager.Instance.NotifyHandCreate(obj, OpenNISessionManager.Instance.handPos);
 		}
 	}
 	
 	public static void RemoveListener(GameObject obj)
 	{
-		if (null == SessionManager.instance) return;
+		if (null == OpenNISessionManager.instance) return;
 
-		if (SessionManager.Instance.Listeners.Contains(obj))	{
-			SessionManager.Instance.Listeners.Remove(obj);
+		if (OpenNISessionManager.Instance.Listeners.Contains(obj))	{
+			OpenNISessionManager.Instance.Listeners.Remove(obj);
 		}
 		
-		if (SessionManager.InSession) {
-			SessionManager.Instance.NotifyHandDestroy(obj);
+		if (OpenNISessionManager.InSession) {
+			OpenNISessionManager.Instance.NotifyHandDestroy(obj);
 		}
 	}
 	

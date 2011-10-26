@@ -26,7 +26,7 @@ public class HandPointControl : MonoBehaviour
     void Start()
     {
         if (ActiveOnStart) {
-            SessionManager.AddListener(this.gameObject);
+            OpenNISessionManager.AddListener(this.gameObject);
             IsActive = true;
         }
         started = true;
@@ -35,13 +35,13 @@ public class HandPointControl : MonoBehaviour
 	public void Activate()
 	{
 		IsActive = true;
-		SessionManager.AddListener(this.gameObject);
+		OpenNISessionManager.AddListener(this.gameObject);
 	}
 	
 	public void Deactivate()
 	{
         IsActive = false;
-		SessionManager.RemoveListener(this.gameObject);
+		OpenNISessionManager.RemoveListener(this.gameObject);
 	}
 
 	void OnEnable()
@@ -51,14 +51,14 @@ public class HandPointControl : MonoBehaviour
         // want to cause openni to init just yet (it messes up the singleton)
         if (IsActive && started)
 		{
-			SessionManager.AddListener(this.gameObject);
+			OpenNISessionManager.AddListener(this.gameObject);
             IsActive = true;
 		}
 	}
 	
 	void OnDisable()
 	{
-		SessionManager.RemoveListener(this.gameObject);
+		OpenNISessionManager.RemoveListener(this.gameObject);
 	}
 	
 	void Navigator_Activate()
@@ -71,5 +71,5 @@ public class HandPointControl : MonoBehaviour
 		Deactivate();
 	}
 	
-	protected Vector3 FocusPoint { get { return SessionManager.FocusPoint; } }
+	protected Vector3 FocusPoint { get { return OpenNISessionManager.FocusPoint; } }
 }

@@ -45,7 +45,7 @@ public class PushDetector : MonoBehaviour {
 	
 		
 		// quick out if in cooldown
-		if (SessionManager.Instance.CoolingDown) return;
+		if (OpenNISessionManager.Instance.CoolingDown) return;
 		
 		// click logic
 		if (!IsClicked)

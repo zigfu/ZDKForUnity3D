@@ -92,7 +92,7 @@ public class OpenNIDepthmapViewer : MonoBehaviour
 				}
 				else
 				{
-					Color32 c = new Color32(SessionManager.InSession ? (byte) 0 : (byte)depthHistogramMap[pixel], (byte)depthHistogramMap[pixel], 0, 255);
+					Color32 c = new Color32(OpenNISessionManager.InSession ? (byte) 0 : (byte)depthHistogramMap[pixel], (byte)depthHistogramMap[pixel], 0, 255);
 					depthMapPixels[i+x] = c;
 				}
 			}
@@ -100,9 +100,9 @@ public class OpenNIDepthmapViewer : MonoBehaviour
 			depthIndex += (factor-1)*XRes; 
 		}
 
-		if (DrawHand && SessionManager.InSession)
+		if (DrawHand && OpenNISessionManager.InSession)
 		{
-            Point3D handProjective = OpenNIContext.Instance.Depth.ConvertRealWorldToProjective(SessionManager.LastRawPoint);
+            Point3D handProjective = OpenNIContext.Instance.Depth.ConvertRealWorldToProjective(OpenNISessionManager.LastRawPoint);
 		    int k;
 		    if ((handProjective.X/factor + handPixSize < XScaled) &&
 			    (handProjective.Y/factor + handPixSize < YScaled) &&

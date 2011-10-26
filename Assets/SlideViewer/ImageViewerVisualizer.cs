@@ -46,7 +46,7 @@ public class ImageViewerVisualizer : MonoBehaviour {
         HandPositionIndicator.gameObject.GetComponent<SetColor>().color = ScrolledIndicatorColor;
         if (EndSessionAfterScroll) {
             yield return new WaitForSeconds(0.1f);
-            SessionManager.Instance.EndSession();
+            OpenNISessionManager.Instance.EndSession();
         }
     }
 

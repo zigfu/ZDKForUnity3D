@@ -12,7 +12,7 @@ public class SessionManagerVisualizer : MonoBehaviour {
 		}
 		
 		if (Visible) {
-			SessionManager.Instance.DebugDrawListeners();
+			OpenNISessionManager.Instance.DebugDrawListeners();
 		}
 	}
 }

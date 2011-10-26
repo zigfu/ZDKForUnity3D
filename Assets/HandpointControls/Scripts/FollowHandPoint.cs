@@ -11,6 +11,7 @@ public class FollowHandPoint : MonoBehaviour
     public Vector3 bounds = new Vector3(10, 10, 10);
 
 	private Vector3 desiredPos;
+    public bool Absolute = false;
 	
 	void Start()
 	{
@@ -37,7 +38,10 @@ public class FollowHandPoint : MonoBehaviour
 
 	Vector3 OpenNIToUnity (Vector3 pos)
 	{
-		Vector3 result = (pos - SessionManager.FocusPoint);
+        Vector3 result = pos;
+        if (!Absolute) {
+            result -= OpenNISessionManager.FocusPoint;
+        }
 		result = Vector3.Scale(result, Scale) + bias;
         return ClampVector(result, -0.5f * bounds, 0.5f * bounds);
 	}
