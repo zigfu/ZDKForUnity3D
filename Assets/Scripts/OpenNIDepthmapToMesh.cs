@@ -7,12 +7,15 @@ using OpenNI;
 
 public class OpenNIDepthmapToMesh : MonoBehaviour
 {
-    public int factor = 2;
     public Vector3 gridScale = Vector3.one;
     public bool GenerateNormals = false;
     public bool GenerateUVs = true;
     public bool RealWorldPoints = true; // perform perspective transform on depth-map
 
+    public Vector2 DesiredResolution = new Vector2(160, 120); // should be a divisor of 640x480
+                                                              // and 320x240 is too high (too many vertices)
+    int factorX;
+    int factorY;
 
     short[] rawDepthMap;
     float[] depthHistogramMap;
@@ -32,7 +35,8 @@ public class OpenNIDepthmapToMesh : MonoBehaviour
         MapOutputMode mom = OpenNIContext.Instance.Depth.MapOutputMode;
         YRes = mom.YRes;
         XRes = mom.XRes;
-
+        factorX = (int)(XRes / DesiredResolution.x);
+        factorY = (int)(YRes / DesiredResolution.y);
         // depthmap data
         rawDepthMap = new short[(int)(mom.XRes * mom.YRes)];
 
@@ -43,8 +47,8 @@ public class OpenNIDepthmapToMesh : MonoBehaviour
         meshFilter = (MeshFilter)GetComponent(typeof(MeshFilter));
         meshFilter.mesh = mesh;
 
-        int YScaled = YRes / factor;
-        int XScaled = XRes / factor;
+        int YScaled = YRes / factorY;
+        int XScaled = XRes / factorX;
 
         verts = new Vector3[XScaled * YScaled];
         uvs = new Vector2[verts.Length];
@@ -62,8 +66,8 @@ public class OpenNIDepthmapToMesh : MonoBehaviour
         mesh.Clear();
         
         // flip the depthmap as we create the texture
-        int YScaled = YRes / factor;
-        int XScaled = XRes / factor;
+        int YScaled = YRes / factorY;
+        int XScaled = XRes / factorX;
         // first stab, generate all vertices (next time, only vertices for 'valid' depths)
         // first stab, decimate rather than average depth pixels
         UpdateVertices(YScaled, XScaled);
@@ -109,19 +113,19 @@ public class OpenNIDepthmapToMesh : MonoBehaviour
         Vector3 vec = new Vector3();
         Point3D pt = new Point3D();
         for (int y = 0; y < YScaled; y++) {
-            for (int x = 0; x < XScaled; x++, depthIndex += factor) {
+            for (int x = 0; x < XScaled; x++, depthIndex += factorX) {
                 short pixel = rawDepthMap[depthIndex];
                 if (pixel == 0) pixel = maxDepth; // if there's no depth,  default to max depth
 
                 // RW coordinates
-                pt.X = x * factor;
-                pt.Y = y * factor;
+                pt.X = x * factorX;
+                pt.Y = y * factorY;
                 pt.Z = pixel;
                 pts[x + y * XScaled] = pt; // in structs, assignment is a copy, so modifying the same variable
                                            // every iteration is okay
             }
             // Skip lines
-            depthIndex += (factor - 1) * XRes;
+            depthIndex += (factorY - 1) * XRes;
         }
         Profiler.EndSample();
         Profiler.BeginSample("ProjectiveToRW");
