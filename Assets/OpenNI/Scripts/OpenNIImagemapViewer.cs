@@ -63,8 +63,8 @@ public class OpenNIImagemapViewer : MonoBehaviour
         if (openGl) {
             //Gl.glBindTexture(Gl.GL_TEXTURE_2D, (null == target) ? tex.GetNativeTextureID() + 1 : tex.GetNativeTextureID());
             //Gl.glTexSubImage2D(Gl.GL_TEXTURE_2D, 0, 0, 0, (int)inputSize.x, (int)inputSize.y, Gl.GL_RGB, Gl.GL_UNSIGNED_BYTE, Image.ImageMapPtr);
-            GL.BindTexture(GL.TEXTURE_2D, (null == target) ? tex.GetNativeTextureID() + 1 : tex.GetNativeTextureID());
-            GL.TexSubImage2D(GL.TEXTURE_2D, 0, 0, 0, (int)inputSize.x, (int)inputSize.y, GL.RGB, GL.UNSIGNED_BYTE, Image.ImageMapPtr);
+            GLAbstraction.BindTexture(GLAbstraction.TEXTURE_2D, (null == target) ? tex.GetNativeTextureID() + 1 : tex.GetNativeTextureID());
+            GLAbstraction.TexSubImage2D(GLAbstraction.TEXTURE_2D, 0, 0, 0, (int)inputSize.x, (int)inputSize.y, GLAbstraction.RGB, GLAbstraction.UNSIGNED_BYTE, Image.ImageMapPtr);
             return;
         }
 
