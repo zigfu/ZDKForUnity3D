@@ -3,9 +3,9 @@ using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 
-public class GL {
+public class GLAbstraction {
     static internal GLFunctions implementation;
-    static GL() 
+    static GLAbstraction() 
     {
 #if UNITY_STANDALONE_OSX
         implementation = new GLMac();
