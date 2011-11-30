@@ -143,11 +143,11 @@ public class ZigSkeleton : MonoBehaviour
 		}
 	}
 	
-	void Zig_OnUpdate(ZigTrackedUser userData)
+	void Zig_OnUpdate(ZigEventArgs args)
 	{
-		UpdateRoot(userData.Position);
-		if (userData.SkeletonTracked) {
-			foreach (KeyValuePair<SkeletonJoint, ZigJoint> joint in userData.Joints) {
+		UpdateRoot(args.user.Position);
+		if (args.user.SkeletonTracked) {
+			foreach (KeyValuePair<SkeletonJoint, ZigJoint> joint in args.user.Joints) {
 				UpdatePosition(joint.Key, joint.Value.position);
 				UpdateRotation(joint.Key, joint.Value.rotation);
 			}

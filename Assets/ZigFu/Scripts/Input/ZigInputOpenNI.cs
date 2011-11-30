@@ -49,8 +49,8 @@ public class ZigInputOpenNI : MonoBehaviour
 						joint["id"] = (int)sj;
 						joint["position"] = Point3DToArrayList(skelTrans.Position.Position);
 						joint["rotation"] = OrientationToArrayList(skelTrans.Orientation);
-						joint["positionconfidence"] = skelTrans.Position.Confidence;
-						joint["rotationconfidence"] = skelTrans.Orientation.Confidence;
+						joint["positionconfidence"] = (double)skelTrans.Position.Confidence;
+						joint["rotationconfidence"] = (double)skelTrans.Orientation.Confidence;
 						joints.Add(joint);
 					}
 				}

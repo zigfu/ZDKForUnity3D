@@ -159,7 +159,7 @@ public class OpenNIReader : MonoBehaviour
 		newFrameHandlers[type].Add(target);
 	}
 	
-	public void Update () 
+	void Update () 
 	{
         if (null == OpenNIContext) return;
         if (Mirror != mirrorState && !LoadFromRecording) {

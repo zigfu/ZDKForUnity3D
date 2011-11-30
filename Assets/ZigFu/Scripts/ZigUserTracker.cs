@@ -4,27 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using OpenNI;
 
-public enum ZigInputType {
-	OpenNI,
-	Webplayer
-}
-
 public class ZigUserTracker : MonoBehaviour {
 	
-	ArrayList rawUsers;
+	public bool allowHandsForUntrackedUsers = true;
+	
 	Dictionary<int, ZigTrackedUser> trackedUsers = new Dictionary<int, ZigTrackedUser>();
 	Dictionary<int, int> trackedHands = new Dictionary<int, int>();
 	GameObject trackedUsersContainer;
 	
-	
 	// Use this for initialization
 	void Start () {
 		trackedUsersContainer = new GameObject("TrackedUsersContainer");
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 	
 	void ProcessNewUser(int userid)
@@ -64,14 +54,85 @@ public class ZigUserTracker : MonoBehaviour {
 				this.ProcessNewUser(userid);
 			}
 		}
-
-		// save raw data before updating the fullbody controls
-		this.rawUsers = users;
-		
+	
 		// update stuff
 		foreach (Hashtable user in users) {
 			int userid = (int)user["id"];
 			trackedUsers[userid].UpdateUserData(user);
+		}
+	}
+	
+	void ProcessNewHand(int handid, int userid)
+	{
+		// no user id
+		if (userid <= 0) {
+			// get out if we dont allow such hands
+			if (!this.allowHandsForUntrackedUsers) return;
+			
+			// otherwise allocate a "fake" user id and use it
+			userid = this.getFakeUserId();
+		}
+	
+		// add the user if neccessary
+		if (!this.isUserTracked(userid)) {
+			this.ProcessNewUser(userid);
+		}
+		
+		// associate this hand with the user
+		this.trackedHands[handid] = userid;
+	}
+	
+	void ProcessLostHand(int handid)
+	{
+		// remove the hand->user association
+		int userid = this.trackedHands[handid];
+		this.trackedHands.Remove(handid);
+		
+		// if this user is "fake" (created for this specific 
+		// hand point) then get rid of it
+		if (!this.isRealUser(userid)) {
+			this.ProcessLostUser(userid);
+		}
+	}
+	
+	void UpdateHands(ArrayList hands)
+	{
+		// get rid of old hands
+		List<int> handids = new List<int>(this.trackedHands.Keys);
+		foreach (int handid in handids) {
+			if (null == this.getById(hands, handid)) {
+				this.ProcessLostHand(handid);
+			}
+		}
+		
+		// add new hands
+		foreach (Hashtable hand in hands) {
+			if (!this.trackedHands.ContainsKey((int)hand["id"])) {
+				this.ProcessNewHand((int)hand["id"], (int)hand["userid"]);
+			}
+		}
+
+		// update hand points
+		// go through list of users
+		foreach (ZigTrackedUser user in this.trackedUsers.Values) {
+			// find hands belonging to this user
+			ArrayList currhands = new ArrayList();
+			foreach (KeyValuePair<int,int> hand in this.trackedHands) {
+				if (hand.Value == user.UserId) {
+					currhands.Add(this.getById(hands, hand.Key));
+				}
+			}
+			user.UpdateHands(currhands);
+		}	
+	}
+	
+	public void Update(ArrayList users, ArrayList hands)
+	{
+		UpdateUsers(users);
+		UpdateHands(hands);
+		
+		foreach (KeyValuePair<int, ZigTrackedUser> user in trackedUsers) {
+			user.Value.NotifyListeners();
 		}
 	}
 	
@@ -90,49 +151,19 @@ public class ZigUserTracker : MonoBehaviour {
 		return this.trackedUsers.ContainsKey(userid);
 	}
 	
-	void UpdateHands(ArrayList hands)
-	{
-		/*
-		// get rid of old hands
-		for (handid in this.trackedHands) {
-			currhand = this.getItemById(hands, handid);
-			if (undefined == currhand) {
-				this.ProcessLostHand(handid);
-			}
-		}
-		
-		// add new hands
-		for (handindex in hands) {
-			hand = hands[handindex];
-			if (undefined == this.trackedHands[hand.id]) {
-				this.ProcessNewHand(hand.id, hand.userid);
-			}
-		}
-
-		// save raw data before updating the handpoint controls
-		this.rawHands = hands;
-		
-		// update hand points
-		// go through list of users
-		for (userid in this.trackedUsers) {
-			// find hands belonging to this user
-			currhands = [];
-			for (handid in this.trackedHands) {
-				if (this.trackedHands[handid] == userid) {
-					currhands.push(this.getItemById(hands, handid));
-				}
-			}
-			this.trackedUsers[userid].UpdateHands(currhands);
-		}	*/
-	}
+	// "Fake" users are kinda hacky right now
 	
-	public void Update(ArrayList users, ArrayList hands)
+	const int FakeUserIdBase = 1337;
+	int nextFakeUserId = FakeUserIdBase;
+	int getFakeUserId()
 	{
-		UpdateUsers(users);
-		UpdateHands(hands);
-		
-		foreach (KeyValuePair<int, ZigTrackedUser> user in trackedUsers) {
-			user.Value.NotifyListeners();
-		}
+		int ret = nextFakeUserId;
+		nextFakeUserId++;
+		return ret;
+	}
+
+	bool isRealUser(int userid)
+	{
+		return (userid < FakeUserIdBase);
 	}
 }

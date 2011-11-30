@@ -39,7 +39,7 @@ public class ZigTrackedUser : MonoBehaviour
 	public void UpdateUserData(Hashtable userData)
 	{
 		// unpack
-		SkeletonTracked = false; //(bool)userData["tracked"];
+		SkeletonTracked = (bool)userData["tracked"];
 		Position = PositionFromArrayList(userData["centerofmass"] as ArrayList);
 		
 		// skeleton data
@@ -62,6 +62,8 @@ public class ZigTrackedUser : MonoBehaviour
 	
 	public void UpdateHands(ArrayList hands)
 	{
+		// TODO: Think of a better way to keep hands updated
+		// TODO: Think of a better way to choose primary hand
 		Hands.Clear();
 		foreach (Hashtable hand in hands) {
 			Hands[(int)hand["id"]] = PositionFromArrayList(hand["position"] as ArrayList);
