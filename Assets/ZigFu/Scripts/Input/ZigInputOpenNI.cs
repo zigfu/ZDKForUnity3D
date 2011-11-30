@@ -46,7 +46,7 @@ public class ZigInputOpenNI : MonoBehaviour
 					if (skelCap.IsJointAvailable(sj)) {
 						skelTrans = skelCap.GetSkeletonJoint(userid, sj);
 						Hashtable joint = new Hashtable();
-						joint["id"] = (int)sj;
+						joint["id"] = (double)(int)sj;
 						joint["position"] = Point3DToArrayList(skelTrans.Position.Position);
 						joint["rotation"] = OrientationToArrayList(skelTrans.Orientation);
 						joint["positionconfidence"] = (double)skelTrans.Position.Confidence;
@@ -59,7 +59,7 @@ public class ZigInputOpenNI : MonoBehaviour
 			Hashtable user = new Hashtable();
 			user["id"] = userid;
 			user["centerofmass"] = Point3DToArrayList(com);
-			user["tracked"] = tracked;
+            user["tracked"] = tracked ? 1.0 : 0.0; // make the format match what we get from JS
 			user["joints"] = joints;
 			users.Add(user);
 		}

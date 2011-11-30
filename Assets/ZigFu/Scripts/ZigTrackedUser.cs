@@ -39,13 +39,13 @@ public class ZigTrackedUser : MonoBehaviour
 	public void UpdateUserData(Hashtable userData)
 	{
 		// unpack
-		SkeletonTracked = (bool)userData["tracked"];
+		SkeletonTracked = (double)userData["tracked"] > 0;
 		Position = PositionFromArrayList(userData["centerofmass"] as ArrayList);
 		
 		// skeleton data
 		if (SkeletonTracked) {
 			foreach (Hashtable joint in userData["joints"] as ArrayList) {
-				SkeletonJoint sj = (SkeletonJoint)joint["id"];
+				SkeletonJoint sj = (SkeletonJoint)(double)joint["id"];
 				if (!Joints.ContainsKey(sj)) {
 					Joints[sj] = new ZigJoint();
 				}
