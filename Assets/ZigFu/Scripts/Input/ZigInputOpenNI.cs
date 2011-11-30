@@ -67,6 +67,6 @@ public class ZigInputOpenNI : MonoBehaviour
 		ArrayList hands = new ArrayList();
 		
 		// update the usertracker
-		userTracker.Update(users, hands);
+		userTracker.UpdateData(users, hands);
 	}
 }

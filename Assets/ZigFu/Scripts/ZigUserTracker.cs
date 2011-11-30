@@ -126,7 +126,7 @@ public class ZigUserTracker : MonoBehaviour {
 		}	
 	}
 	
-	public void Update(ArrayList users, ArrayList hands)
+	public void UpdateData(ArrayList users, ArrayList hands)
 	{
 		UpdateUsers(users);
 		UpdateHands(hands);
