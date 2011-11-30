@@ -108,6 +108,11 @@ public class ZigSkeleton : MonoBehaviour
 	
 	void UpdateRotation(SkeletonJoint joint, Quaternion orientation)
 	{
+        // make sure something is hooked up to this joint
+        if (!transforms[(int)joint]) {
+            return;
+        }
+
         if (UpdateOrientation) {
 			Quaternion newRotation = transform.rotation * orientation * initialRotations[(int)joint];
 			transforms[(int)joint].rotation = Quaternion.Slerp(transforms[(int)joint].rotation, newRotation, Time.deltaTime * RotationDamping);
