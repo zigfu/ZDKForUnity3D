@@ -65,6 +65,13 @@ public class ZigInputOpenNI : MonoBehaviour
 		}
 		
 		ArrayList hands = new ArrayList();
+		foreach (HandPoint hp in OpenNIReader.Instance.handList.Values) {
+			Hashtable hand = new Hashtable();
+			hand["id"] = hp.handId;
+			hand["userid"] = hp.userId;
+			hand["position"] = Point3DToArrayList(hp.position);
+			hands.Add(hand);
+		}
 		
 		// update the usertracker
 		userTracker.UpdateData(users, hands);

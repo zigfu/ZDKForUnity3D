@@ -11,6 +11,18 @@ public class ZigEventArgs
 		this.sender = sender;
 		this.user = user;
 	}
+	
+	public Vector3 FocusPoint { 
+		get {
+			return sender.FocusPoint;
+		}
+	}
+	
+	public Vector3 HandPosition {
+		get {
+			return user.Hands[user.PrimaryHand];
+		}
+	}
 }
 
 public class ZigControlList : MonoBehaviour {
@@ -86,5 +98,37 @@ public class ZigControlList : MonoBehaviour {
 	void Start()
 	{
 		SetFocus(StartingFocusedControl);
+	}
+	
+	Color colorInSession = Color.green;
+	Color colorNotInSession = Color.red;
+	Color colorObjectName = Color.white;
+	Color colorHpcName = Color.grey;
+	
+	void Zig_Visualize()
+	{
+		Color original = GUI.color;
+		
+		GUILayout.BeginVertical("box");
+		GUI.color = IsInSession ? colorInSession : colorNotInSession;
+		GUILayout.Label("Controls List");
+		
+		if (Application.isWebPlayer) {
+			GUI.color = Color.yellow;
+			GUILayout.Label("[Web player]");
+		}
+		
+		foreach (GameObject go in Listeners)
+		{
+            if (!go) continue;
+			GUILayout.BeginVertical("box");
+			GUI.color = colorObjectName;
+			GUILayout.Label(go.name);
+			GUI.color = colorHpcName;
+			go.SendMessage("Zig_OnVisualize", SendMessageOptions.DontRequireReceiver);
+			GUILayout.EndVertical();
+		}
+		GUILayout.EndVertical();
+		GUI.color = original;
 	}
 }

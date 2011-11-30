@@ -4,6 +4,27 @@ using System.Collections;
 using System.Collections.Generic;
 using OpenNI;
 
+public class HandPoint
+{
+	public int handId { get; private set; }
+	public int userId { get; private set; }
+	public Point3D position;
+	
+	public HandPoint(int handId, int userId, Point3D position)
+	{
+		this.handId = handId;
+		this.userId = userId;
+		this.position = position;
+	}
+}
+
+class NewFrameHandlerContext
+{
+	public Generator node;
+	public List<GameObject> listeners = new List<GameObject>();
+	public int lastFrameId;
+}
+
 public class OpenNIReader : MonoBehaviour
 {
     // singleton stuff
@@ -29,6 +50,8 @@ public class OpenNIReader : MonoBehaviour
     public DepthGenerator Depth { get; private set; }
 	public ImageGenerator Image { get; private set; }
 	public UserGenerator Users { get; private set; }
+	public HandsGenerator Hands { get; private set; }
+	public GestureGenerator Gestures { get; private set; }
 
 	public bool LoadFromRecording = false;
 	public string RecordingFilename = "";
@@ -70,6 +93,8 @@ public class OpenNIReader : MonoBehaviour
 	
 	public void Awake()
 	{
+		handList = new Dictionary<int, HandPoint>();
+		
         Debug.Log("Initing OpenNI" + (LoadFromXML ? "(" + XMLFilename + ")" : ""));
         try {
 			ScriptNode sn;
@@ -98,17 +123,26 @@ public class OpenNIReader : MonoBehaviour
 		this.Depth = openNode(NodeType.Depth) as DepthGenerator;
 		this.Image = openNode(NodeType.Image) as ImageGenerator;
 		this.Users = openNode(NodeType.User) as UserGenerator;
+		this.Hands = openNode(NodeType.Hands) as HandsGenerator;
+		this.Gestures = openNode(NodeType.Gesture) as GestureGenerator;
 		
         if (!LoadFromRecording) {
 			this.OpenNIContext.GlobalMirror = Mirror;
             mirrorState = Mirror;
         }
 		
+		// users stuff
 		this.Users.SkeletonCapability.SetSkeletonProfile(SkeletonProfile.All);
         this.Users.NewUser += new EventHandler<NewUserEventArgs>(userGenerator_NewUser);
         this.Users.LostUser += new EventHandler<UserLostEventArgs>(userGenerator_LostUser);
         this.Users.PoseDetectionCapability.PoseDetected += new EventHandler<PoseDetectedEventArgs>(poseDetectionCapability_PoseDetected);
 		this.Users.SkeletonCapability.CalibrationComplete += new EventHandler<CalibrationProgressEventArgs>(skeletonCapbility_CalibrationComplete);
+		
+		// hands stuff
+		this.Hands.HandCreate += new EventHandler<HandCreateEventArgs>(hands_HandCreate);
+		this.Hands.HandUpdate += new EventHandler<HandUpdateEventArgs>(hands_HandUpdate);
+		this.Hands.HandDestroy += new EventHandler<HandDestroyEventArgs>(hands_HandDestroy);
+
 	}
 
 	void skeletonCapbility_CalibrationComplete(object sender, CalibrationProgressEventArgs e)
@@ -139,10 +173,34 @@ public class OpenNIReader : MonoBehaviour
 		}
     }
 	
+	public Dictionary<int, HandPoint> handList { get; private set; }
+	void hands_HandCreate (object Sender, HandCreateEventArgs e)
+	{
+		handList[e.UserID] = new HandPoint(e.UserID, WhichUserDoesThisPointBelongTo(e.Position), e.Position);
+	}
+	
+	void hands_HandUpdate (object Sender, HandUpdateEventArgs e)
+	{
+		handList[e.UserID].position = e.Position;
+	}
+	
+	void hands_HandDestroy (object Sender, HandDestroyEventArgs e)
+	{
+		handList.Remove(e.UserID);
+	}
+	
+    public int WhichUserDoesThisPointBelongTo(Point3D point)
+    {
+        // get userID of user to whom the hand is attached
+        Point3D ProjectiveHandPoint = Depth.ConvertRealWorldToProjective(point);
+        SceneMetaData sceneMD = Users.GetUserPixels(0);
+        return sceneMD[(int)ProjectiveHandPoint.X, (int)ProjectiveHandPoint.Y];
+    }
+
+	
 	IEnumerator ReadNextFrameFromRecording(Player player)
 	{
-		while (true)
-		{
+		while (true) {
 			float waitTime = 1.0f / RecordingFramerate;
 			yield return new WaitForSeconds (waitTime);
 			player.ReadNext();
@@ -150,13 +208,15 @@ public class OpenNIReader : MonoBehaviour
 	}
 	
 	
-	Dictionary<NodeType, List<GameObject>> newFrameHandlers = new Dictionary<NodeType, List<GameObject>>();
+	Dictionary<NodeType, NewFrameHandlerContext> newFrameHandlers = new Dictionary<NodeType, NewFrameHandlerContext>();
+	
 	public void AddNewFrameHandler(NodeType type, GameObject target)
 	{
 		if (!newFrameHandlers.ContainsKey(type)) {
-			newFrameHandlers[type] = new List<GameObject>();
+			newFrameHandlers[type] = new NewFrameHandlerContext();
+			newFrameHandlers[type].node = openNode(type) as Generator;
 		}
-		newFrameHandlers[type].Add(target);
+		newFrameHandlers[type].listeners.Add(target);
 	}
 	
 	void Update () 
@@ -168,10 +228,13 @@ public class OpenNIReader : MonoBehaviour
         }
 		this.OpenNIContext.WaitNoneUpdateAll();
 		
-		foreach (KeyValuePair<NodeType, List<GameObject>> listeners in newFrameHandlers) {
-			foreach (GameObject go in listeners.Value) {
-				//TODO: Take care of invalid gameobjects (remove from list)
-				go.SendMessage("OpenNI_NewFrame", listeners.Key, SendMessageOptions.RequireReceiver);
+		foreach (KeyValuePair<NodeType, NewFrameHandlerContext> handlers in newFrameHandlers) {
+			if (handlers.Value.lastFrameId != handlers.Value.node.FrameID) {
+				handlers.Value.lastFrameId = handlers.Value.node.FrameID;
+				foreach (GameObject go in handlers.Value.listeners) {
+					//TODO: Take care of invalid gameobjects (remove from list)
+					go.SendMessage("OpenNI_NewFrame", handlers.Key, SendMessageOptions.RequireReceiver);
+				}
 			}
 		}
 	}

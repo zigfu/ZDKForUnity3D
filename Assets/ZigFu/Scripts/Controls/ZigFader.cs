@@ -35,6 +35,11 @@ public class ZigFader : MonoBehaviour {
         start = pos - (mirrorIndependentDirection * (val * size));
 	}
 	
+	public void ForceUpdate(Vector3 pos)
+	{
+		value = GetValue(pos);
+	}
+	
 	public float GetValue(Vector3 pos)
 	{
 		float dot = Vector3.Dot(mirrorIndependentDirection, pos - start);
@@ -56,7 +61,7 @@ public class ZigFader : MonoBehaviour {
 
     void Zig_OnSessionUpdate(ZigEventArgs args)
     {
-        value = GetValue(args.user.Hands[args.user.PrimaryHand]);
+        value = GetValue(args.HandPosition);
     }
 
     void Zig_OnSessionEnd()
@@ -68,4 +73,9 @@ public class ZigFader : MonoBehaviour {
     {
         value = initialValue;
     }
+	
+	void Zig_Visualize()
+	{
+		
+	}
 }
