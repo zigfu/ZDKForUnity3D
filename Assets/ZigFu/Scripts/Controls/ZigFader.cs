@@ -53,10 +53,12 @@ public class ZigFader : MonoBehaviour {
 	}
 
     // hand point control messages
+	bool InSession;
     void Zig_OnSessionStart(ZigEventArgs args)
     {
         MoveTo(args.sender.FocusPoint, initialValue);
         value = initialValue;
+		InSession = true;
     }
 
     void Zig_OnSessionUpdate(ZigEventArgs args)
@@ -67,6 +69,7 @@ public class ZigFader : MonoBehaviour {
     void Zig_OnSessionEnd()
     {
         value = initialValue;
+		InSession = false;
     }
 
     void Start()
@@ -77,5 +80,17 @@ public class ZigFader : MonoBehaviour {
 	void Zig_Visualize()
 	{
 		
+	}
+	
+	void OnGUI()
+	{
+		GUILayout.BeginVertical("box");
+		GUILayout.Label("Fader:");
+		if (InSession) {
+			GUILayout.HorizontalSlider(value, 0, 1);
+		} else {
+			GUILayout.Label("Not in session");
+		}
+		GUILayout.EndVertical();
 	}
 }

@@ -2,24 +2,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class tester : MonoBehaviour {
+public class ZigEngageAllUsers : MonoBehaviour {
 	
-	public GameObject obj;
+	public GameObject InstantiatePerUser;
 	Dictionary<int, GameObject> objects = new Dictionary<int, GameObject>();
-	
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 	
 	void Zig_NewUser(ZigTrackedUser user) 
 	{
-		GameObject o = Instantiate(obj) as GameObject;
+		GameObject o = Instantiate(InstantiatePerUser) as GameObject;
 		objects[user.UserId] = o;
 		user.Controls.Listeners.Add(o);
 	}

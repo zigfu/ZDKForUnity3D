@@ -142,9 +142,37 @@ public class OpenNIReader : MonoBehaviour
 		this.Hands.HandCreate += new EventHandler<HandCreateEventArgs>(hands_HandCreate);
 		this.Hands.HandUpdate += new EventHandler<HandUpdateEventArgs>(hands_HandUpdate);
 		this.Hands.HandDestroy += new EventHandler<HandDestroyEventArgs>(hands_HandDestroy);
+		
+		this.Gestures.AddGesture("Wave");
+		this.Gestures.AddGesture("Click");
+        //this.gestures.AddGesture("RaiseHand");
+		this.Gestures.GestureRecognized += new EventHandler<GestureRecognizedEventArgs> (gestures_GestureRecognized);
+	}
+	
+	void gestures_GestureRecognized (object Sender, GestureRecognizedEventArgs e)
+	{
+        if (e.Gesture == "RaiseHand") {
+            int user = WhichUserDoesThisPointBelongTo(e.IdentifiedPosition);
+            if (0 == user) {
+                // false positive if no one raised their hand, miss detect if user
+                // isn't on usermap (at this during this frame at the gesture position)
+                return;
+            }
 
+            // TODO: make sure point is in a good position relative to the CoM of the user
+            // TODO: possibly take top user point into account?
+            //Vector3 CoM = Point3DToVector3(userGenerator.GetCoM(user));
+            //Vector3 gesturePoint = Point3DToVector3(e.IdentifiedPosition);
+            this.Hands.StartTracking(e.IdentifiedPosition);
+        }
+	
+		// so called "External hand tracker"
+		if (e.Gesture == "Wave" || e.Gesture == "Click") {
+			this.Hands.StartTracking (e.IdentifiedPosition);
+		}
 	}
 
+	
 	void skeletonCapbility_CalibrationComplete(object sender, CalibrationProgressEventArgs e)
     {
         if (e.Status == 0) {

@@ -148,7 +148,7 @@ public class ZigSkeleton : MonoBehaviour
 		}
 	}
 	
-	void Zig_OnUpdate(ZigEventArgs args)
+	void Zig_OnUserUpdate(ZigEventArgs args)
 	{
 		UpdateRoot(args.user.Position);
 		if (args.user.SkeletonTracked) {

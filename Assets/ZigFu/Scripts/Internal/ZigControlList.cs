@@ -39,8 +39,8 @@ public class ZigControlList : MonoBehaviour {
 		
 		// if we aren't in session, but should be
 		if (!this.IsInSession && userData.Hands.Count > 0) {
-			NotifyListeners("Zig_OnSessionStart", zea);
 			this.IsInSession = true;
+			NotifyListeners("Zig_OnSessionStart", zea);
 		}
 		
 		// if we are in session, but shouldn't be
@@ -56,43 +56,53 @@ public class ZigControlList : MonoBehaviour {
 			NotifyListeners("Zig_OnSessionUpdate", zea);
 		}
 
-		NotifyListeners("Zig_OnUpdate", zea);
+		NotifyListeners("Zig_OnUserUpdate", zea);
 	}
 	
 	// this allows nesting ZigControlList's
-	void Zig_OnUpdate(ZigEventArgs args)
+	void Zig_OnUserUpdate(ZigEventArgs args)
 	{
 		DoUpdate(args.user);
 	}
 	
 	void NotifyListeners(string eventName, object arg) 
 	{
-		foreach (GameObject go in Listeners) {
+		foreach (GameObject go in new List<GameObject>(Listeners)) {
 			go.SendMessage(eventName, arg, SendMessageOptions.DontRequireReceiver);
 		}
 	}	
+	
+	public void AddControl(GameObject listener)
+	{
+		if (null != listener && !Listeners.Contains(listener)) {
+			Listeners.Add(listener);
+			if (IsInSession) {
+				listener.SendMessage("Zig_OnSessionStart", 
+				                     new ZigEventArgs(this, this.user), 
+				                     SendMessageOptions.DontRequireReceiver);
+			}
+		}
+	}
+	
+	public void RemoveControl(GameObject listener)
+	{
+		if (null != listener && Listeners.Contains(listener)) {
+			Listeners.Remove(listener);
+			if (IsInSession) {
+				listener.SendMessage("Zig_OnSessionEnd", 
+				                     new ZigEventArgs(this, this.user), 
+				                     SendMessageOptions.DontRequireReceiver);
+			}
+		}
+	}
 	
 	public GameObject StartingFocusedControl;
 	public GameObject FocusedControl { get; private set; }
 	public void SetFocus(GameObject target)
 	{
-		ZigEventArgs zea = new ZigEventArgs(this, user);
-		
-		if (null != FocusedControl) {
-			if (IsInSession) {
-				FocusedControl.SendMessage("Zig_OnSessionEnd", zea, SendMessageOptions.DontRequireReceiver);
-			}
-			Listeners.Remove(FocusedControl);
-		}
+		RemoveControl(FocusedControl);
 		FocusedControl = target;
-		if (null != target) {
-			if (IsInSession) {
-				target.SendMessage("Zig_OnSessionStart", zea, SendMessageOptions.DontRequireReceiver);
-			}
-			if (!Listeners.Contains(FocusedControl)) {
-				Listeners.Add(FocusedControl);
-			}
-		}
+		AddControl(target);
 	}
 	
 	void Start()

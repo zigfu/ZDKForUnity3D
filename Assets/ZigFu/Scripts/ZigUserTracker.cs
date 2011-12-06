@@ -12,9 +12,22 @@ public class ZigUserTracker : MonoBehaviour {
 	Dictionary<int, int> trackedHands = new Dictionary<int, int>();
 	GameObject trackedUsersContainer;
 	
+	public Dictionary<int, ZigTrackedUser> TrackedUsers { get { return trackedUsers; } }
+	
 	// Use this for initialization
 	void Start () {
 		trackedUsersContainer = new GameObject("TrackedUsersContainer");
+		
+		// make sure we have some input
+		if (Application.isWebPlayer) {
+			if (null == GetComponent<ZigInputWebplayer>()) {
+				gameObject.AddComponent<ZigInputWebplayer>().UserTracker = this;
+			}
+		} else {
+			if (null == GetComponent<ZigInputOpenNI>()) {
+				gameObject.AddComponent<ZigInputOpenNI>().userTracker = this;
+			}
+		}
 	}
 	
 	void ProcessNewUser(int userid)
@@ -28,6 +41,11 @@ public class ZigUserTracker : MonoBehaviour {
 	
 	void ProcessLostUser(int userid)
 	{
+		if (!this.trackedUsers.ContainsKey(userid)) {
+			Debug.LogError("Attempting to remove non existing user " + userid);
+			return;
+		}
+		
 		ZigTrackedUser user = this.trackedUsers[userid];
 		this.trackedUsers.Remove(userid);
 		Destroy(user);
@@ -41,7 +59,7 @@ public class ZigUserTracker : MonoBehaviour {
 		List<int> ids = new List<int>(trackedUsers.Keys);
 		foreach (int userid in ids) {
 			Hashtable curruser = this.getById(users, userid) as Hashtable;
-			if (null == curruser) {
+			if (null == curruser && isRealUser(userid)) {
 				this.ProcessLostUser(userid);
 			}
 		}
@@ -130,6 +148,8 @@ public class ZigUserTracker : MonoBehaviour {
 	{
 		UpdateUsers(users);
 		UpdateHands(hands);
+		
+		SendMessage("Zig_Update", this, SendMessageOptions.DontRequireReceiver);
 		
 		foreach (KeyValuePair<int, ZigTrackedUser> user in trackedUsers) {
 			user.Value.NotifyListeners();
