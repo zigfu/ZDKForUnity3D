@@ -72,6 +72,7 @@ public class ZigControlList : MonoBehaviour {
 		}
 	}	
 	
+	
 	public void AddControl(GameObject listener)
 	{
 		if (null != listener && !Listeners.Contains(listener)) {
