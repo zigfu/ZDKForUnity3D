@@ -57,7 +57,7 @@ class WebplayerJavascript
 
 		WebplayerIds = [];
 		function webplayerOnNewData() {
-			var plugin = document.getElementById('zigPluginObject');
+			var plugin = GetZigObject();
 			for (webplayerId in WebplayerIds) {
 				var unity = unityObject.getObjectById(webplayerId);
 				if (null == unity) continue;
@@ -72,27 +72,36 @@ class WebplayerJavascript
 			}
 			addHandler(plugin, 'NewFrame', webplayerOnNewData);
 		}
-		
+
+		CachedZigObject = null;
 		function GetZigObject()
 		{
-			var objs = document.getElementsByTagName('object');
-			for (var i=0; i<objs.length; i++) {
-				if (objs[i].users !== undefined) {
-					return objs[i];
+			if (typeof CachedZigObject == 'undefined') {
+				CachedZigObject = null;
+			}
+
+			if (null == CachedZigObject) {
+				var objs = document.getElementsByTagName('object');
+				for (var i=0; i<objs.length; i++) {
+					if (objs[i].users !== undefined) {
+						CachedZigObject = objs[i];
+						break;
+					}
 				}
 			}
-			return null;
+			return CachedZigObject;
 		}
 
 		function webplayerInitZigPlugin(playerId, objectName)
 		{
-			var zigObject = GetZigObject();
+			zigObject = GetZigObject();
 			if (null == zigObject) {" + 
 				"var html = '<object id=\"zigPluginObject\" type=\"application/x-zig\" width=\"0\" height=\"0\"><param name=\"onload\" value=\"webplayerZigPluginLoaded\" /></object>';" + 
 				@"var newDiv = document.createElement('div');
 				WebplayerIds = [];
 				newDiv.innerHTML = html;
 				document.body.appendChild(newDiv);
+				zigObject = document.getElementById('zigPluginObject');
 			} else {
 				WebplayerIds = [];
 				webplayerZigPluginLoaded(zigObject);

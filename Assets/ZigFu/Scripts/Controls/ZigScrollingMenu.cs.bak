@@ -279,7 +279,7 @@ public class ZigScrollingMenu : MonoBehaviour
 	void PushDetector_Push()
 	{
 		if (PushSlide) {
-			pushslideFader.MoveTo(gameObject.GetComponent<ZigPushDetector>().ClickPosition, 0.5f);
+			pushslideFader.MoveTo(gameObject.GetComponent<PushDetector>().ClickPosition, 0.5f);
 			centerIndexBase = CenterIndex;
 			pushSliding = true;
 		}

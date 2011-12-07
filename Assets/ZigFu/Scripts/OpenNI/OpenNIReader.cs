@@ -275,8 +275,7 @@ public class OpenNIReader : MonoBehaviour
 		{
 			OpenNIContext.StopGeneratingAll();
 		}
-		// shutdown is deprecated, but Release doesn't do the job
-		OpenNIContext.Shutdown();
+		OpenNIContext.Release();
 		OpenNIContext = null;
 		OpenNIReader.instance = null;
 		Debug.Log("OpenNI shut down");
