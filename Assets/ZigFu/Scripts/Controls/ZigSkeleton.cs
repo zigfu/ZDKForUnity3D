@@ -40,8 +40,11 @@ public class ZigSkeleton : MonoBehaviour
 	public bool UpdateJointPositions = false;
 	public bool UpdateRootPosition = false;
 	public bool UpdateOrientation = true;
-	public float RotationDamping = 15.0f;
+	public bool RotateToPsiPose = false;
+	public float RotationDamping = 30.0f;
 	public Vector3 Scale = new Vector3(0.001f,0.001f,0.001f); 
+	
+	public Vector3 PositionBias = Vector3.zero;
 	
 	private Transform[] transforms;
 	private Quaternion[] initialRotations;
@@ -94,19 +97,21 @@ public class ZigSkeleton : MonoBehaviour
     void Start() 
     {
 		// start out in calibration pose
-		RotateToCalibrationPose();
+		if (RotateToPsiPose) {
+			RotateToCalibrationPose();
+		}
 	}
 	
 	void UpdateRoot(Vector3 skelRoot)
 	{
         // +Z is backwards in OpenNI coordinates, so reverse it
-		rootPosition = Vector3.Scale(new Vector3(skelRoot.x, skelRoot.y, -skelRoot.z), Scale);
+		rootPosition = Vector3.Scale(new Vector3(skelRoot.x, skelRoot.y, skelRoot.z), Scale) + PositionBias;
 		if (UpdateRootPosition) {
-			transform.localPosition = transform.rotation * rootPosition;
+			transform.localPosition = (transform.rotation * rootPosition);
 		}
 	}
 	
-	void UpdateRotation(SkeletonJoint joint, Quaternion orientation)
+	void UpdateRotation(ZigJointId joint, Quaternion orientation)
 	{
         // make sure something is hooked up to this joint
         if (!transforms[(int)joint]) {
@@ -119,7 +124,7 @@ public class ZigSkeleton : MonoBehaviour
         }
 	}
 	
-	void UpdatePosition(SkeletonJoint joint, Vector3 position)
+	void UpdatePosition(ZigJointId joint, Vector3 position)
 	{
 		// make sure something is hooked up to this joint
 		if (!transforms[(int)joint]) {
@@ -127,7 +132,8 @@ public class ZigSkeleton : MonoBehaviour
 		}
 		
 		if (UpdateJointPositions) {
-			transforms[(int)joint].localPosition = Vector3.Scale(position, Scale) - rootPosition;
+			Vector3 dest = Vector3.Scale(position, Scale) - rootPosition;
+			transforms[(int)joint].localPosition = Vector3.Lerp(transforms[(int)joint].localPosition, dest, Time.deltaTime * RotationDamping);
 		}
 	}
 
@@ -148,13 +154,23 @@ public class ZigSkeleton : MonoBehaviour
 		}
 	}
 	
-	void Zig_OnUserUpdate(ZigEventArgs args)
+	public void SetRootPositionBias()
 	{
-		UpdateRoot(args.user.Position);
-		if (args.user.SkeletonTracked) {
-			foreach (KeyValuePair<SkeletonJoint, ZigJoint> joint in args.user.Joints) {
-				UpdatePosition(joint.Key, joint.Value.position);
-				UpdateRotation(joint.Key, joint.Value.rotation);
+		this.PositionBias = -rootPosition;
+	}
+	
+	public void SetRootPositionBias(Vector3 bias)
+	{
+		this.PositionBias = bias;	
+	}
+	
+	void Zig_UpdateUser(ZigTrackedUser user)
+	{
+		UpdateRoot(user.UserData.CenterOfMass);
+		if (user.UserData.Tracked) {
+			foreach (ZigInputJoint joint in user.UserData.SkeletonData) {
+				if (joint.GoodPosition) UpdatePosition(joint.Id, joint.Position);
+				if (joint.GoodRotation) UpdateRotation(joint.Id, joint.Rotation);
 			}
 		}
 	}

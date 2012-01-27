@@ -22,7 +22,8 @@ public class ZigSwipeDetector : MonoBehaviour {
         swipeFader = gameObject.AddComponent<ZigFader>();
         swipeFader.direction = SwipeDirectionToVector(direction);
 	}
-	
+
+	/*
 	void Zig_OnSessionStart(ZigEventArgs args)
 	{
         swipeFader.size = size;
@@ -73,7 +74,7 @@ public class ZigSwipeDetector : MonoBehaviour {
 			SendMessage("SwipeDetector_Release", SendMessageOptions.DontRequireReceiver);
 			IsSwiped = false;
 		}
-	}
+	}*/
 	
 	string FaderValueToEventName(float val, ZigSwipeDetectorDirection dir)
 	{

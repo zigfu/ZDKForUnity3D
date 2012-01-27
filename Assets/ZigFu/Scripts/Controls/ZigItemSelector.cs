@@ -68,10 +68,11 @@ public class ZigItemSelector : MonoBehaviour {
 		}
 	}
 	
+	/*
 	void Zig_OnSessionUpdate(ZigEventArgs args)
 	{
 		UpdateSelector(fader.value);
-	}
+	}*/
 
     // scrolling logic
 
@@ -125,14 +126,15 @@ public class ZigItemSelector : MonoBehaviour {
         StopCoroutine("ScrollLoop");
         SendMessage("ItemSelector_StopScrolling", SendMessageOptions.DontRequireReceiver);
     }
-
+	
+	/*
     void Zig_OnSessionEnd(ZigEventArgs args)
     {
         if (scrolling) {
             StopScrolling();
             scrolling = false;
         }
-    }
+    }*/
 
     void SessionManager_Visualize()
     {

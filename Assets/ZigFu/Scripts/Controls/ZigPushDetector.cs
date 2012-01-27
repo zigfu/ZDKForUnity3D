@@ -25,7 +25,8 @@ public class ZigPushDetector : MonoBehaviour {
         pushFader = gameObject.AddComponent<ZigFader>();
         pushFader.direction = Vector3.forward;
 	}
-	
+
+	/*
 	void Zig_OnSessionStart(ZigEventArgs args)
 	{
         pushFader.size = size;
@@ -81,7 +82,7 @@ public class ZigPushDetector : MonoBehaviour {
 			SendMessage("PushDetector_Release", SendMessageOptions.DontRequireReceiver);
 			IsClicked = false;
 		}
-	}
+	}*/
 	
     bool IsClick(float t1, Vector3 p1, float t2, Vector3 p2)
     {

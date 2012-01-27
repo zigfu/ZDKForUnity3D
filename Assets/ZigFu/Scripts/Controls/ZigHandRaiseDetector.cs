@@ -1,28 +1,39 @@
 using UnityEngine;
 using System.Collections;
-using OpenNI;
+using OpenNI; // OpenNI dep for SkeletonJoint, will go soon
 
 public class ZigHandRaiseDetector : MonoBehaviour {
 	
-	public bool IsHandRaised { get; private set; }
+	ZigSteadyDetector leftHandSteady;
+	ZigSteadyDetector rightHandSteady;
+	//ZigTrackedUser user;
 	
+	// Use this for initialization
+	void Start () {
+		leftHandSteady = gameObject.AddComponent<ZigSteadyDetector>();
+		rightHandSteady = gameObject.AddComponent<ZigSteadyDetector>();
+		
+		leftHandSteady.type = SteadyDetectorType.SkeletonJoint;
+		leftHandSteady.joint = SkeletonJoint.LeftHand;
+		
+		rightHandSteady.type = SteadyDetectorType.SkeletonJoint;
+		rightHandSteady.joint = SkeletonJoint.RightHand;
+	}
+	
+	/*
 	void Zig_OnUserUpdate(ZigEventArgs args)
 	{
-		if (!args.user.SkeletonTracked) {
-			return;
+		user = args.user;
+	}*/
+	/*
+	void SteadyDetector_Steady(SkeletonJoint joint)
+	{
+		// if the steady point is a hand, and its higher than the head
+		if (SkeletonJoint.LeftHand == joint || SkeletonJoint.RightHand == joint) {
+			Vector3 head = user.Joints[SkeletonJoint.Head].position;
+			if (user.Joints[joint].position.y > head.y) {
+				SendMessage("HandRaiseDetector_HandRaised", user, SendMessageOptions.DontRequireReceiver);
+			}
 		}
-		
-		Vector3 leftHand = args.user.Joints[SkeletonJoint.LeftHand].position;
-		Vector3 rightHand = args.user.Joints[SkeletonJoint.RightHand].position;
-		Vector3 head = args.user.Joints[SkeletonJoint.Head].position;
-
-		bool shouldBeRaised = (leftHand.y > head.y || rightHand.y > head.y);
-		if (!IsHandRaised && shouldBeRaised) {
-			SendMessage("Zig_OnHandRaised", args, SendMessageOptions.DontRequireReceiver);
-		}
-		if (IsHandRaised && !shouldBeRaised) {
-			SendMessage("Zig_OnHandLowered", args, SendMessageOptions.DontRequireReceiver);
-		}
-		IsHandRaised = shouldBeRaised;
-	}
+	}*/
 }

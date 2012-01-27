@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class FollowHandPoint : MonoBehaviour
+public class ZigFollowHandPoint : MonoBehaviour
 {
 	public Vector3 Scale = new Vector3(0.02f, 0.02f, -0.02f);
 	public Vector3 bias;
@@ -31,27 +31,30 @@ public class FollowHandPoint : MonoBehaviour
 	Vector3 ProcessHandPoint (Vector3 pos)
 	{
         Vector3 result = pos;
-        if (!Absolute) {
-            result -= OpenNISessionManager.FocusPoint;
-        }
+        //if (!Absolute) {
+        //    result -= OpenNISessionManager.FocusPoint;
+        //}
 		result = Vector3.Scale(result, Scale) + bias;
         return ClampVector(result, -0.5f * bounds, 0.5f * bounds);
 	}
 	
+	/*
 	void Zig_OnSessionStart(ZigEventArgs args)
 	{
-		desiredPos = ProcessHandPoint(args.HandPosition);
+		Vector3 pos = (Absolute) ? args.HandPosition : args.HandPosition - args.FocusPoint;
+		desiredPos = ProcessHandPoint(pos);
 	}
 	
 	void Zig_OnSessionUpdate(ZigEventArgs args)
 	{
-		desiredPos = ProcessHandPoint(args.HandPosition);
+		Vector3 pos = (Absolute) ? args.HandPosition : args.HandPosition - args.FocusPoint;
+		desiredPos = ProcessHandPoint(pos);
 	}
 	
 	void Zig_OnSessionEnd()
 	{
         desiredPos = Vector3.zero;
-	}
+	}*/
 
     void OnDrawGizmos()
     {

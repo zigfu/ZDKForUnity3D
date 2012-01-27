@@ -51,9 +51,12 @@ public class ZigFader : MonoBehaviour {
 	{
         return start + (mirrorIndependentDirection * (val * size));
 	}
-
-    // hand point control messages
+	
 	bool InSession;
+	
+	/*
+    // hand point control messages
+	
     void Zig_OnSessionStart(ZigEventArgs args)
     {
         MoveTo(args.sender.FocusPoint, initialValue);
@@ -70,7 +73,7 @@ public class ZigFader : MonoBehaviour {
     {
         value = initialValue;
 		InSession = false;
-    }
+    }*/
 
     void Start()
     {
