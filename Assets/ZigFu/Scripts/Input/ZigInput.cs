@@ -181,6 +181,7 @@ public class ZigInput : MonoBehaviour {
 		#if UNITY_EDITOR
 		
 		Debug.LogError("Depth camera input will not work in editor when target platform is Webplayer. Please change target platform to PC/Mac standalone.");	
+		return;
 		
 		#endif
 		#endif
@@ -200,6 +201,7 @@ public class ZigInput : MonoBehaviour {
 		}
 		
 		reader.NewUsersFrame += HandleReaderNewUsersFrame;
+		reader.UpdateDepth = true;
 		
 		try {
 			reader.Init();

@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using OpenNI;
 
 public class ZigInputOpenNI : IZigInputReader
@@ -56,8 +57,19 @@ public class ZigInputOpenNI : IZigInputReader
 		this.Gestures.GestureRecognized += new EventHandler<GestureRecognizedEventArgs> (gestures_GestureRecognized);
 		
 		// init textures
-		Depth = new Texture2D(Depthmap.GetMetaData().XRes, Depthmap.GetMetaData().YRes);
+		XRes = Depthmap.GetMetaData().XRes;
+		YRes = Depthmap.GetMetaData().YRes;
+		factor = 1;
+		Depth = new Texture2D(XRes, YRes);
 		Image = new Texture2D(Imagemap.GetMetaData().XRes, Imagemap.GetMetaData().YRes);
+		
+		// depthmap data
+		rawDepthMap = new short[XRes * YRes];
+		depthMapPixels = new Color32[(XRes/factor) * (YRes/factor)];
+		
+		// histogram stuff
+		int maxDepth = Depthmap.DeviceMaxDepth;
+		depthHistogramMap = new float[maxDepth];
 	}
 	
 	public void Update()
@@ -123,6 +135,13 @@ public class ZigInputOpenNI : IZigInputReader
 	
 	public bool Mirror = true;
 	bool mirrorState;
+
+	short[] rawDepthMap;
+	float[] depthHistogramMap;
+	Color32[] depthMapPixels;
+	int XRes;
+	int YRes;
+	int factor;
 	
 	int lastDepthFrameId;
 	int lastImageFrameId;
@@ -239,7 +258,7 @@ public class ZigInputOpenNI : IZigInputReader
 	private void ProcessNewDepthFrame() 
 	{
 		if (UpdateDepth) {
-			// TODO
+			UpdateDepthTexture();
 		}
 		
 		// foreach user
@@ -290,10 +309,74 @@ public class ZigInputOpenNI : IZigInputReader
 		}*/
 	}
 	
+	void UpdateDepthTexture()
+	{
+		Marshal.Copy(Depthmap.DepthMapPtr, rawDepthMap, 0, rawDepthMap.Length);
+        UpdateHistogram();
+        UpdateDepthmapTexture();
+	}
+	
 	private void ProcessNewImageFrame()
 	{
-		
+		if (UpdateImage) {
+			
+		}
 	}
+	
+	void UpdateHistogram()
+	{
+		int i, numOfPoints = 0;
+		
+		Array.Clear(depthHistogramMap, 0, depthHistogramMap.Length);
+
+        for (i = 0; i < rawDepthMap.Length; i++) {
+            // only calculate for valid depth
+            if (rawDepthMap[i] != 0) {
+                depthHistogramMap[rawDepthMap[i]]++;
+                numOfPoints++;
+            }
+        }
+		
+        if (numOfPoints > 0) {
+            for (i = 1; i < depthHistogramMap.Length; i++) {   
+		        depthHistogramMap[i] += depthHistogramMap[i-1];
+	        }
+            for (i = 0; i < depthHistogramMap.Length; i++) {
+                depthHistogramMap[i] = (1.0f - (depthHistogramMap[i] / numOfPoints)) * 255;
+	        }
+        }
+		depthHistogramMap[0] = 0;
+	}
+	
+	void UpdateDepthmapTexture()
+    {
+		// flip the depthmap as we create the texture
+		int YScaled = YRes/factor;
+		int XScaled = XRes/factor;
+		int i = XScaled*YScaled-XScaled;
+		int depthIndex = 0;
+		for (int y = 0; y < YScaled; ++y, i-=XScaled)
+		{
+			for (int x = 0; x < XScaled; ++x, depthIndex += factor)
+			{
+				short pixel = rawDepthMap[depthIndex];
+				if (pixel == 0)
+				{
+					depthMapPixels[i+x] = Color.clear;
+				}
+				else
+				{
+					Color32 c = new Color32((byte)depthHistogramMap[pixel], (byte)depthHistogramMap[pixel], 0, 255);
+					depthMapPixels[i+x] = c;
+				}
+			}
+            // Skip lines
+			depthIndex += (factor-1)*XRes; 
+		}
+
+		Depth.SetPixels32(depthMapPixels);
+        Depth.Apply();
+   }
 }
 
 
