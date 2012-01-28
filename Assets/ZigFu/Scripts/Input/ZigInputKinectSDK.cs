@@ -277,7 +277,7 @@ public class ZigInputKinectSDK : IZigInputReader
 	
 	private Vector3 vec4to3(NuiWrapper.Vector4 v4)
 	{
-		return new Vector3(v4.x, v4.y, -v4.z);
+		return new Vector3(v4.x, v4.y, v4.z);
 	}
 
 	private Vector3 jointPositionFromSkeleton(NuiWrapper.NuiSkeletonData skeleton, NuiWrapper.NuiSkeletonPositionIndex index)
@@ -285,6 +285,15 @@ public class ZigInputKinectSDK : IZigInputReader
 		//return Vector4ToVector3(skeleton.SkeletonPositions[(int)index]);
 		return vec4to3(skeleton.SkeletonPositions[(int)index]);
 	}
+
+    public Vector3 RCross(Vector3 v1, Vector3 v2)
+    {
+        Vector3 result;
+        result.x = v1.y * v2.z - v1.z * v2.y;
+        result.y = v1.z * v2.x - v1.x * v2.z;
+        result.z = v1.x * v2.y - v1.y * v2.x;
+        return result;
+    }
 
 	private class Matrix3x3
 	{
@@ -297,16 +306,17 @@ public class ZigInputKinectSDK : IZigInputReader
 		public Vector3 col0;
         public Vector3 col1;
         public Vector3 col2;
-		
+
 		public Quaternion ToQuaternion() 
 		{
-			//Vector3 worldY = new Vector3(col1.x, col1.y, -col1.z);
-			//Vector3 worldZ = new Vector3(-col2.x, -col2.y, col2.z);
-			//return Quaternion.LookRotation(worldZ, worldY);
-			Quaternion rot = Quaternion.LookRotation(col2, col1);
-			return rot;
+			Vector3 worldY = new Vector3(col1.x, col1.y, -col1.z);
+            Vector3 worldZ = new Vector3(-col2.x, -col2.y, col2.z);
+			return Quaternion.LookRotation(worldZ, worldY);
+			//Quaternion rot = Quaternion.LookRotation(col2, col1);
+			//return rot;
 		}
-	}
+	}		
+
 
 	private Vector3 vectorBetweenNuiJoints(	ref NuiWrapper.NuiSkeletonData skeleton, 
 													NuiWrapper.NuiSkeletonPositionIndex p1, 
@@ -326,7 +336,7 @@ public class ZigInputKinectSDK : IZigInputReader
 		Matrix3x3 result = new Matrix3x3();
 		result.col0 = v.normalized;
 		result.col1 = (new Vector3(0.0f, v.z, -v.y)).normalized;
-		result.col2 = Vector3.Cross(result.col0, result.col1);
+		result.col2 = RCross(result.col0, result.col1);
 		return result;
 	}
 
@@ -335,7 +345,7 @@ public class ZigInputKinectSDK : IZigInputReader
 		Matrix3x3 result = new Matrix3x3();
 		result.col0 = (new Vector3(v.y,-v.x, 0.0f)).normalized;
 		result.col1 = v.normalized;
-		result.col2 = Vector3.Cross(result.col0, result.col1);
+		result.col2 = RCross(result.col0, result.col1);
 		return result;
 	}
 
@@ -344,7 +354,7 @@ public class ZigInputKinectSDK : IZigInputReader
 		Matrix3x3 result = new Matrix3x3();
 		result.col0 = (new Vector3(v.y, -v.x, 0.0f)).normalized;
 		result.col1 = v.normalized;
-		result.col2 = Vector3.Cross(result.col1, result.col0);
+		result.col2 = RCross(result.col1, result.col0);
 		return result;
 	}
 
@@ -352,8 +362,8 @@ public class ZigInputKinectSDK : IZigInputReader
 	{
 		Matrix3x3 result = new Matrix3x3();
 		result.col0 = vx.normalized;
-		result.col1 = Vector3.Cross(result.col0,vy.normalized).normalized;
-		result.col2 = Vector3.Cross(result.col2, result.col0);
+		result.col2 = RCross(result.col0,vy.normalized).normalized;
+		result.col1 = RCross(result.col2, result.col0);
 		return result;
 	}
 
@@ -361,8 +371,8 @@ public class ZigInputKinectSDK : IZigInputReader
 	{
 		Matrix3x3 result = new Matrix3x3();
 		result.col1 = vy.normalized;
-		result.col2 = Vector3.Cross(vx.normalized, result.col1.normalized);
-		result.col0 = Vector3.Cross(result.col1, result.col2);
+		result.col2 = RCross(vx.normalized, result.col1.normalized);
+		result.col0 = RCross(result.col1, result.col2);
 		return result;
 	}
 
@@ -370,8 +380,8 @@ public class ZigInputKinectSDK : IZigInputReader
 	{
 		Matrix3x3 result = new Matrix3x3();
 		result.col1 = vy.normalized;
-		result.col0 = Vector3.Cross(result.col1, vz.normalized).normalized;
-		result.col2 = Vector3.Cross(result.col0, result.col1);
+		result.col0 = RCross(result.col1, vz.normalized).normalized;
+		result.col2 = RCross(result.col0, result.col1);
 		return result;
 	}
 
@@ -405,8 +415,8 @@ public class ZigInputKinectSDK : IZigInputReader
 	   
 			case NuiWrapper.NuiSkeletonPositionIndex.ShoulderLeft:
 				result = orientationFromXY(
-					vectorBetweenNuiJoints(ref skeleton,NuiWrapper.NuiSkeletonPositionIndex.ShoulderLeft,	NuiWrapper.NuiSkeletonPositionIndex.ElbowLeft),
-			        //-vectorBetweenNuiJoints(ref skeleton,NuiWrapper.NuiSkeletonPositionIndex.ShoulderLeft,	NuiWrapper.NuiSkeletonPositionIndex.ElbowLeft),
+					//vectorBetweenNuiJoints(ref skeleton,NuiWrapper.NuiSkeletonPositionIndex.ShoulderLeft,	NuiWrapper.NuiSkeletonPositionIndex.ElbowLeft),
+			        -vectorBetweenNuiJoints(ref skeleton,NuiWrapper.NuiSkeletonPositionIndex.ShoulderLeft,	NuiWrapper.NuiSkeletonPositionIndex.ElbowLeft),
 					vectorBetweenNuiJoints(ref skeleton,NuiWrapper.NuiSkeletonPositionIndex.ElbowLeft,		NuiWrapper.NuiSkeletonPositionIndex.WristLeft));
 				break;
 	   
