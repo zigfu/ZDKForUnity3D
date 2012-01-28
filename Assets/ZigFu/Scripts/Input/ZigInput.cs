@@ -177,20 +177,17 @@ public class ZigInput : MonoBehaviour {
 	
 	void Awake() {
 
-/*
-#if UNITY_WEBPLAYER
-#if UNITY_EDITOR
-
-		Debug.LogError("Running in webplayer + editor!!! BAD BAD BAD");	
-
-#endif
-#endif
-*/
+		#if UNITY_WEBPLAYER
+		#if UNITY_EDITOR
 		
+		Debug.LogError("Depth camera input will not work in editor when target platform is Webplayer. Please change target platform to PC/Mac standalone.");	
 		
+		#endif
+		#endif
+
 		// reader factory
 		if (Application.isWebPlayer) {
-			//reader = (new ZigInputWebplayer()) as IZigInputReader;
+			reader = (new ZigInputWebplayer()) as IZigInputReader;
 		} else {
 			switch (inputType) {
 			case ZigInputType.OpenNI:
@@ -209,6 +206,7 @@ public class ZigInput : MonoBehaviour {
 			ReaderInited = true;
 		} catch (Exception ex) {
 			Debug.LogError(ex.Message);
+			Logger.Log(ex.Message);
 		}
 	}
 

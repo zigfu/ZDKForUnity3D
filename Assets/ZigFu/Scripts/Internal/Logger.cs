@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Logger : MonoBehaviour {
-		// singleton
+	// singleton
     static Logger instance;
     public static Logger Instance
     {
@@ -23,23 +23,12 @@ public class Logger : MonoBehaviour {
         }
     }
 
-	
 	public static void Log(string s)
 	{
 		Instance.log(s);
 	}
 	
 	public int maxItems = 10;
-	
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 	
 	List<string> logEntries = new List<string>();
 	
