@@ -211,8 +211,47 @@ public class ZigInput : MonoBehaviour {
 			Logger.Log(ex.Message);
 		}
 	}
-
-	// Update is called once per frame
+    public Texture2D Depth
+    {
+        get
+        {
+            if (!ReaderInited) return null;
+            return reader.Depth;
+        }
+    }
+    public Texture2D Image
+    {
+        get
+        {
+            if (!ReaderInited) return null;
+            return reader.Image;
+        }
+    }
+    public bool UpdateDepth
+    {
+        get
+        {
+            if (!ReaderInited) return false;
+            return reader.UpdateDepth;
+        }
+        set
+        {
+            if (ReaderInited) reader.UpdateDepth = value;
+        }
+    }
+    public bool UpdateImage
+    {
+        get
+        {
+            if (!ReaderInited) return false;
+            return reader.UpdateImage;
+        }
+        set
+        {
+            if (ReaderInited) reader.UpdateImage = value;
+        }
+    }
+    // Update is called once per frame
 	void Update () {
 		if (ReaderInited) {
 			reader.Update();
