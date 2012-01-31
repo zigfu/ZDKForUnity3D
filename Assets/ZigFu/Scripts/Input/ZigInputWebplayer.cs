@@ -5,13 +5,31 @@ using System.Collections.Generic;
 
 public class ZigInputWebplayer : IZigInputReader
 {
+    const int MaxDepth = 10000; // hard coded for now
+    float[] depthHistogramMap;
+    Color32[] depthMapPixels;
+    ushort[] depthMapData;
+    Color32[] imageMapPixels;
+    int XRes;
+    int YRes;
+    int factor = 1;
 	// init/update/shutdown
 	public void Init()
 	{
 		WebplayerReceiver receiver = WebplayerReceiver.Create();
 		receiver.NewDataEvent += HandleReceiverNewDataEvent;
+        XRes = 160;
+        YRes = 120;
+        Depth = new Texture2D(XRes / factor, YRes / factor);
+        depthMapPixels = new Color32[(XRes / factor) * (YRes / factor)];
+        depthMapData = new ushort[(XRes / factor) * (YRes / factor)];
+        depthHistogramMap = new float[MaxDepth];
+        Image = new Texture2D(XRes / factor, YRes / factor);
+        imageMapPixels = new Color32[(XRes / factor) * (YRes / factor)];
+        receiver.NewDepthEvent += HandleNewDepth;
+        receiver.NewImageEvent += HandleNewImage;
 	}
-	
+
 	public void Update()
 	{
 	}
@@ -26,12 +44,96 @@ public class ZigInputWebplayer : IZigInputReader
 			NewUsersFrame.Invoke(this, new NewUsersFrameEventArgs(users));
 		}
 	}
-	
-	// textures
-	public Texture2D Depth { get; private set; }
+    private void HandleNewDepth(object sender, NewDataEventArgs e)
+    {
+        string s = e.JsonData;
+        int numOfPoints = 0;
+        int outIndex = 0;
+        Array.Clear(depthHistogramMap, 0, depthHistogramMap.Length);
+        int i = 0;
+        // calc histogram, do conversion to depthmap
+        for(i = 0; i < s.Length; i+=2) {
+            ushort pixel = (ushort)((s[i] & (~1)) | (s[i + 1] & 0x7f));
+            depthMapData[outIndex] = pixel;
+            if (pixel != 0) {
+                depthHistogramMap[pixel]++;
+                numOfPoints++;
+            }
+            outIndex++;
+        }
+        if (numOfPoints > 0) {
+            for (i = 1; i < depthHistogramMap.Length; i++) {
+                depthHistogramMap[i] += depthHistogramMap[i - 1];
+            }
+            for (i = 0; i < depthHistogramMap.Length; i++) {
+                depthHistogramMap[i] = (1.0f - (depthHistogramMap[i] / numOfPoints)) * 255;
+            }
+        }
+        depthHistogramMap[0] = 0;
+        // flip the depthmap as we create the texture
+        int YScaled = YRes / factor;
+        int XScaled = XRes / factor;
+        i = XScaled * YScaled - XScaled;
+        int depthIndex = 0;
+        for (int y = 0; y < YScaled; ++y, i -= XScaled) {
+            for (int x = 0; x < XScaled; ++x, depthIndex += factor) {
+                ushort pixel = depthMapData[depthIndex];
+                if (pixel == 0) {
+                    depthMapPixels[i + x] = Color.clear;
+                }
+                else {
+                    Color32 c = new Color32((byte)depthHistogramMap[pixel], (byte)depthHistogramMap[pixel], 0, 255);
+                    depthMapPixels[i + x] = c;
+                }
+            }
+            // Skip lines
+            depthIndex += (factor - 1) * XRes;
+        }
+
+        Depth.SetPixels32(depthMapPixels);
+        Depth.Apply();
+    }
+
+    private void HandleNewImage(object sender, NewDataEventArgs e)
+    {
+        string s = e.JsonData;
+        int outIndex = 0;
+        for (int i = 0; i < s.Length; i += 3, outIndex++) {
+            imageMapPixels[outIndex].r = (byte)(s[i] & (~1));
+            imageMapPixels[outIndex].g = (byte)(s[i + 1] & (~1));
+            imageMapPixels[outIndex].b = (byte)(s[i + 2] & (~1));
+        }
+
+        Image.SetPixels32(imageMapPixels);
+        Image.Apply();
+    }
+
+
+    // textures
+    public Texture2D Depth { get; private set; }
 	public Texture2D Image { get; private set; }
-	public bool UpdateDepth { get; set; }
-	public bool UpdateImage { get; set; }
+    bool updateDepth = false;
+    public bool UpdateDepth { 
+        get { return updateDepth; }
+        set
+        {
+            if (updateDepth != value) {
+                updateDepth = value;
+                WebplayerReceiver.SetStreamsToUpdate(updateDepth, updateImage);
+            }
+        }
+    }
+    bool updateImage = false;
+    public bool UpdateImage {
+        get { return updateImage; }
+        set
+        {
+            if (updateImage != value) {
+                updateImage = value;
+                WebplayerReceiver.SetStreamsToUpdate(updateDepth, updateImage);
+            }
+        }
+    }
 	
 	// needed for some disparity between the output of the JSON decoder and our zig input layer
 	static void Intify(ArrayList list, string property)
