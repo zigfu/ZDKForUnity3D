@@ -218,7 +218,7 @@ public class ZigInput : MonoBehaviour {
         get
         {
             if (!ReaderInited) return null;
-            return reader.Depth;
+            return reader.GetDepth();
         }
     }
     public Texture2D Image
@@ -226,7 +226,7 @@ public class ZigInput : MonoBehaviour {
         get
         {
             if (!ReaderInited) return null;
-            return reader.Image;
+            return reader.GetImage();
         }
     }
     public bool UpdateDepth

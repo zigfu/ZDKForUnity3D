@@ -115,6 +115,7 @@ public class ZigInputWebplayer : IZigInputReader
     public Texture2D GetImage() { return Image; }
     public Texture2D GetDepth() { return Depth; }
 
+    bool updateDepth = false;
     public bool UpdateDepth {
         get { return updateDepth; }
         set
