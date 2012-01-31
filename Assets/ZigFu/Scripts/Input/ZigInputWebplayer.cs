@@ -110,10 +110,12 @@ public class ZigInputWebplayer : IZigInputReader
 
 
     // textures
-    public Texture2D Depth { get; private set; }
-	public Texture2D Image { get; private set; }
-    bool updateDepth = false;
-    public bool UpdateDepth { 
+    Texture2D Image;
+    Texture2D Depth;
+    public Texture2D GetImage() { return Image; }
+    public Texture2D GetDepth() { return Depth; }
+
+    public bool UpdateDepth {
         get { return updateDepth; }
         set
         {

@@ -247,7 +247,7 @@ public class NuiWrapper
         public byte b;
         public byte g;
         public byte r;
-        public byte a;
+        public byte padding;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -372,8 +372,8 @@ public class ZigInputKinectSDK : IZigInputReader
 	{
 		UInt32 flags = 
 			(uint)NuiWrapper.NuiInitializeFlag.UsesDepthAndPlayerIndex | 
-		    (uint)NuiWrapper.NuiInitializeFlag.UsesSkeleton;// |
-            //(uint)NuiWrapper.NuiInitializeFlag.UsesColor;
+		    (uint)NuiWrapper.NuiInitializeFlag.UsesSkeleton |
+            (uint)NuiWrapper.NuiInitializeFlag.UsesColor;
         
         if (PreventDoubleInit.IsSafeToInit()) {
 
@@ -388,10 +388,10 @@ public class ZigInputKinectSDK : IZigInputReader
                 throw new Exception("Error opening depth stream: " + hr);
             }
 
-            //hr = NuiWrapper.NuiImageStreamOpen(NuiWrapper.NuiImageType.Color, NuiWrapper.NuiImageResolution.Res640x480, 0, 2, IntPtr.Zero, out context.ImageHandle);
-            //if (0 != hr) {
-            //    throw new Exception("Error opening image stream: " + hr);
-            //}
+            hr = NuiWrapper.NuiImageStreamOpen(NuiWrapper.NuiImageType.Color, NuiWrapper.NuiImageResolution.Res640x480, 0, 2, IntPtr.Zero, out context.ImageHandle);
+            if (0 != hr) {
+                throw new Exception("Error opening image stream: " + hr);
+            }
             
             PreventDoubleInit.SaveContext<NuiContext>(context);
             PreventDoubleInit.MarkInited();
@@ -406,11 +406,6 @@ public class ZigInputKinectSDK : IZigInputReader
         YRes = 240 / factor;
         Depth = new Texture2D(XRes, YRes);
 
-        //ImageXRes = 640 / factor;
-        //ImageYRes = 480 / factor;
-        //Image = new Texture2D(ImageXRes, ImageYRes);
-        //rawImageMap = new Color32[ImageXRes * ImageYRes];
-
         // depthmap data
         rawDepthMap = new short[XRes * YRes];
         depthMapPixels = new Color32[(XRes / factor) * (YRes / factor)];
@@ -419,6 +414,11 @@ public class ZigInputKinectSDK : IZigInputReader
         int maxDepth = 4000;
         depthHistogramMap = new float[maxDepth];
 
+        // image stuff
+        ImageXRes = 640; // / factor;
+        ImageYRes = 480; // / factor;
+        Image = new Texture2D(640, 480);
+        rawImageMap = new Color32[ImageXRes * ImageYRes];
 	}
 	
 	public void Update() 
@@ -445,24 +445,25 @@ public class ZigInputKinectSDK : IZigInputReader
             NuiWrapper.NuiImageStreamReleaseFrame(context.DepthHandle, ref depthFrame);
         }
 
-        //IntPtr pImageFrame;
-        //if (0 == NuiWrapper.NuiImageStreamGetNextFrame(context.ImageHandle, 0, out pImageFrame)) {
-        //    imageFrame = (NuiWrapper.NuiImageFrame)Marshal.PtrToStructure(pImageFrame, typeof(NuiWrapper.NuiImageFrame));
-        //    Debug.Log("Image frame: " + imageFrame.FrameNumber);
-            //NuiWrapper.INuiFrameTexture imageTexture = new NuiWrapper.INuiFrameTexture(imageFrame.FrameTexture);
-            /*
+        IntPtr pImageFrame;
+        if (0 == NuiWrapper.NuiImageStreamGetNextFrame(context.ImageHandle, 0, out pImageFrame)) {
+            imageFrame = (NuiWrapper.NuiImageFrame)Marshal.PtrToStructure(pImageFrame, typeof(NuiWrapper.NuiImageFrame));
+            NuiWrapper.INuiFrameTexture imageTexture = new NuiWrapper.INuiFrameTexture(imageFrame.FrameTexture);
+
             NuiWrapper.NuiLockedRect rect = imageTexture.LockRect();
             NuiWrapper.ColorBuffer colors = (NuiWrapper.ColorBuffer)Marshal.PtrToStructure(rect.ActualDataFinally, typeof(NuiWrapper.ColorBuffer));
-            for (int i = 0; i < rect.Size; i++) {
+            for (int i = 0; i < rawImageMap.Length; i++) {
                 rawImageMap[i].r = colors.data[i].r;
                 rawImageMap[i].g = colors.data[i].g;
                 rawImageMap[i].b = colors.data[i].b;
-                rawImageMap[i].a = colors.data[i].a;
+                rawImageMap[i].a = 255;
             }
-            imageTexture.UnlockRect();*/
+            imageTexture.UnlockRect();
+            Image.SetPixels32(rawImageMap);
+            Image.Apply();
 
-       //     NuiWrapper.NuiImageStreamReleaseFrame(context.ImageHandle, ref imageFrame);
-        //}
+            NuiWrapper.NuiImageStreamReleaseFrame(context.ImageHandle, ref imageFrame);
+        }
 	}
 	
 	public void Shutdown() {
@@ -480,9 +481,13 @@ public class ZigInputKinectSDK : IZigInputReader
 			NewUsersFrame.Invoke(this, new NewUsersFrameEventArgs(users));
 		}
 	}
+
+    public Texture2D ImageThing { get; set; }
+    Texture2D Image;
+	Texture2D Depth;
+    public Texture2D GetImage() { return Image; }
+    public Texture2D GetDepth() { return Depth; }
 	
-	public Texture2D Depth { get; private set; }
-	public Texture2D Image { get; private set; }
 	public bool UpdateDepth { get; set; }
 	public bool UpdateImage { get; set; }
 	

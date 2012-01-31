@@ -100,8 +100,10 @@ public class ZigInputOpenNI : IZigInputReader
 		}
 	}
 	
-	public Texture2D Depth { get; private set; }
-	public Texture2D Image { get; private set; }
+	Texture2D Depth;
+	Texture2D Image;
+    public Texture2D GetDepth() { return Depth; }
+    public Texture2D GetImage() { return Image; }
 	public bool UpdateDepth { get; set; }
 	public bool UpdateImage { get; set; }
 	

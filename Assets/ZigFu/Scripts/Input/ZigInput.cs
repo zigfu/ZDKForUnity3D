@@ -103,10 +103,12 @@ public interface IZigInputReader
 	event EventHandler<NewUsersFrameEventArgs> NewUsersFrame;
 	
 	// textures
-	Texture2D Depth { get; }
-	Texture2D Image { get; }
+	Texture2D GetDepth();
+	Texture2D GetImage();
 	bool UpdateDepth { get; set; }
 	bool UpdateImage { get; set; }
+
+    //Texture2D ImageThing { get; }
 }
 
 public class ZigTrackedUser
