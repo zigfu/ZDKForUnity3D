@@ -171,8 +171,8 @@ public class ZigInput : MonoBehaviour {
 	//public ZigUserTracker userTracker;
 	public ZigInputType inputType = ZigInputType.KinectSDK;
 	public List<GameObject> listeners = new List<GameObject>();
-	
-	IZigInputReader reader;
+
+    public IZigInputReader reader { get; private set; }
 	public bool ReaderInited { get; private set; }
 	
 	void Awake() {
