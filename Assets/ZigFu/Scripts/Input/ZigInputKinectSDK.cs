@@ -322,7 +322,13 @@ public class NuiWrapper
         }
     }
 
+    [UnmanagedFunctionPointerAttribute(CallingConvention.StdCall,CharSet=CharSet.Unicode)]
+    public delegate void NuiStatusProc(UInt32 hrStatus, string instanceName, string uniqueDeviceName);
+
+
 	//-------------------------------------------------------------------------
+    [DllImport("kinect10.dll")]
+    public static extern void NuiSetDeviceSatusCallback(NuiStatusProc callback, IntPtr userdata);
 	
 	[DllImport("kinect10.dll")]
 	public static extern UInt32 NuiInitialize(UInt32 Flags);
@@ -361,12 +367,18 @@ public class ZigInputKinectSDK : IZigInputReader
     int ImageYRes;
     Color32[] rawImageMap;
 
+    void StatusCallback(UInt32 hr, string instanceName, string uniqueDeviceName)
+    {
+    }
+    NuiWrapper.NuiStatusProc StatusCallbackDelegate = null;
 	//-------------------------------------------------------------------------
 	// IZigInputReader interface
 	//-------------------------------------------------------------------------
 
 	public void Init()
 	{
+        StatusCallbackDelegate = new NuiWrapper.NuiStatusProc(StatusCallback);
+        NuiWrapper.NuiSetDeviceSatusCallback(StatusCallbackDelegate, IntPtr.Zero);
 		UInt32 flags = 
 			(uint)NuiWrapper.NuiInitializeFlag.UsesDepthAndPlayerIndex | 
 		    (uint)NuiWrapper.NuiInitializeFlag.UsesSkeleton |
@@ -472,8 +484,9 @@ public class ZigInputKinectSDK : IZigInputReader
 		// Unfortunately we cant call NuiShutdown because then NuiInitialize hangs
 		// the next time its called (this happens in the editor, dll's aren't unloaded
 		// and reloaded every time the game is launched). Oh well.
-		
-		//NuiWrapper.NuiShutdown()
+
+        NuiWrapper.NuiShutdown();
+        NuiWrapper.NuiSetDeviceSatusCallback(null, IntPtr.Zero);
 	}
 	
 	
