@@ -204,6 +204,7 @@ public class ZigInput : MonoBehaviour {
 		
 		reader.NewUsersFrame += HandleReaderNewUsersFrame;
 		reader.UpdateDepth = true;
+        reader.UpdateImage = true;
 		
 		try {
 			reader.Init();
