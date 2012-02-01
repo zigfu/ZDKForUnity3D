@@ -60,6 +60,13 @@ public class ZigInputOpenNI : IZigInputReader
 		// histogram stuff
 		int maxDepth = Depthmap.DeviceMaxDepth;
 		depthHistogramMap = new float[maxDepth];
+
+        // image stuff
+        ImageXRes = Imagemap.GetMetaData().XRes;
+        ImageYRes = Imagemap.GetMetaData().YRes;
+        Image = new Texture2D(ImageXRes, ImageYRes);
+        rawImageMap = new byte[ImageXRes * ImageYRes * 3];
+        imageMapPixels = new Color32[ImageXRes * ImageYRes];
 	}
 	
 	public void Update()
@@ -134,7 +141,12 @@ public class ZigInputOpenNI : IZigInputReader
 	int XRes;
 	int YRes;
 	int factor;
-	
+
+    int ImageXRes;
+    int ImageYRes;
+    byte[] rawImageMap;
+    Color32[] imageMapPixels;
+
 	int lastDepthFrameId;
 	int lastImageFrameId;
 	
@@ -262,7 +274,20 @@ public class ZigInputOpenNI : IZigInputReader
 	private void ProcessNewImageFrame()
 	{
 		if (UpdateImage) {
-			
+            Marshal.Copy(Imagemap.ImageMapPtr, rawImageMap, 0, rawImageMap.Length);
+            int src = 0;
+            int dst = 0;
+            for (int row = 0; row < ImageYRes; row++) {
+                for (int col = 0; col < ImageXRes; col++) {
+                    imageMapPixels[dst] = new Color32(rawImageMap[src], rawImageMap[src + 1], rawImageMap[src + 2], 255);
+                    src += 3;
+                    dst++;
+                }
+                //dst += (int)(outputSize.x - inputSize.x);
+            }
+
+            Image.SetPixels32(imageMapPixels);
+            Image.Apply();
 		}
 	}
 	
