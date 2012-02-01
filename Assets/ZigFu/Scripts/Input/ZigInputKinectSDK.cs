@@ -361,9 +361,6 @@ public class ZigInputKinectSDK : IZigInputReader
     int ImageYRes;
     Color32[] rawImageMap;
 
-    int lastDepthFrameId;
-    int lastImageFrameId;
-
 	//-------------------------------------------------------------------------
 	// IZigInputReader interface
 	//-------------------------------------------------------------------------
@@ -426,43 +423,48 @@ public class ZigInputKinectSDK : IZigInputReader
 		if (0 == NuiWrapper.NuiSkeletonGetNextFrame(0, ref skeletonFrame)) {
 			ProcessNewSkeletonFrame();
 		}
-        IntPtr pDepthFrame;
-        if (0 == NuiWrapper.NuiImageStreamGetNextFrame(context.DepthHandle, 0, out pDepthFrame)) {
-            // deal with deref'ing/marshalling
-            depthFrame = (NuiWrapper.NuiImageFrame) Marshal.PtrToStructure(pDepthFrame, typeof(NuiWrapper.NuiImageFrame));
-            NuiWrapper.INuiFrameTexture depthTexture = new NuiWrapper.INuiFrameTexture(depthFrame.FrameTexture);
 
-            // lock & copy the depth data
-            NuiWrapper.NuiLockedRect rect = depthTexture.LockRect();
-            Marshal.Copy(rect.ActualDataFinally, rawDepthMap, 0, rawDepthMap.Length);
-            depthTexture.UnlockRect();
+        if (UpdateDepth) {
+            IntPtr pDepthFrame;
+            if (0 == NuiWrapper.NuiImageStreamGetNextFrame(context.DepthHandle, 0, out pDepthFrame)) {
+                // deal with deref'ing/marshalling
+                depthFrame = (NuiWrapper.NuiImageFrame)Marshal.PtrToStructure(pDepthFrame, typeof(NuiWrapper.NuiImageFrame));
+                NuiWrapper.INuiFrameTexture depthTexture = new NuiWrapper.INuiFrameTexture(depthFrame.FrameTexture);
 
-            // process it
-            UpdateHistogram();
-            UpdateDepthmapTexture();
-            
-            // release current frame
-            NuiWrapper.NuiImageStreamReleaseFrame(context.DepthHandle, ref depthFrame);
+                // lock & copy the depth data
+                NuiWrapper.NuiLockedRect rect = depthTexture.LockRect();
+                Marshal.Copy(rect.ActualDataFinally, rawDepthMap, 0, rawDepthMap.Length);
+                depthTexture.UnlockRect();
+
+                // process it
+                UpdateHistogram();
+                UpdateDepthmapTexture();
+
+                // release current frame
+                NuiWrapper.NuiImageStreamReleaseFrame(context.DepthHandle, ref depthFrame);
+            }
         }
 
-        IntPtr pImageFrame;
-        if (0 == NuiWrapper.NuiImageStreamGetNextFrame(context.ImageHandle, 0, out pImageFrame)) {
-            imageFrame = (NuiWrapper.NuiImageFrame)Marshal.PtrToStructure(pImageFrame, typeof(NuiWrapper.NuiImageFrame));
-            NuiWrapper.INuiFrameTexture imageTexture = new NuiWrapper.INuiFrameTexture(imageFrame.FrameTexture);
+        if (UpdateImage) {
+            IntPtr pImageFrame;
+            if (0 == NuiWrapper.NuiImageStreamGetNextFrame(context.ImageHandle, 0, out pImageFrame)) {
+                imageFrame = (NuiWrapper.NuiImageFrame)Marshal.PtrToStructure(pImageFrame, typeof(NuiWrapper.NuiImageFrame));
+                NuiWrapper.INuiFrameTexture imageTexture = new NuiWrapper.INuiFrameTexture(imageFrame.FrameTexture);
 
-            NuiWrapper.NuiLockedRect rect = imageTexture.LockRect();
-            NuiWrapper.ColorBuffer colors = (NuiWrapper.ColorBuffer)Marshal.PtrToStructure(rect.ActualDataFinally, typeof(NuiWrapper.ColorBuffer));
-            for (int i = 0; i < rawImageMap.Length; i++) {
-                rawImageMap[i].r = colors.data[i].r;
-                rawImageMap[i].g = colors.data[i].g;
-                rawImageMap[i].b = colors.data[i].b;
-                rawImageMap[i].a = 255;
+                NuiWrapper.NuiLockedRect rect = imageTexture.LockRect();
+                NuiWrapper.ColorBuffer colors = (NuiWrapper.ColorBuffer)Marshal.PtrToStructure(rect.ActualDataFinally, typeof(NuiWrapper.ColorBuffer));
+                for (int i = 0; i < rawImageMap.Length; i++) {
+                    rawImageMap[i].r = colors.data[i].r;
+                    rawImageMap[i].g = colors.data[i].g;
+                    rawImageMap[i].b = colors.data[i].b;
+                    rawImageMap[i].a = 255;
+                }
+                imageTexture.UnlockRect();
+                Image.SetPixels32(rawImageMap);
+                Image.Apply();
+
+                NuiWrapper.NuiImageStreamReleaseFrame(context.ImageHandle, ref imageFrame);
             }
-            imageTexture.UnlockRect();
-            Image.SetPixels32(rawImageMap);
-            Image.Apply();
-
-            NuiWrapper.NuiImageStreamReleaseFrame(context.ImageHandle, ref imageFrame);
         }
 	}
 	
