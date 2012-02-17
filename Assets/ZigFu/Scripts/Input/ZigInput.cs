@@ -131,8 +131,16 @@ public class ZigTrackedUser
 	
 	void notifyListeners(string msgname, object arg)
 	{
-		foreach (GameObject go in listeners) {
-			go.SendMessage(msgname, arg, SendMessageOptions.DontRequireReceiver);
+		//foreach (GameObject go in listeners) {
+        for(int i = 0; i < listeners.Count; ) {
+            GameObject go = listeners[i];
+            if (go) {
+                go.SendMessage(msgname, arg, SendMessageOptions.DontRequireReceiver);
+                i++;
+            }
+            else {
+                listeners.RemoveAt(i);
+            }
 		}
 	}
 }
