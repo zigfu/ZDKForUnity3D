@@ -73,17 +73,47 @@ class WebplayerReceiver : MonoBehaviour
 			return CachedZigObject;
 		}
 
+		function GetUnreadyZigObject()
+		{
+			var objs = document.getElementsByTagName('object');
+			for (var i=0; i<objs.length; i++) {
+				if ((objs[i].type !== undefined)&&(objs[i].type=='application/x-zig')) {
+                    console.log('found not-loaded zig object!');
+                    console.log(objs[i]);
+                    return objs[i];
+				}
+			}
+            return null;
+		}
+
         function setStreams(depth, image) {
             streamsRequested = { depth : depth, image : image };
             var zig = GetZigObject();
             if (zig) zig.requestStreams(depth, image, true); // we're a web-player, say so
         }
 
+        function pollPrezig(prezig, playerId, objectName) {
+            if (prezig.requestStreams !== undefined) {
+                console.log('prezig is now a zig!');
+                webplayerInitZigPlugin(playerId,objectName);
+            } else {
+                console.log('prezig is not yet ready :/');
+                setInterval(pollPrezig, 100, prezig, playerId, objectName);
+            }
+        }
+
 		function webplayerInitZigPlugin(playerId, objectName)
 		{
             if (typeof streamsRequested == 'undefined' ) streamsRequested = { depth : false, image : false };
-			zigObject = GetZigObject();
-			if (null == zigObject) {" +
+            var preZig = GetUnreadyZigObject();
+            if (preZig !== null) {
+                console.log('got prezig, polling till valid!');
+                setInterval(pollPrezig, 100, prezig, playerId, objectName);
+                return;
+            }
+			var zigObject = GetZigObject();
+			if (null == zigObject) {
+                console.log('Injecting new zig plugin object!');" +
                 "var html = '<object id=\"zigPluginObject\" type=\"application/x-zig\" width=\"0\" height=\"0\"><param name=\"onload\" value=\"webplayerZigPluginLoaded\" /></object>';" +
                 @"var newDiv = document.createElement('div');
 				WebplayerIds = [];
@@ -92,6 +122,7 @@ class WebplayerReceiver : MonoBehaviour
 				zigObject = document.getElementById('zigPluginObject');
                 setStreams(streamsRequested.depth, streamsRequested.image);
 			} else {
+                console.log('using existing zig plugin object!');
 				WebplayerIds = [];
 				webplayerZigPluginLoaded(zigObject);
 			}
