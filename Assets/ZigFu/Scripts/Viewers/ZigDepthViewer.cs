@@ -23,13 +23,10 @@ public class ResolutionData
             default: //fallthrough - default to QQVGA
             case ZigResolution.QQVGA_160x120:
                 return new ResolutionData(160, 120);
-                break;
             case ZigResolution.QVGA_320x240:
                 return new ResolutionData(320, 240);
-                break;
             case ZigResolution.VGA_640x480:
                 return new ResolutionData(640, 480);
-                break;
         }
         
     }
