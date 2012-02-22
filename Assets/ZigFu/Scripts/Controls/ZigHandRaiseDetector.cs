@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using OpenNI; // OpenNI dep for SkeletonJoint, will go soon
+//using OpenNI; // OpenNI dep for SkeletonJoint, will go soon
 
 public class ZigHandRaiseDetector : MonoBehaviour {
 	
@@ -14,10 +14,10 @@ public class ZigHandRaiseDetector : MonoBehaviour {
 		rightHandSteady = gameObject.AddComponent<ZigSteadyDetector>();
 		
 		leftHandSteady.type = SteadyDetectorType.SkeletonJoint;
-		leftHandSteady.joint = SkeletonJoint.LeftHand;
+		leftHandSteady.joint = ZigJointId.LeftHand;
 		
 		rightHandSteady.type = SteadyDetectorType.SkeletonJoint;
-		rightHandSteady.joint = SkeletonJoint.RightHand;
+        rightHandSteady.joint = ZigJointId.RightHand;
 	}
 	
 	/*

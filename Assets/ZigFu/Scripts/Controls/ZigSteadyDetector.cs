@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using OpenNI;
 using Accord.Statistics.Analysis;
 
 public enum SteadyDetectorType
@@ -11,7 +10,7 @@ public enum SteadyDetectorType
 
 public class ZigSteadyDetector : MonoBehaviour {
 	public SteadyDetectorType type = SteadyDetectorType.HandSession;
-	public SkeletonJoint joint;
+    public ZigJointId joint;
 	public float maxVariance = 50.0f;
 	public float timedBufferSize = 0.5f;
 	public float minSteadyTime = 0.1f;
