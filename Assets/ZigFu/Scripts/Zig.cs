@@ -6,8 +6,8 @@ public class Zig : MonoBehaviour {
     public ZigInputType inputType = ZigInputType.OpenNI;
     public bool UpdateDepthmapImage = false;
     public bool UpdateImagemapImage = false;
-
     public List<GameObject> listeners = new List<GameObject>();
+    public bool Verbose = true;
 
 	void Start () {
         #if UNITY_WEBPLAYER
@@ -36,7 +36,17 @@ public class Zig : MonoBehaviour {
         }
     }
 
-    void Zig_NewUser(ZigTrackedUser user) {
-        notifyListeners("Zig_NewUser", user);
+    void Zig_UserFound(ZigTrackedUser user) {
+        if (Verbose) Debug.Log("Zig: Found user  " + user.Id);
+        notifyListeners("Zig_UserFound", user);
+    }
+
+    void Zig_UserLost(ZigTrackedUser user) {
+        if (Verbose) Debug.Log("Zig: Lost user " + user.Id);
+        notifyListeners("Zig_UserLost", user);
+    }
+
+    void Zig_Update(ZigInput zig) {
+        notifyListeners("Zig_Update", zig);
     }
 }
