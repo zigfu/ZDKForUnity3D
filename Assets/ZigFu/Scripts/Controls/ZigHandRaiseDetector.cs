@@ -12,12 +12,12 @@ public class ZigHandRaiseDetector : MonoBehaviour {
 	void Start () {
 		leftHandSteady = gameObject.AddComponent<ZigSteadyDetector>();
 		rightHandSteady = gameObject.AddComponent<ZigSteadyDetector>();
-		
+		/*
 		leftHandSteady.type = SteadyDetectorType.SkeletonJoint;
 		leftHandSteady.joint = ZigJointId.LeftHand;
 		
 		rightHandSteady.type = SteadyDetectorType.SkeletonJoint;
-        rightHandSteady.joint = ZigJointId.RightHand;
+        rightHandSteady.joint = ZigJointId.RightHand;*/
 	}
 	
 	/*

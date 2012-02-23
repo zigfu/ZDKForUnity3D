@@ -10,13 +10,13 @@ public class ZigEngageAllUsers : MonoBehaviour {
 	void Zig_NewUser(ZigTrackedUser user) 
 	{
 		GameObject o = Instantiate(InstantiatePerUser) as GameObject;
-		objects[user.UserData.Id] = o;
+		objects[user.Id] = o;
 		user.AddListener(o);
 	}
 	
 	void Zig_LostUser(ZigTrackedUser user)
 	{
-		Destroy(objects[user.UserData.Id]);
-		objects.Remove(user.UserData.Id);
+		Destroy(objects[user.Id]);
+		objects.Remove(user.Id);
 	}
 }

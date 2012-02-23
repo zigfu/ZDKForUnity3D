@@ -23,7 +23,7 @@ public class ZigUsersRadar : MonoBehaviour {
 		foreach (ZigTrackedUser currentUser in ZigInput.Instance.TrackedUsers.Values)
 		{
 			// normalize the center of mass to radar dimensions
-			Vector3 com = currentUser.UserData.CenterOfMass;
+			Vector3 com = currentUser.Position;
 			Vector2 radarPosition = new Vector2(com.x / RadarRealWorldDimensions.x, -com.z / RadarRealWorldDimensions.y);
 			
 			// X axis: 0 in real world is actually 0.5 in radar units (middle of field of view)
@@ -34,7 +34,7 @@ public class ZigUsersRadar : MonoBehaviour {
 			radarPosition.y = Mathf.Clamp(radarPosition.y, 0.0f, 1.0f);
 
 			// draw
-			GUI.Box(new Rect(radarPosition.x * width - 10, radarPosition.y * height - 10, 20, 20), currentUser.UserData.Id.ToString());
+			GUI.Box(new Rect(radarPosition.x * width - 10, radarPosition.y * height - 10, 20, 20), currentUser.Id.ToString());
 		}
 		GUI.EndGroup();
 	}

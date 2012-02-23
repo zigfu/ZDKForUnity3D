@@ -13,7 +13,7 @@ public class ZigEngageSingleUser : MonoBehaviour {
 	void EngageTrigger(ZigTrackedUser user)
 	{
 		if (0 == engagedUserId) {
-			engagedUserId = user.UserData.Id;
+			engagedUserId = user.Id;
 			user.AddListener(EngagedUser);
 			
 			// TODO: send message
@@ -22,7 +22,7 @@ public class ZigEngageSingleUser : MonoBehaviour {
 	
 	void DisengageTrigger(ZigTrackedUser user)
 	{
-		if (engagedUserId == user.UserData.Id) {
+		if (engagedUserId == user.Id) {
 			engagedUserId = 0;
 			// TODO: send message
 			
@@ -37,14 +37,14 @@ public class ZigEngageSingleUser : MonoBehaviour {
 		ZigEngagementTrigger o = Instantiate(EngagementTrigger) as ZigEngagementTrigger;
 		o.Init(this, user);
 		o.transform.parent = gameObject.transform;
-		objects[user.UserData.Id] = o.gameObject;
+		objects[user.Id] = o.gameObject;
 		user.AddListener(o.gameObject);
 	}
 	
 	void Zig_LostUser(ZigTrackedUser user)
 	{
 		DisengageTrigger(user);
-		Destroy(objects[user.UserData.Id]);
-		objects.Remove(user.UserData.Id);
+		Destroy(objects[user.Id]);
+		objects.Remove(user.Id);
 	}
 }

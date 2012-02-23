@@ -49,7 +49,7 @@ public class ZigSkeleton : MonoBehaviour
 
 	public void Awake()
 	{
-		int jointCount = Enum.GetNames(typeof(ZigJointId)).Length - 1; // Enum starts at 1
+		int jointCount = Enum.GetNames(typeof(ZigJointId)).Length;
 		
 		transforms = new Transform[jointCount];
 		initialRotations = new Quaternion[jointCount];
@@ -163,9 +163,9 @@ public class ZigSkeleton : MonoBehaviour
 	
 	void Zig_UpdateUser(ZigTrackedUser user)
 	{
-		UpdateRoot(user.UserData.CenterOfMass);
-		if (user.UserData.Tracked) {
-			foreach (ZigInputJoint joint in user.UserData.SkeletonData) {
+		UpdateRoot(user.Position);
+		if (user.SkeletonTracked) {
+			foreach (ZigInputJoint joint in user.Skeleton) {
 				if (joint.GoodPosition) UpdatePosition(joint.Id, joint.Position);
 				if (joint.GoodRotation) UpdateRotation(joint.Id, joint.Rotation);
 			}

@@ -14,9 +14,9 @@ public class ZigEngageFirstTrackedUser : MonoBehaviour {
 		ZigInput.Instance.AddListener(gameObject);
 	}
 	
-	void Zig_LostUser(ZigTrackedUser user)
+	void Zig_UserLost(ZigTrackedUser user)
 	{
-		if (user.UserData.Id == engagedUserId) {
+		if (user.Id == engagedUserId) {
 			// lost user
 			engagedUserId = 0;
 		}
@@ -26,8 +26,8 @@ public class ZigEngageFirstTrackedUser : MonoBehaviour {
 	{
 		if (engagedUserId == 0) {
 			foreach (ZigTrackedUser trackedUser in zig.TrackedUsers.Values) {
-				if (trackedUser.UserData.Tracked) {
-					engagedUserId = trackedUser.UserData.Id;
+				if (trackedUser.SkeletonTracked) {
+					engagedUserId = trackedUser.Id;
 					trackedUser.AddListener(EngagedUser);
 					break;
 				}

@@ -24,7 +24,7 @@ public class ZigUserIsInRegion : MonoBehaviour {
 
 	void Zig_UpdateUser(ZigTrackedUser user)
 	{
-		isInRegionThisFrame = region.Contains(user.UserData.CenterOfMass) && user.UserData.Tracked;
+		isInRegionThisFrame = region.Contains(user.Position) && user.SkeletonTracked;
 		if (!IsInRegion && isInRegionThisFrame) {
 			SendMessage("UserIsInRegion", user);
 		}
