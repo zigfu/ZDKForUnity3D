@@ -50,6 +50,7 @@ public class ZigDepthViewer : MonoBehaviour {
         }
         textureSize = ResolutionData.FromZigResolution(TextureSize);
         texture = new Texture2D(textureSize.Width, textureSize.Height);
+        texture.wrapMode = TextureWrapMode.Clamp;
         renderer.material.mainTexture = texture;
         depthHistogramMap = new float[MaxDepth];
         depthToColor = new Color32[MaxDepth];
