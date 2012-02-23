@@ -1,25 +1,25 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using Accord.Statistics.Analysis;
 
-public enum SteadyDetectorType
-{
-	HandSession,
-	SkeletonJoint,
-}
-
 public class ZigSteadyDetector : MonoBehaviour {
-	public SteadyDetectorType type = SteadyDetectorType.HandSession;
-    public ZigJointId joint;
 	public float maxVariance = 50.0f;
 	public float timedBufferSize = 0.5f;
 	public float minSteadyTime = 0.1f;
 	TimedBuffer<Vector3> points;
 	
-	// this really should be { get; private set; }
-	// but this way its visible in the inspector
-	public bool IsSteady; 
-	
+	// these really should be { get; private set; }
+	// but this way they're visible in the inspector
+	public bool IsSteady;
+    public float Variance;
+
+    public event EventHandler Steady;
+    protected virtual void OnSteady() {
+        if (null != Steady) {
+            Steady.Invoke(this, new EventArgs());
+        }
+    }
 	
 	// Use this for initialization
 	void Start () {
@@ -56,48 +56,41 @@ public class ZigSteadyDetector : MonoBehaviour {
 		points.Clear();	
 	}
 	
-	IEnumerator PleaseWaitForSteady()
+	IEnumerator WaitForSteady()
 	{
 		yield return new WaitForSeconds(minSteadyTime);
-		SendMessage("SteadyDetector_Steady", joint, SendMessageOptions.DontRequireReceiver);
+		SendMessage("SteadyDetector_Steady", this, SendMessageOptions.DontRequireReceiver);
 	}
-	/*
-	void Zig_OnUserUpdate(ZigEventArgs args)
-	{
-		if (type != SteadyDetectorType.SkeletonJoint) {
-			return;
-		}
-		
-		// no skeleton? not interesting
-		if (!args.user.SkeletonTracked) {
-			IsSteady = false;
-			return;
-		}
-		
-		// add current point
-		ProcessPoint(args.user.Joints[joint].position);
-	}
-	
-	void Zig_OnSessionUpdate(ZigEventArgs args)
-	{
-		if (type != SteadyDetectorType.HandSession) {
-			return;
-		}
-		
-		ProcessPoint(args.HandPosition);
-	}*/
-	
+
+    void Session_Start(Vector3 focusPoint) {
+        Clear();
+        ProcessPoint(focusPoint);
+    }
+
+    void Session_Update(Vector3 handPoint) {
+        ProcessPoint(handPoint);
+    }
+
+    void Session_End() {
+        Clear();
+    }
+
 	void ProcessPoint(Vector3 position)
 	{
 		// add current point
 		points.AddDataPoint(position);
 		bool currentFrameSteady = GetSingularValues().x < maxVariance;
+        Variance = GetSingularValues().x;
 		if (!IsSteady && currentFrameSteady) {
-			StartCoroutine("PleaseWaitForSteady");
+			StartCoroutine("WaitForSteady");
 		}
 		if (IsSteady && !currentFrameSteady) {
-			StopCoroutine("PleaseWaitForSteady");
+			StopCoroutine("WaitForSteady");
 		}
 		IsSteady = currentFrameSteady;
 	}
+
+    void SteadyDetector_Steady(ZigSteadyDetector sender) {
+        Debug.Log(gameObject.name + ": Steady");
+    }
 }
