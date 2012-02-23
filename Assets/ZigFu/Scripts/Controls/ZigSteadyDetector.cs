@@ -19,6 +19,7 @@ public class ZigSteadyDetector : MonoBehaviour {
         if (null != Steady) {
             Steady.Invoke(this, new EventArgs());
         }
+        SendMessage("SteadyDetector_Steady", this, SendMessageOptions.DontRequireReceiver);
     }
 	
 	// Use this for initialization
@@ -59,7 +60,7 @@ public class ZigSteadyDetector : MonoBehaviour {
 	IEnumerator WaitForSteady()
 	{
 		yield return new WaitForSeconds(minSteadyTime);
-		SendMessage("SteadyDetector_Steady", this, SendMessageOptions.DontRequireReceiver);
+        OnSteady();
 	}
 
     void Session_Start(Vector3 focusPoint) {

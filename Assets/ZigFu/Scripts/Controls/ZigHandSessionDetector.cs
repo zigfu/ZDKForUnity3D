@@ -19,7 +19,7 @@ public class ZigHandSessionDetector : MonoBehaviour {
 
         rightHandDetector = new GameObject("RightHandDetector");
         rightHandDetector.transform.parent = gameObject.transform;
-        ZigMapJointToSession rightMap = leftHandDetector.AddComponent<ZigMapJointToSession>();
+        ZigMapJointToSession rightMap = rightHandDetector.AddComponent<ZigMapJointToSession>();
         rightMap.joint = ZigJointId.RightHand;
         rightHandDetector.AddComponent<ZigSteadyDetector>();
         //rightHandDetector.AddComponent<ZigWaveDetector>();
