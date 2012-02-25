@@ -7,6 +7,8 @@ public class ZigFader : MonoBehaviour {
     public float initialValue = 0.5f;
     public int itemCount = 0;
     public float hysteresis = 0.2f;
+    public bool AutoMoveToContain = false;
+    public float driftAmount = 0.0f;
 
     // these should be private set but this way they're visible in the inspector
     public float value; // { get; private set; }
@@ -36,7 +38,16 @@ public class ZigFader : MonoBehaviour {
 	}
 	
 	public void UpdatePosition(Vector3 pos) {
+        if (AutoMoveToContain) {
+            MoveToContain(pos);
+        }
+
         UpdateValue(GetValue(pos));
+
+        if (driftAmount > 0.0f) {
+            float delta = initialValue - value;
+            MoveTo(pos, value + (delta * driftAmount));
+        }
 	}
 	
 	public float GetValue(Vector3 pos) {
