@@ -10,7 +10,6 @@ public class ZigMapJointToSession : MonoBehaviour {
         if (!InSession && user.SkeletonTracked && joint != ZigJointId.None) {
             InSession = true;
             SendMessage("Session_Start", user.Skeleton[(int)joint].Position, SendMessageOptions.DontRequireReceiver);
-            Debug.Log("Starting fake session on " + joint);
         }
 
         if (InSession) {
