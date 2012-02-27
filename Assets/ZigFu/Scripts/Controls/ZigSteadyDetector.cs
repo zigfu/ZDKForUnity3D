@@ -13,6 +13,7 @@ public class ZigSteadyDetector : MonoBehaviour {
 	// but this way they're visible in the inspector
 	public bool IsSteady;
     public float Variance;
+    public Vector3 steadyPoint;
 
     public event EventHandler Steady;
     protected virtual void OnSteady() {
@@ -60,6 +61,7 @@ public class ZigSteadyDetector : MonoBehaviour {
 	IEnumerator WaitForSteady()
 	{
 		yield return new WaitForSeconds(minSteadyTime);
+        steadyPoint = points.Buffer[points.Buffer.Count - 1].obj;
         OnSteady();
 	}
 
