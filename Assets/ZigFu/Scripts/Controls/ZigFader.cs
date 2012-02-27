@@ -5,7 +5,7 @@ public class ZigFader : MonoBehaviour {
 	public Vector3 direction = Vector3.right;
 	public float size = 200;
     public float initialValue = 0.5f;
-    public int itemCount = 0;
+    public int itemCount = 1;
     public float hysteresis = 0.2f;
     public bool AutoMoveToContain = false;
     public float driftAmount = 0.0f;
@@ -18,6 +18,7 @@ public class ZigFader : MonoBehaviour {
     bool isEdge;
 
     void Start() {
+        if (itemCount == 0) itemCount = 1;
         value = initialValue;
     }
 
