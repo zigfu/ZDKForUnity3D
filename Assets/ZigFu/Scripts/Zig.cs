@@ -9,7 +9,7 @@ public class Zig : MonoBehaviour {
     public List<GameObject> listeners = new List<GameObject>();
     public bool Verbose = true;
 
-	void Start () {
+	void Awake () {
         #if UNITY_WEBPLAYER
         #if UNITY_EDITOR
         Debug.LogError("Depth camera input will not work in editor when target platform is Webplayer. Please change target platform to PC/Mac standalone.");
