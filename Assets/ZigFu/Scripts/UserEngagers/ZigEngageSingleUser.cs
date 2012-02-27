@@ -3,48 +3,87 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class ZigEngageSingleUser : MonoBehaviour {
-	public ZigEngagementTrigger EngagementTrigger;
+    public bool SkeletonTracked = true;
+    public bool RaiseHand;
+    public bool Wave;
+    public bool SingleUserPosition;
+    public bool StartSession;
+
 	public GameObject EngagedUser;
 	
 	Dictionary<int, GameObject> objects = new Dictionary<int, GameObject>();
-	
-	int engagedUserId = 0;
-	
-	void EngageTrigger(ZigTrackedUser user)
-	{
-		if (0 == engagedUserId) {
-			engagedUserId = user.Id;
-			user.AddListener(EngagedUser);
-			
-			// TODO: send message
+
+    ZigTrackedUser engagedTrackedUser;
+
+    void Start() {
+        // make sure we get zig events
+        ZigInput.Instance.AddListener(gameObject);
+    }
+
+	void EngageUser(ZigTrackedUser user) {
+		if (null == engagedTrackedUser) {
+            engagedTrackedUser = user;
+			if (null != EngagedUser) user.AddListener(EngagedUser);
+            SendMessage("UserEngaged", this, SendMessageOptions.DontRequireReceiver);
 		}
 	}
 	
-	void DisengageTrigger(ZigTrackedUser user)
-	{
-		if (engagedUserId == user.Id) {
-			engagedUserId = 0;
-			// TODO: send message
-			
-			foreach (var i in objects) {
-				i.Value.SendMessage("Reset", SendMessageOptions.DontRequireReceiver);
-			}
-		}
+	void DisengageUser(ZigTrackedUser user)	{
+        if (user == engagedTrackedUser) {
+            if (null != EngagedUser) user.RemoveListener(EngagedUser);
+            engagedTrackedUser = null;
+            SendMessage("UserDisengaged", this, SendMessageOptions.DontRequireReceiver);
+        }
 	}
 	
-	void Zig_NewUser(ZigTrackedUser user) 
-	{
-		ZigEngagementTrigger o = Instantiate(EngagementTrigger) as ZigEngagementTrigger;
-		o.Init(this, user);
-		o.transform.parent = gameObject.transform;
-		objects[user.Id] = o.gameObject;
-		user.AddListener(o.gameObject);
+	void Zig_UserFound(ZigTrackedUser user) {
+        // create gameobject to listen for events for this user
+        GameObject go = new GameObject("WaitForEngagement" + user.Id);
+        go.transform.parent = transform;
+		objects[user.Id] = go;
+
+        // add various detectors & events
+
+        if (StartSession) {
+            ZigHandSessionDetector hsd = go.AddComponent<ZigHandSessionDetector>();
+            hsd.SessionStart += delegate {
+                EngageUser(user);
+            };
+            hsd.SessionEnd += delegate {
+                DisengageUser(user);
+            };
+        }
+
+        if (Wave) {
+            ZigWaveDetector wd = go.AddComponent<ZigWaveDetector>();
+            wd.Wave += delegate {
+                EngageUser(user);
+            };
+        }
+
+        // attach the new object to the new user
+		user.AddListener(go);
 	}
 	
-	void Zig_LostUser(ZigTrackedUser user)
-	{
-		DisengageTrigger(user);
+	void Zig_UserLost(ZigTrackedUser user) {
+        DisengageUser(user);
 		Destroy(objects[user.Id]);
 		objects.Remove(user.Id);
 	}
+
+    void Zig_Update(ZigInput zig) {
+        if (SkeletonTracked && null == engagedTrackedUser) {
+            foreach (ZigTrackedUser trackedUser in zig.TrackedUsers.Values) {
+                if (trackedUser.SkeletonTracked) {
+                    EngageUser(trackedUser);
+                }
+            }
+        }
+    }
+
+    public void Reset() {
+        if (null != engagedTrackedUser) {
+            DisengageUser(engagedTrackedUser);
+        }
+    }
 }
