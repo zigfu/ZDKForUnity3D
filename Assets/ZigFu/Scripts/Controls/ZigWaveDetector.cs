@@ -9,7 +9,18 @@ public class ZigWaveDetector : MonoBehaviour {
 
     float lastEdge;
 
+    public Vector3 wavePoint { get; private set; }
+
+    public event EventHandler Wave;
+    protected virtual void OnWave() {
+        SendMessage("WaveDetector_Wave", this, SendMessageOptions.DontRequireReceiver);
+        if (null != Wave) {
+            Wave.Invoke(this, new EventArgs());
+        }
+    }
+
     void Awake() {
+        timestampBuffer = new List<float>();
         waveFader = gameObject.AddComponent<ZigFader>();
         // TODO: Init fader with drift, size
     }
@@ -32,8 +43,13 @@ public class ZigWaveDetector : MonoBehaviour {
 
         lastEdge = f.value;
         if (timestampBuffer.Count >= Waves) {
-            SendMessage("WaveDetector_Wave", this, SendMessageOptions.DontRequireReceiver);
+            wavePoint = waveFader.GetPosition(0.5f);
+            OnWave();
             timestampBuffer.Clear();
         }
+    }
+
+    void WaveDetector_Wave(ZigWaveDetector wd) {
+        Debug.Log("Wave Detector wave detected");
     }
 }
