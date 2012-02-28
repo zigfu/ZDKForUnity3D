@@ -6,6 +6,7 @@ public class Zig : MonoBehaviour {
     public ZigInputType inputType = ZigInputType.OpenNI;
     public bool UpdateDepthmapImage = false;
     public bool UpdateImagemapImage = false;
+    public bool UpdateLabelmapImage = false;
     public List<GameObject> listeners = new List<GameObject>();
     public bool Verbose = true;
 
@@ -20,6 +21,7 @@ public class Zig : MonoBehaviour {
         ZigInput.InputType = inputType;
         ZigInput.UpdateDepth = UpdateDepthmapImage;
         ZigInput.UpdateImage = UpdateImagemapImage;
+        ZigInput.UpdateLabelMap = UpdateLabelmapImage;
         ZigInput.Instance.AddListener(gameObject);
 	}
 
