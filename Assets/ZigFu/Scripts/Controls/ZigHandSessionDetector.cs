@@ -177,13 +177,24 @@ public class ZigHandSessionDetector : MonoBehaviour {
         }
     }
 
-    Vector3 RotateHandPoint(Vector3 handPoint) {
+    Vector3 RotateHandPoint(Vector3 com, Vector3 handPoint)
+    {
         //TODO: Smoothing on CoM (so sudden CoM changes won't mess with the hand
         //      point too much)
         Vector3 rotateTarget = trackedUser.Position.normalized;
 
-        // use line between com and sensor as Z
-        Quaternion newOrientation = Quaternion.FromToRotation(rotateTarget, Vector3.forward);
-        return newOrientation * handPoint;
+        // use line between com and sensor as Z, decompose rotation into
+        // rotations around the Y and X axes
+
+        Vector3 firstTarget = rotateTarget;
+        // project onto XZ plane
+        firstTarget.y = 0;
+        firstTarget = firstTarget.normalized;
+        // find rotation around the X axis
+        Quaternion xRotation = Quaternion.FromToRotation(rotateTarget, firstTarget);
+        // rotation around Y axis
+        Quaternion yRotation = Quaternion.FromToRotation(firstTarget, Vector3.forward);
+        return yRotation * xRotation * handPoint;
     }
+
 }
