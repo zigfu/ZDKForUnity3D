@@ -15,7 +15,7 @@ public class ZigFader : MonoBehaviour {
     public float value; // { get; private set; }
     public int hoverItem = -1; // { get; private set; }
 
-    public Vector3 start;
+    Vector3 start;
     bool isEdge;
     float lastUpdate;
 
