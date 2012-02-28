@@ -42,6 +42,7 @@ class ZigEngageSingleSession : MonoBehaviour {
 
         ZigHandSessionDetector hsd = go.AddComponent<ZigHandSessionDetector>();
         hsd.SessionStart += delegate {
+            Debug.Log("EngageSingleSession: Session start");
             if (EngageUser(user)) {
                 foreach (GameObject listener in listeners) {
                     hsd.AddListener(listener);
@@ -49,6 +50,7 @@ class ZigEngageSingleSession : MonoBehaviour {
             }
         };
         hsd.SessionEnd += delegate {
+            Debug.Log("EngageSingleSession: Session end");
             if (DisengageUser(user)) {
                 foreach (GameObject listener in listeners) {
                     hsd.RemoveListener(listener);

@@ -1,10 +1,6 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
-/*
-TODO:
- * sane userlost behavior
- */
 
 public class SessionStartEventArgs : EventArgs
 {
@@ -30,7 +26,7 @@ public class ZigHandSessionDetector : MonoBehaviour {
     public List<GameObject> listeners = new List<GameObject>();
 
     public Vector3 SessionBoundsOffset = new Vector3(0, 250, -300);
-    public Vector3 SessionBounds = new Vector3(1000, 700, 1000);
+    public Vector3 SessionBounds = new Vector3(1500, 700, 1000);
 
     GameObject leftHandDetector;
     GameObject rightHandDetector;
@@ -120,9 +116,9 @@ public class ZigHandSessionDetector : MonoBehaviour {
     }
 
     void Zig_Attach(ZigTrackedUser user) {
+        trackedUser = user;
         user.AddListener(leftHandDetector);
         user.AddListener(rightHandDetector);
-        trackedUser = user;
     }
 
     void Zig_UpdateUser(ZigTrackedUser user) {
@@ -132,6 +128,7 @@ public class ZigHandSessionDetector : MonoBehaviour {
             if (RotateToUser) hp = RotateHandPoint(hp);
             // make sure hand point is still within session bounds
             currentSessionBounds.center = (RotateToUser) ? RotateHandPoint(trackedUser.Position) : trackedUser.Position;
+            currentSessionBounds.center += SessionBoundsOffset;
             if (!currentSessionBounds.Contains(hp)) {
                 InSession = false;
                 OnSessionEnd();
@@ -152,9 +149,10 @@ public class ZigHandSessionDetector : MonoBehaviour {
     }
 
     void CheckSessionStart(Vector3 point, ZigJointId joint) {
-        if (InSession) return;
+        if (InSession) { Debug.Log("CheckSessionStart when already in session, leaving"); return; }
 
         Vector3 boundsCenter = (RotateToUser) ? RotateHandPoint(trackedUser.Position) : trackedUser.Position;
+        boundsCenter += SessionBoundsOffset;
         currentSessionBounds = new Bounds(boundsCenter, SessionBounds);
         Vector3 fp = (RotateToUser) ? RotateHandPoint(point) : point;
         if (currentSessionBounds.Contains(fp)) {

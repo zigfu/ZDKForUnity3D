@@ -34,7 +34,10 @@ public class ZigUsersRadar : MonoBehaviour {
 			radarPosition.y = Mathf.Clamp(radarPosition.y, 0.0f, 1.0f);
 
 			// draw
+            Color orig = GUI.color;
+            GUI.color = (currentUser.SkeletonTracked) ? Color.blue : Color.red;
 			GUI.Box(new Rect(radarPosition.x * width - 10, radarPosition.y * height - 10, 20, 20), currentUser.Id.ToString());
+            GUI.color = orig;
 		}
 		GUI.EndGroup();
 	}
