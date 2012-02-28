@@ -163,22 +163,13 @@ public class ZigSkeleton : MonoBehaviour
 	
 	void Zig_UpdateUser(ZigTrackedUser user)
 	{
-		UpdateRoot(RotateHandPoint(user.Position,user.Position));
+		UpdateRoot(user.Position);
 		if (user.SkeletonTracked) {
 			foreach (ZigInputJoint joint in user.Skeleton) {
-				if (joint.GoodPosition) UpdatePosition(joint.Id, RotateHandPoint(user.Position, joint.Position));
+				if (joint.GoodPosition) UpdatePosition(joint.Id, joint.Position);
 				if (joint.GoodRotation) UpdateRotation(joint.Id, joint.Rotation);
 			}
 		}
 	}
 
-    Vector3 RotateHandPoint(Vector3 com, Vector3 handPoint) {
-        //TODO: Smoothing on CoM (so sudden CoM changes won't mess with the hand
-        //      point too much)
-        Vector3 rotateTarget = com.normalized;
-
-        // use line between com and sensor as Z
-        Quaternion newOrientation = Quaternion.FromToRotation(rotateTarget, Vector3.forward);
-        return newOrientation * handPoint;
-    }
 }
