@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 class ZigEngageSingleSession : MonoBehaviour {
     public GameObject EngagedUser;
-
+    public List<GameObject> listeners = new List<GameObject>();
     Dictionary<int, GameObject> objects = new Dictionary<int, GameObject>();
 
     ZigTrackedUser engagedTrackedUser;
@@ -14,20 +14,24 @@ class ZigEngageSingleSession : MonoBehaviour {
         ZigInput.Instance.AddListener(gameObject);
     }
 
-    void EngageUser(ZigTrackedUser user) {
+    bool EngageUser(ZigTrackedUser user) {
         if (null == engagedTrackedUser) {
             engagedTrackedUser = user;
             if (null != EngagedUser) user.AddListener(EngagedUser);
             SendMessage("UserEngaged", this, SendMessageOptions.DontRequireReceiver);
+            return true;
         }
+        return false;
     }
 
-    void DisengageUser(ZigTrackedUser user) {
+    bool DisengageUser(ZigTrackedUser user) {
         if (user == engagedTrackedUser) {
             if (null != EngagedUser) user.RemoveListener(EngagedUser);
             engagedTrackedUser = null;
             SendMessage("UserDisengaged", this, SendMessageOptions.DontRequireReceiver);
+            return true;
         }
+        return false;
     }
 
     void Zig_UserFound(ZigTrackedUser user) {
@@ -38,10 +42,18 @@ class ZigEngageSingleSession : MonoBehaviour {
 
         ZigHandSessionDetector hsd = go.AddComponent<ZigHandSessionDetector>();
         hsd.SessionStart += delegate {
-            EngageUser(user);
+            if (EngageUser(user)) {
+                foreach (GameObject listener in listeners) {
+                    hsd.AddListener(listener);
+                }
+            }
         };
         hsd.SessionEnd += delegate {
-            DisengageUser(user);
+            if (DisengageUser(user)) {
+                foreach (GameObject listener in listeners) {
+                    hsd.RemoveListener(listener);
+                }
+            }
         };
 
         user.AddListener(go);
