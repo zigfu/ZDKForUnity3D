@@ -43,6 +43,8 @@ class ZigEngageSingleSession : MonoBehaviour {
         hsd.SessionEnd += delegate {
             DisengageUser(user);
         };
+
+        user.AddListener(go);
     }
 
     void Zig_UserLost(ZigTrackedUser user) {
