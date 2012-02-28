@@ -1,6 +1,4 @@
-
-Library/ScriptAssemblies
-Library/previews
+Library/*
 obj
 Temp
 *.csproj
