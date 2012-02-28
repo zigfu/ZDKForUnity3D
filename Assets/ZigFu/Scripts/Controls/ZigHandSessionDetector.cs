@@ -23,7 +23,7 @@ public class SessionUpdateEventArgs : EventArgs
 }
 
 public class ZigHandSessionDetector : MonoBehaviour {
-    public bool StartOnSteady = true;
+    public bool StartOnSteady = false;
     public bool StartOnWave = true;
     public bool RotateToUser = true;
     
@@ -91,11 +91,13 @@ public class ZigHandSessionDetector : MonoBehaviour {
         if (StartOnWave) {
             ZigWaveDetector waveLeft = leftHandDetector.AddComponent<ZigWaveDetector>();
             waveLeft.Wave += delegate(object sender, EventArgs ea) {
+                Debug.Log("Wave from left");
                 CheckSessionStart((sender as ZigWaveDetector).wavePoint, ZigJointId.LeftHand);
             };
 
             ZigWaveDetector waveRight = rightHandDetector.AddComponent<ZigWaveDetector>();
             waveRight.Wave += delegate(object sender, EventArgs ea) {
+                Debug.Log("Wave from right");
                 CheckSessionStart((sender as ZigWaveDetector).wavePoint, ZigJointId.RightHand);
             };
         }
@@ -169,17 +171,5 @@ public class ZigHandSessionDetector : MonoBehaviour {
         // use line between com and sensor as Z
         Quaternion newOrientation = Quaternion.FromToRotation(rotateTarget, Vector3.forward);
         return newOrientation * handPoint;
-    }
-
-    void Session_Start(Vector3 focusPoint) {
-        Debug.Log("HandSessionDetection: Session start");
-    }
-
-    void Session_Update(Vector3 handPoint) {
-        Debug.Log("HandSessionDetection: Session update");
-    }
-
-    void Session_End() {
-        Debug.Log("HandSessionDetection: Session end");
     }
 }
