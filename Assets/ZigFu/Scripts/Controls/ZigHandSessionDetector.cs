@@ -103,6 +103,22 @@ public class ZigHandSessionDetector : MonoBehaviour {
         }
     }
 
+    public void AddListener(GameObject listener) {
+        if (listeners.Contains(listener)) return;
+
+        listeners.Add(listener);
+        if (InSession) {
+            listener.SendMessage("Session_Start", focusPoint, SendMessageOptions.DontRequireReceiver);
+        }
+    }
+
+    public void RemoveListener(GameObject listener) {
+        if (InSession) {
+            listener.SendMessage("Session_End", SendMessageOptions.DontRequireReceiver);
+        }
+        listeners.Remove(listener);
+    }
+
     void Zig_Attach(ZigTrackedUser user) {
         user.AddListener(leftHandDetector);
         user.AddListener(rightHandDetector);

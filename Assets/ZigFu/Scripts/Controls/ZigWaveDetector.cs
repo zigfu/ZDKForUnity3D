@@ -22,12 +22,14 @@ public class ZigWaveDetector : MonoBehaviour {
     void Awake() {
         timestampBuffer = new List<float>();
         waveFader = gameObject.AddComponent<ZigFader>();
-        // TODO: Init fader with drift, size
+        waveFader.size = 100;
+        waveFader.driftAmount = 15;
     }
 
     void Fader_Edge(ZigFader f) {
-        if (f != waveFader) return;
         
+        if (f != waveFader) return;
+
         // prune
         while (timestampBuffer.Count > 0 && (Time.time - timestampBuffer[0] > 2.0f)) {
             timestampBuffer.RemoveAt(0);

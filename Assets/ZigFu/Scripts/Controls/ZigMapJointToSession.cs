@@ -13,9 +13,17 @@ public class ZigMapJointToSession : MonoBehaviour {
         }
 
         if (InSession) {
-            SendMessage("Session_Update", user.Skeleton[(int)joint].Position, SendMessageOptions.DontRequireReceiver);
+            if (!user.SkeletonTracked) {
+                SendMessage("Session_End", SendMessageOptions.DontRequireReceiver);
+                InSession = false;
+            }
+            else {
+                SendMessage("Session_Update", user.Skeleton[(int)joint].Position, SendMessageOptions.DontRequireReceiver);
+            }
         }
+    }
 
-        // TODO: Session end somehow
+    void Reset() {
+        InSession = false;
     }
 }
