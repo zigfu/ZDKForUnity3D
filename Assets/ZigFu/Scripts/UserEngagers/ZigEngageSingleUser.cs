@@ -7,7 +7,6 @@ public class ZigEngageSingleUser : MonoBehaviour {
     public bool RaiseHand;
     public bool Wave;
     public bool SingleUserPosition;
-    public bool StartSession;
 
 	public GameObject EngagedUser;
 	
@@ -43,16 +42,6 @@ public class ZigEngageSingleUser : MonoBehaviour {
 		objects[user.Id] = go;
 
         // add various detectors & events
-
-        if (StartSession) {
-            ZigHandSessionDetector hsd = go.AddComponent<ZigHandSessionDetector>();
-            hsd.SessionStart += delegate {
-                EngageUser(user);
-            };
-            hsd.SessionEnd += delegate {
-                DisengageUser(user);
-            };
-        }
 
         if (Wave) {
             ZigWaveDetector wd = go.AddComponent<ZigWaveDetector>();
