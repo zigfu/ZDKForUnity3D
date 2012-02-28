@@ -9,6 +9,7 @@ public class ZigFader : MonoBehaviour {
     public float hysteresis = 0.2f;
     public bool AutoMoveToContain = false;
     public float driftAmount = 0.0f;
+    public bool Visualize = false;
 
     // these should be private set but this way they're visible in the inspector
     public float value; // { get; private set; }
@@ -16,6 +17,7 @@ public class ZigFader : MonoBehaviour {
 
     Vector3 start;
     bool isEdge;
+    float lastUpdate;
 
     void Start() {
         if (itemCount == 0) itemCount = 1;
@@ -43,11 +45,16 @@ public class ZigFader : MonoBehaviour {
             MoveToContain(pos);
         }
 
+        float dot = Vector3.Dot(direction, pos - start);
+        start += (pos - start) - (dot * direction);
+
         UpdateValue(GetValue(pos));
 
         if (driftAmount > 0.0f) {
+            float dt = Time.time - lastUpdate;
+            lastUpdate = Time.time;
             float delta = initialValue - value;
-            MoveTo(pos, value + (delta * driftAmount));
+            MoveTo(pos, value + (delta * driftAmount * dt));
         }
 	}
 	
@@ -108,5 +115,16 @@ public class ZigFader : MonoBehaviour {
     void Session_End()
     {
         value = initialValue;
+    }
+
+    void OnGUI() {
+        if (Visualize) {
+            GUILayout.BeginVertical("box");
+
+            GUILayout.Label("Fader " + gameObject.name);
+            GUILayout.HorizontalSlider(value, 0, 1);
+
+            GUILayout.EndVertical();
+        }
     }
 }

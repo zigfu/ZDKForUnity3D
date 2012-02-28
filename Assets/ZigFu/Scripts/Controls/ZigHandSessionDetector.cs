@@ -1,10 +1,6 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
-/*
-TODO:
- * sane userlost behavior
- */
 
 public class SessionStartEventArgs : EventArgs
 {
@@ -23,14 +19,14 @@ public class SessionUpdateEventArgs : EventArgs
 }
 
 public class ZigHandSessionDetector : MonoBehaviour {
-    public bool StartOnSteady = true;
+    public bool StartOnSteady = false;
     public bool StartOnWave = true;
     public bool RotateToUser = true;
     
     public List<GameObject> listeners = new List<GameObject>();
 
     public Vector3 SessionBoundsOffset = new Vector3(0, 250, -300);
-    public Vector3 SessionBounds = new Vector3(1000, 700, 1000);
+    public Vector3 SessionBounds = new Vector3(1500, 700, 1000);
 
     GameObject leftHandDetector;
     GameObject rightHandDetector;
@@ -91,20 +87,38 @@ public class ZigHandSessionDetector : MonoBehaviour {
         if (StartOnWave) {
             ZigWaveDetector waveLeft = leftHandDetector.AddComponent<ZigWaveDetector>();
             waveLeft.Wave += delegate(object sender, EventArgs ea) {
+                Debug.Log("Wave from left");
                 CheckSessionStart((sender as ZigWaveDetector).wavePoint, ZigJointId.LeftHand);
             };
 
             ZigWaveDetector waveRight = rightHandDetector.AddComponent<ZigWaveDetector>();
             waveRight.Wave += delegate(object sender, EventArgs ea) {
+                Debug.Log("Wave from right");
                 CheckSessionStart((sender as ZigWaveDetector).wavePoint, ZigJointId.RightHand);
             };
         }
     }
 
+    public void AddListener(GameObject listener) {
+        if (listeners.Contains(listener)) return;
+
+        listeners.Add(listener);
+        if (InSession) {
+            listener.SendMessage("Session_Start", focusPoint, SendMessageOptions.DontRequireReceiver);
+        }
+    }
+
+    public void RemoveListener(GameObject listener) {
+        if (InSession) {
+            listener.SendMessage("Session_End", SendMessageOptions.DontRequireReceiver);
+        }
+        listeners.Remove(listener);
+    }
+
     void Zig_Attach(ZigTrackedUser user) {
+        trackedUser = user;
         user.AddListener(leftHandDetector);
         user.AddListener(rightHandDetector);
-        trackedUser = user;
     }
 
     void Zig_UpdateUser(ZigTrackedUser user) {
@@ -114,6 +128,7 @@ public class ZigHandSessionDetector : MonoBehaviour {
             if (RotateToUser) hp = RotateHandPoint(hp);
             // make sure hand point is still within session bounds
             currentSessionBounds.center = (RotateToUser) ? RotateHandPoint(trackedUser.Position) : trackedUser.Position;
+            currentSessionBounds.center += SessionBoundsOffset;
             if (!currentSessionBounds.Contains(hp)) {
                 InSession = false;
                 OnSessionEnd();
@@ -134,9 +149,10 @@ public class ZigHandSessionDetector : MonoBehaviour {
     }
 
     void CheckSessionStart(Vector3 point, ZigJointId joint) {
-        if (InSession) return;
+        if (InSession) { Debug.Log("CheckSessionStart when already in session, leaving"); return; }
 
         Vector3 boundsCenter = (RotateToUser) ? RotateHandPoint(trackedUser.Position) : trackedUser.Position;
+        boundsCenter += SessionBoundsOffset;
         currentSessionBounds = new Bounds(boundsCenter, SessionBounds);
         Vector3 fp = (RotateToUser) ? RotateHandPoint(point) : point;
         if (currentSessionBounds.Contains(fp)) {
@@ -169,17 +185,5 @@ public class ZigHandSessionDetector : MonoBehaviour {
         // use line between com and sensor as Z
         Quaternion newOrientation = Quaternion.FromToRotation(rotateTarget, Vector3.forward);
         return newOrientation * handPoint;
-    }
-
-    void Session_Start(Vector3 focusPoint) {
-        Debug.Log("HandSessionDetection: Session start");
-    }
-
-    void Session_Update(Vector3 handPoint) {
-        Debug.Log("HandSessionDetection: Session update");
-    }
-
-    void Session_End() {
-        Debug.Log("HandSessionDetection: Session end");
     }
 }
