@@ -177,7 +177,7 @@ public class ZigHandSessionDetector : MonoBehaviour {
         }
     }
 
-    Vector3 RotateHandPoint(Vector3 com, Vector3 handPoint)
+    Vector3 RotateHandPoint(Vector3 handPoint)
     {
         //TODO: Smoothing on CoM (so sudden CoM changes won't mess with the hand
         //      point too much)
