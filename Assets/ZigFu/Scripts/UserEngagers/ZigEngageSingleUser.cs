@@ -49,6 +49,12 @@ public class ZigEngageSingleUser : MonoBehaviour {
                 EngageUser(user);
             };
         }
+        if (RaiseHand) {
+            ZigHandRaiseDetector hrd = go.AddComponent<ZigHandRaiseDetector>();
+            hrd.HandRaise += delegate {
+                EngageUser(user);
+            };
+        }
 
         // attach the new object to the new user
 		user.AddListener(go);
