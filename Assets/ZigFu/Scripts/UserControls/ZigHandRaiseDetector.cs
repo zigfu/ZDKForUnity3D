@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System;
-//using OpenNI; // OpenNI dep for SkeletonJoint, will go soon
+
 public class HandRaiseEventArgs : EventArgs
 {
     public ZigJointId Joint { get; private set; }
@@ -13,7 +13,6 @@ public class HandRaiseEventArgs : EventArgs
 
 
 public class ZigHandRaiseDetector : MonoBehaviour {
-	
 	ZigSteadyDetector leftHandSteady;
 	ZigSteadyDetector rightHandSteady;
     GameObject leftHandDetector;
