@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public class Zig : MonoBehaviour {
     public ZigInputType inputType = ZigInputType.OpenNI;
-    public bool UpdateDepthmapImage = false;
-    public bool UpdateImagemapImage = false;
-    public bool UpdateLabelmapImage = false;
+    public bool UpdateDepthmap = true;
+    public bool UpdateImagemap = false;
+    public bool UpdateLabelmap = false;
     public List<GameObject> listeners = new List<GameObject>();
     public bool Verbose = true;
 
@@ -19,9 +19,9 @@ public class Zig : MonoBehaviour {
         #endif
 
         ZigInput.InputType = inputType;
-        ZigInput.UpdateDepth = UpdateDepthmapImage;
-        ZigInput.UpdateImage = UpdateImagemapImage;
-        ZigInput.UpdateLabelMap = UpdateLabelmapImage;
+        ZigInput.UpdateDepth = UpdateDepthmap;
+        ZigInput.UpdateImage = UpdateImagemap;
+        ZigInput.UpdateLabelMap = UpdateLabelmap;
         ZigInput.Instance.AddListener(gameObject);
 	}
 
