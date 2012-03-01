@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 
 public class ZigFader : MonoBehaviour {
@@ -18,6 +19,14 @@ public class ZigFader : MonoBehaviour {
     Vector3 start;
     bool isEdge;
     float lastUpdate;
+
+    public event EventHandler Edge;
+    protected void OnEdge() {
+        SendMessage("Fader_Edge", this, SendMessageOptions.DontRequireReceiver);
+        if (null != Edge) {
+            Edge.Invoke(this, new EventArgs());
+        }
+    }
 
     void Start() {
         if (itemCount == 0) itemCount = 1;
@@ -73,7 +82,7 @@ public class ZigFader : MonoBehaviour {
         // edge
         bool isEdgeThisFrame = Mathf.Approximately(val, 0) || Mathf.Approximately(val, 1.0f);
         if (!isEdge && isEdgeThisFrame) {
-            SendMessage("Fader_Edge", this, SendMessageOptions.DontRequireReceiver);
+            OnEdge();
         }
         isEdgeThisFrame = isEdge;
 
