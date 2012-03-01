@@ -92,8 +92,4 @@ public class ZigSteadyDetector : MonoBehaviour {
 		}
 		IsSteady = currentFrameSteady;
 	}
-
-    void SteadyDetector_Steady(ZigSteadyDetector sender) {
-        Debug.Log(gameObject.name + ": Steady");
-    }
 }
