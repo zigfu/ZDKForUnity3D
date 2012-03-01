@@ -51,11 +51,14 @@ public class ZigDepthViewer : MonoBehaviour {
         textureSize = ResolutionData.FromZigResolution(TextureSize);
         texture = new Texture2D(textureSize.Width, textureSize.Height);
         texture.wrapMode = TextureWrapMode.Clamp;
-        renderer.material.mainTexture = texture;
         depthHistogramMap = new float[MaxDepth];
         depthToColor = new Color32[MaxDepth];
         outputPixels = new Color32[textureSize.Width * textureSize.Height];
         ZigInput.Instance.AddListener(gameObject);
+
+        if (null != target) {
+            target.material.mainTexture = texture;
+        }
 	}
 
     void UpdateHistogram(ZigDepth depth)
@@ -120,5 +123,11 @@ public class ZigDepthViewer : MonoBehaviour {
     {
         UpdateHistogram(ZigInput.Depth);
         UpdateTexture(ZigInput.Depth);
+    }
+
+    void OnGUI() {
+        if (null == target) {
+            GUI.DrawTexture(new Rect(Screen.width - texture.width - 10, Screen.height - texture.height - 10, texture.width, texture.height), texture);
+        }
     }
 }
