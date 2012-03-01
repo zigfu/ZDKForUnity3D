@@ -33,7 +33,7 @@ public class ZigSkeleton : MonoBehaviour
 	public Transform RightKnee;
 	public Transform RightAnkle;
 	public Transform RightFoot;
-	
+	public bool mirror = false;
 	public bool UpdateJointPositions = false;
 	public bool UpdateRootPosition = false;
 	public bool UpdateOrientation = true;
@@ -46,14 +46,66 @@ public class ZigSkeleton : MonoBehaviour
 	private Transform[] transforms;
 	private Quaternion[] initialRotations;
 	private Vector3 rootPosition;
-
+	
+	ZigJointId mirrorJoint(ZigJointId joint)
+	{
+		switch (joint) {
+			case ZigJointId.LeftCollar:
+				return ZigJointId.RightCollar;
+			case ZigJointId.LeftShoulder:
+				return ZigJointId.RightShoulder;
+			case ZigJointId.LeftElbow:
+				return ZigJointId.RightElbow;
+			case ZigJointId.LeftWrist:
+				return ZigJointId.RightWrist;
+			case ZigJointId.LeftHand:
+				return ZigJointId.RightHand;
+			case ZigJointId.LeftFingertip:
+				return ZigJointId.RightFingertip;
+			case ZigJointId.LeftHip:
+				return ZigJointId.RightHip;
+			case ZigJointId.LeftKnee:
+				return ZigJointId.RightKnee;
+			case ZigJointId.LeftAnkle:
+				return ZigJointId.RightAnkle;
+			case ZigJointId.LeftFoot:
+				return ZigJointId.RightFoot;
+			
+			case ZigJointId.RightCollar:
+				return ZigJointId.LeftCollar;
+			case ZigJointId.RightShoulder:
+				return ZigJointId.LeftShoulder;
+			case ZigJointId.RightElbow:
+				return ZigJointId.LeftElbow;
+			case ZigJointId.RightWrist:
+				return ZigJointId.LeftWrist;
+			case ZigJointId.RightHand:
+				return ZigJointId.LeftHand;
+			case ZigJointId.RightFingertip:
+				return ZigJointId.LeftFingertip;
+			case ZigJointId.RightHip:
+				return ZigJointId.LeftHip;
+			case ZigJointId.RightKnee:
+				return ZigJointId.LeftKnee;
+			case ZigJointId.RightAnkle:
+				return ZigJointId.LeftAnkle;
+			case ZigJointId.RightFoot:
+				return ZigJointId.LeftFoot;
+			
+			
+			default:
+				return joint;
+		}
+	}
+		
+		
 	public void Awake()
 	{
 		int jointCount = Enum.GetNames(typeof(ZigJointId)).Length;
 		
 		transforms = new Transform[jointCount];
 		initialRotations = new Quaternion[jointCount];
-
+		
         transforms[(int)ZigJointId.Head] = Head;
         transforms[(int)ZigJointId.Neck] = Neck;
         transforms[(int)ZigJointId.Torso] = Torso;
@@ -78,6 +130,8 @@ public class ZigSkeleton : MonoBehaviour
         transforms[(int)ZigJointId.RightKnee] = RightKnee;
         transforms[(int)ZigJointId.RightAnkle] = RightAnkle;
         transforms[(int)ZigJointId.RightFoot] = RightFoot;
+		
+		
 		
 		// save all initial rotations
 		// NOTE: Assumes skeleton model is in "T" pose since all rotations are relative to that pose
@@ -110,6 +164,7 @@ public class ZigSkeleton : MonoBehaviour
 	
 	void UpdateRotation(ZigJointId joint, Quaternion orientation)
 	{
+		joint = mirror ? mirrorJoint(joint) : joint;
         // make sure something is hooked up to this joint
         if (!transforms[(int)joint]) {
             return;
@@ -117,12 +172,18 @@ public class ZigSkeleton : MonoBehaviour
 
         if (UpdateOrientation) {
 			Quaternion newRotation = transform.rotation * orientation * initialRotations[(int)joint];
+			if (mirror)
+			{
+				newRotation.y = -newRotation.y;
+				newRotation.z = -newRotation.z;	
+			}
 			transforms[(int)joint].rotation = Quaternion.Slerp(transforms[(int)joint].rotation, newRotation, Time.deltaTime * RotationDamping);
         }
 	}
 	
 	void UpdatePosition(ZigJointId joint, Vector3 position)
 	{
+		joint = mirror ? mirrorJoint(joint) : joint;
 		// make sure something is hooked up to this joint
 		if (!transforms[(int)joint]) {
 			return;
