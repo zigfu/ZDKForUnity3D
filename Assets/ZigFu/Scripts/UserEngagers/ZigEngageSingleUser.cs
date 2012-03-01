@@ -5,10 +5,8 @@ using System.Collections.Generic;
 public class ZigEngageSingleUser : MonoBehaviour {
     public bool SkeletonTracked = true;
     public bool RaiseHand;
-    public bool Wave;
-    public bool SingleUserPosition;
 
-	public GameObject EngagedUser;
+	public List<GameObject> EngagedUsers;
 	
 	Dictionary<int, GameObject> objects = new Dictionary<int, GameObject>();
 
@@ -22,14 +20,14 @@ public class ZigEngageSingleUser : MonoBehaviour {
 	void EngageUser(ZigTrackedUser user) {
 		if (null == engagedTrackedUser) {
             engagedTrackedUser = user;
-			if (null != EngagedUser) user.AddListener(EngagedUser);
+            foreach (GameObject go in EngagedUsers) user.AddListener(go);
             SendMessage("UserEngaged", this, SendMessageOptions.DontRequireReceiver);
 		}
 	}
 	
 	void DisengageUser(ZigTrackedUser user)	{
         if (user == engagedTrackedUser) {
-            if (null != EngagedUser) user.RemoveListener(EngagedUser);
+            foreach (GameObject go in EngagedUsers) user.RemoveListener(go);
             engagedTrackedUser = null;
             SendMessage("UserDisengaged", this, SendMessageOptions.DontRequireReceiver);
         }
@@ -43,12 +41,6 @@ public class ZigEngageSingleUser : MonoBehaviour {
 
         // add various detectors & events
 
-        if (Wave) {
-            ZigWaveDetector wd = go.AddComponent<ZigWaveDetector>();
-            wd.Wave += delegate {
-                EngageUser(user);
-            };
-        }
         if (RaiseHand) {
             ZigHandRaiseDetector hrd = go.AddComponent<ZigHandRaiseDetector>();
             hrd.HandRaise += delegate {
