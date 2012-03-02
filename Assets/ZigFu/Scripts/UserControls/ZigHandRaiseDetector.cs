@@ -81,10 +81,10 @@ public class ZigHandRaiseDetector : MonoBehaviour {
     bool IsHandRaise(Vector3 handPosition, Vector3 elbowPosition)
     {
         ZigInputJoint torso = trackedUser.Skeleton[(int)ZigJointId.Torso];
-        ZigInputJoint neck = trackedUser.Skeleton[(int)ZigJointId.Neck];
+        ZigInputJoint head = trackedUser.Skeleton[(int)ZigJointId.Head];
 
         Vector3 armDirection = (handPosition - elbowPosition).normalized;
-        Vector3 torsoDirection = (neck.Position - torso.Position).normalized;
+        Vector3 torsoDirection = (head.Position - torso.Position).normalized;
         double angle = Math.Acos(Vector3.Dot(armDirection, torsoDirection)) * 180 / Math.PI;
         return (angle < angleThreshold);
     }
