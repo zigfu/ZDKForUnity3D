@@ -95,7 +95,7 @@ public class ZigDepthViewer : MonoBehaviour {
                 depthToColor[i].r = (byte)(BaseColor.r * intensity);
                 depthToColor[i].g = (byte)(BaseColor.g * intensity);
                 depthToColor[i].b = (byte)(BaseColor.b * intensity);
-                depthToColor[i].a = (byte)(BaseColor.a * intensity);
+                depthToColor[i].a = 255;//(byte)(BaseColor.a * intensity);
             }
         }
         
