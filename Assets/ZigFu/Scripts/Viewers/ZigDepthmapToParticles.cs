@@ -8,18 +8,11 @@ using System.Runtime.InteropServices;
 public class DepthmapToParticles : MonoBehaviour
 {
     public Vector3 gridScale = Vector3.one;
-    //public bool GenerateNormals = false;
-    //public bool GenerateUVs = true;
-    
-
     public Vector2 DesiredResolution = new Vector2(160, 120); // should be a divisor of 640x480
-                                                         
-
     public bool onlyUsers = true; //only emit particles for users.
     public bool worldSpace = true; //emit in worldspace.
     //the particle emission coordinates will be based on the scale of this behavior's transform 
     //if you are not in world space, then particles are placed in a grid according to your image spacce resolution (ie 160x120)
-
 
     public Vector3 velocity = new Vector3(0f,1f,0f);
     public GameObject particlePrefab;
@@ -39,12 +32,6 @@ public class DepthmapToParticles : MonoBehaviour
     public Color color;
     public float size = .1f;
     public float energy = 1f;
-    //Mesh mesh;
-    //MeshFilter meshFilter;
-
-    //Vector2[] uvs;
-    //Vector3[] verts;
-    //int[] tris;
     
     public int cycles = 10;
     // Use this for initialization
@@ -64,7 +51,6 @@ public class DepthmapToParticles : MonoBehaviour
         
      
         emitterCount = 1 + ((XScaled * YScaled) / MAX_PARTICLES_PER_PE);
-        Debug.Log(emitterCount);
         
         particleEmitters = new ParticleEmitter[emitterCount*cycles];
         for (int i = 0; i < (emitterCount * cycles); i++)
@@ -89,7 +75,6 @@ public class DepthmapToParticles : MonoBehaviour
             {
                 if (y >= YScaled)
                 {
-                    //Debug.Log("points drawn:" + j);
                     break;                   
                 }
                 Vector3 scale = transform.localScale;
@@ -118,14 +103,7 @@ public class DepthmapToParticles : MonoBehaviour
             {
                 break;
             }
-            
         }
         cycle = (cycle + 1) % cycles;
-
-
-        
-
     }
-
-
 }
