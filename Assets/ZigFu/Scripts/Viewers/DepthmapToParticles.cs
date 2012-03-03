@@ -10,12 +10,16 @@ public class DepthmapToParticles : MonoBehaviour
     public Vector3 gridScale = Vector3.one;
     //public bool GenerateNormals = false;
     //public bool GenerateUVs = true;
-    public bool RealWorldPoints = true; // perform perspective transform on depth-map
+    
 
-    public Vector2 DesiredResolution = new Vector2(320, 240); // should be a divisor of 640x480
-                                                             // and 320x240 is too high (too many vertices)
+    public Vector2 DesiredResolution = new Vector2(160, 120); // should be a divisor of 640x480
+                                                         
 
-    public bool onlyUsers = true;
+    public bool onlyUsers = true; //only emit particles for users.
+    public bool worldSpace = true; //emit in worldspace.
+    //the particle emission coordinates will be based on the scale of this behavior's transform 
+    //if you are not in world space, then particles are placed in a grid according to your image spacce resolution (ie 160x120)
+
 
     public Vector3 velocity = new Vector3(0f,1f,0f);
     public GameObject particlePrefab;
@@ -57,7 +61,7 @@ public class DepthmapToParticles : MonoBehaviour
 
         YScaled = YRes / factorY;
         XScaled = XRes / factorX;
-
+        
      
         emitterCount = 1 + ((XScaled * YScaled) / MAX_PARTICLES_PER_PE);
         Debug.Log(emitterCount);
@@ -89,11 +93,16 @@ public class DepthmapToParticles : MonoBehaviour
                     break;                   
                 }
                 Vector3 scale = transform.localScale;
-                Vector3 vec = new Vector3(x * scale.x, y * scale.y, rawDepthhMap[x * factorX + XRes * factorY * y] * scale.z);
+                int index = x * factorX + XRes * factorY * y;
+                Vector3 vec = new Vector3 (x * factorX, y*factorY,rawDepthhMap[index]);
+                vec = worldSpace ? ZigInput.ConvertImageToWorldSpace(vec) : vec;                
+                vec = Vector3.Scale(vec,scale);
+                
                 if (onlyUsers)
                 {
-                    if (rawLabelMap[x * factorX + XRes * factorY * y] != 0)
+                    if (rawLabelMap[index] != 0)
                     {
+                        
                         particleEmitters[i].Emit(transform.rotation * vec + transform.position, velocity, size, energy, color);
                     }
                 }

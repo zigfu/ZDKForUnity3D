@@ -6,6 +6,16 @@ class ZigEngageSingleSession : MonoBehaviour {
     public GameObject EngagedUser;
     public List<GameObject> listeners = new List<GameObject>();
     Dictionary<int, GameObject> objects = new Dictionary<int, GameObject>();
+   
+    public bool StartOnSteady = false;
+    public bool StartOnWave = true;
+    public bool RotateToUser = true;
+
+
+    //bounds in mm
+    public Vector3 SessionBoundsOffset = new Vector3(0, 250, -300);
+    public Vector3 SessionBounds = new Vector3(1500, 700, 1000);
+
 
     ZigTrackedUser engagedTrackedUser;
 
@@ -40,7 +50,14 @@ class ZigEngageSingleSession : MonoBehaviour {
         go.transform.parent = transform;
         objects[user.Id] = go;
 
-        ZigHandSessionDetector hsd = go.AddComponent<ZigHandSessionDetector>();
+        ZigHandSessionDetector hsd = go.AddComponent<ZigHandSessionDetector>();        
+
+        hsd.SessionBounds = SessionBounds;
+        hsd.SessionBoundsOffset = SessionBoundsOffset;
+        hsd.StartOnSteady = StartOnSteady;
+        hsd.StartOnWave = StartOnWave;
+        hsd.RotateToUser = RotateToUser;    
+        
         hsd.SessionStart += delegate {
             Debug.Log("EngageSingleSession: Session start");
             if (EngageUser(user)) {
