@@ -22,10 +22,7 @@ public class DepthmapToParticles : MonoBehaviour
     int factorY;
     private int YScaled;
     private int XScaled;
-    short[] rawDepthMap;
-    float[] depthHistogramMap;
     
-
     int XRes;
     int YRes;
     int emitterCount;
@@ -43,9 +40,6 @@ public class DepthmapToParticles : MonoBehaviour
         XRes = ZigInput.Depth.xres;
         factorX = (int)(XRes / DesiredResolution.x);
         factorY = (int)(YRes / DesiredResolution.y);
-        // depthmap data
-        rawDepthMap = new short[(int)(XRes * YRes)];
-
         YScaled = YRes / factorY;
         XScaled = XRes / factorX;
         

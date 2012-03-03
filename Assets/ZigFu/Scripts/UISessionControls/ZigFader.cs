@@ -84,7 +84,7 @@ public class ZigFader : MonoBehaviour {
         if (!isEdge && isEdgeThisFrame) {
             OnEdge();
         }
-        isEdgeThisFrame = isEdge;
+        isEdge = isEdgeThisFrame;
 
         // item hover
    		int newHover = hoverItem;
