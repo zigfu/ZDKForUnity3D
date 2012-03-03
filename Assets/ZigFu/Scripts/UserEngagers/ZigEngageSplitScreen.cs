@@ -15,7 +15,7 @@ public class ZigEngageSplitScreen : MonoBehaviour {
 
     ZigTrackedUser LookForTrackedUserInRegion(ZigInput zig, Bounds region) {
         foreach (ZigTrackedUser trackedUser in zig.TrackedUsers.Values) {
-            if (trackedUser.SkeletonTracked && region.Contains(trackedUser.Position)) {
+            if (trackedUser.SkeletonTracked && region.Contains(trackedUser.Position) && trackedUser != leftTrackedUser && trackedUser != rightTrackedUser) {
                 return trackedUser;
             }
         }
