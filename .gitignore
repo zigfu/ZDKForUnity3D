@@ -2,11 +2,8 @@ Library/*
 obj
 Temp
 *.csproj
-
 *.unityproj
 *.pidb
-
 *.sln
 *.suo
 Library/assetservercachev3
-.gitignore
