@@ -4,10 +4,24 @@ using System.Collections;
 public class ZigUsersRadar : MonoBehaviour {
 	public Vector2 RadarRealWorldDimensions = new Vector2(4000, 4000);
 	public int PixelsPerMeter = 35;
-	
+    public Color boxColor = Color.white;
+    GUIStyle style;
+    Texture2D texture;
 	void Start()
 	{
-		
+        style = new GUIStyle();
+        texture = new Texture2D(1, 1);
+        for (int y = 0; y < texture.height; ++y)
+        {
+            for (int x = 0; x < texture.width; ++x)
+            {
+
+                Color color = Color.white;
+                texture.SetPixel(x, y, color);
+            }                      
+        }
+        texture.Apply();
+        style.normal.background = texture;
 	}
 	
 	void OnGUI () 
@@ -16,10 +30,12 @@ public class ZigUsersRadar : MonoBehaviour {
 		
 		int width = (int)((float)PixelsPerMeter * (RadarRealWorldDimensions.x / 1000.0f));
 		int height = (int)((float)PixelsPerMeter * (RadarRealWorldDimensions.y / 1000.0f));
-		
+        
 		GUI.BeginGroup (new Rect (Screen.width - width - 20, 20, width, height));
-		GUI.Box(new Rect(0, 0, width, height), "Users Radar");
-
+        Color oldColor = GUI.color;
+        GUI.color = boxColor;
+		GUI.Box(new Rect(0, 0, width, height), "Users Radar", style);
+        GUI.color = oldColor;
 		foreach (ZigTrackedUser currentUser in ZigInput.Instance.TrackedUsers.Values)
 		{
 			// normalize the center of mass to radar dimensions
