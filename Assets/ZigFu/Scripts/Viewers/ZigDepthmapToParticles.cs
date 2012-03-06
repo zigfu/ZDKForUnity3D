@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-public class DepthmapToParticles : MonoBehaviour
+public class ZigDepthmapToParticles : MonoBehaviour
 {
     public Vector3 gridScale = Vector3.one;
     public Vector2 DesiredResolution = new Vector2(160, 120); // should be a divisor of 640x480
