@@ -29,7 +29,10 @@ public class ZigFader : MonoBehaviour {
     }
 
     void Start() {
-        if (itemCount == 0) itemCount = 1;
+        if (0 == itemCount) {
+            itemCount = 1;
+        }
+        
         value = initialValue;
     }
 
@@ -96,6 +99,7 @@ public class ZigFader : MonoBehaviour {
 		if (value < minValue) {
 			newHover--;
 		}
+        newHover = Mathf.Clamp(newHover, 0, itemCount - 1);
 		
 		if (newHover != hoverItem) {
             if (hoverItem != -1) SendMessage("Fader_HoverStop", this, SendMessageOptions.DontRequireReceiver);
