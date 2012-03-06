@@ -10,10 +10,30 @@ public class ZigWaveDetector : MonoBehaviour {
     float lastEdge;
 
     public Vector3 wavePoint { get; private set; }
+    public List<GameObject> listeners = new List<GameObject>();
 
     public event EventHandler Wave;
+    void notifyListeners(string msgname, object arg)
+    {
+        SendMessage(msgname, arg, SendMessageOptions.DontRequireReceiver);
+        for (int i = 0; i < listeners.Count; )
+        {
+            GameObject go = listeners[i];
+            if (go)
+            {
+                go.SendMessage(msgname, arg, SendMessageOptions.DontRequireReceiver);
+                i++;
+            }
+            else
+            {
+                listeners.RemoveAt(i);
+            }
+        }
+    }
+
+
     protected virtual void OnWave() {
-        SendMessage("WaveDetector_Wave", this, SendMessageOptions.DontRequireReceiver);
+        notifyListeners("WaveDetector_Wave", this);
         if (null != Wave) {
             Wave.Invoke(this, new EventArgs());
         }

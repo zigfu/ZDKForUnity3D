@@ -8,12 +8,10 @@ public class RandomHSV : MonoBehaviour {
 		HSBColor color;
 		color = new HSBColor(Random.Range(0.0f, 1.0f), 1f, 1f);
 		Color col;
-		col =color.ToColor();
-		//this.gameObject.renderer.material.color = col;
+		col =color.ToColor();		
 
 		foreach (Renderer r in transform.GetComponentsInChildren<Renderer>())
-		{
-			Debug.Log("foo");
+		{			
 			r.material.color = col;
 		}
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ZigPushDetector : MonoBehaviour {
 	public float size = 150.0f;
@@ -17,13 +18,34 @@ public class ZigPushDetector : MonoBehaviour {
             return pushFader.value;
         }
     }
-	
+
+    public List<GameObject> listeners = new List<GameObject>();
+
     ZigFader pushFader;
+
+    void notifyListeners(string msgname, object arg)
+    {
+        SendMessage(msgname, arg, SendMessageOptions.DontRequireReceiver);
+        for (int i = 0; i < listeners.Count; )
+        {
+            GameObject go = listeners[i];
+            if (go)
+            {
+                go.SendMessage(msgname, arg, SendMessageOptions.DontRequireReceiver);
+                i++;
+            }
+            else
+            {
+                listeners.RemoveAt(i);
+            }
+        }
+    }
+
 
     void Start()
 	{
         pushFader = gameObject.AddComponent<ZigFader>();
-        pushFader.direction = Vector3.forward;
+        pushFader.direction = -Vector3.forward;
 	}
 
 	void Session_Start(Vector3 focusPosition) {
@@ -31,7 +53,7 @@ public class ZigPushDetector : MonoBehaviour {
         pushFader.initialValue = initialValue;
         pushFader.MoveTo(focusPosition, initialValue);
 	}
-	
+    bool timeExpired = false;
 	void Session_Update(Vector3 handPosition)
 	{
 		// move slider if hand is out of its bounds (that way it always feels responsive)
@@ -44,20 +66,30 @@ public class ZigPushDetector : MonoBehaviour {
 				ClickPosition = handPosition;
                 IsClicked = true;
 				clickPushTime = Time.time;
-				SendMessage("PushDetector_Push", SendMessageOptions.DontRequireReceiver);
-            }
+                timeExpired = false;
+                notifyListeners("PushDetector_Push", this);				
+            }      
         }
         else { // clicked
            if (ClickProgress < 0.5) {
                 if (IsClick(clickPushTime, ClickPosition, Time.time, handPosition)) {
-					SendMessage("PushDetector_Click",SendMessageOptions.DontRequireReceiver);
-				}
-				
-				SendMessage("PushDetector_Release", SendMessageOptions.DontRequireReceiver);
+                    notifyListeners("PushDetector_Click",this);                    
+				}               
+                notifyListeners("PushDetector_Release", this);                
                 IsClicked = false;
             }
+           else
+           {
+               if (!timeExpired && (Time.time - clickPushTime > clickTimeFrame))
+               {
+                   timeExpired = true;
+                   Debug.Log("Push Detector HOLD");
+                   notifyListeners("PushDetector_Hold", this);
+               }
+           }
         }
-		
+       
+
 		// drift the slider to the initial position, if we aren't clicked
 		if (!IsClicked) {
 			float delta = initialValue - ClickProgress;
@@ -67,8 +99,7 @@ public class ZigPushDetector : MonoBehaviour {
 	
 	void Session_End() {
 		if (IsClicked) {
-			SendMessage("PushDetector_Release", SendMessageOptions.DontRequireReceiver);
-			IsClicked = false;
+            notifyListeners("PushDetector_Release",this);    
 		}
 	}
 	

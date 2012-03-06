@@ -26,6 +26,8 @@ public class Zig : MonoBehaviour {
 	}
 
     void notifyListeners(string msgname, object arg) {
+        //SendMessage(msgname, arg, SendMessageOptions.DontRequireReceiver);
+        //Zig.cs doesn't send message to self
         for (int i = 0; i < listeners.Count; ) {
             GameObject go = listeners[i];
             if (go) {

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ZigFader : MonoBehaviour {
 	public Vector3 direction = Vector3.right;
@@ -20,9 +21,30 @@ public class ZigFader : MonoBehaviour {
     bool isEdge;
     float lastUpdate;
 
+    public List<GameObject> listeners = new List<GameObject>();
+
     public event EventHandler Edge;
+
+    void notifyListeners(string msgname, object arg)
+    {
+        SendMessage(msgname, arg, SendMessageOptions.DontRequireReceiver);
+        for (int i = 0; i < listeners.Count; )
+        {
+            GameObject go = listeners[i];
+            if (go)
+            {
+                go.SendMessage(msgname, arg, SendMessageOptions.DontRequireReceiver);
+                i++;
+            }
+            else
+            {
+                listeners.RemoveAt(i);
+            }
+        }
+    }
+
     protected void OnEdge() {
-        SendMessage("Fader_Edge", this, SendMessageOptions.DontRequireReceiver);
+        notifyListeners("Fader_Edge", this);
         if (null != Edge) {
             Edge.Invoke(this, new EventArgs());
         }
@@ -80,7 +102,7 @@ public class ZigFader : MonoBehaviour {
         this.value = val;
     
         // value change
-        SendMessage("Fader_ValueChange", this, SendMessageOptions.DontRequireReceiver);
+        notifyListeners("Fader_ValueChange", this);
 
         // edge
         bool isEdgeThisFrame = Mathf.Approximately(val, 0) || Mathf.Approximately(val, 1.0f);
@@ -90,22 +112,29 @@ public class ZigFader : MonoBehaviour {
         isEdge = isEdgeThisFrame;
 
         // item hover
-   		int newHover = hoverItem;
-		float minValue = (hoverItem * (1 / itemCount)) - hysteresis;
-		float maxValue = (hoverItem + 1) * (1 / itemCount) + hysteresis;
-        if (value > maxValue) {
-			newHover++;
-		}
-		if (value < minValue) {
-			newHover--;
-		}
-        newHover = Mathf.Clamp(newHover, 0, itemCount - 1);
-		
-		if (newHover != hoverItem) {
-            if (hoverItem != -1) SendMessage("Fader_HoverStop", this, SendMessageOptions.DontRequireReceiver);
+        int newHover = hoverItem;
+        float minValue = (hoverItem * (1.0f / itemCount)) - hysteresis;
+        float maxValue = (hoverItem + 1.0f) * (1.0f / itemCount) + hysteresis;
+
+        if (val > maxValue)
+        {
+            newHover++;
+        }
+        if (val < minValue)
+        {
+            newHover--;
+        }
+        if (newHover < 0)
+            newHover = -1;
+        if (newHover >= itemCount)
+            newHover = itemCount - 1;
+
+        if (newHover != hoverItem)
+        {
+            if (hoverItem != -1) notifyListeners("Fader_HoverStop", this);
             hoverItem = newHover;
-			SendMessage("Fader_HoverStart", this, SendMessageOptions.DontRequireReceiver);
-		}
+            notifyListeners("Fader_HoverStart", this);
+        }
     }
 	
 	public Vector3 GetPosition(float val) {

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ZigSteadyDetector : MonoBehaviour {
 	public float maxVariance = 50.0f;
@@ -15,11 +16,31 @@ public class ZigSteadyDetector : MonoBehaviour {
     public Vector3 steadyPoint;
 
     public event EventHandler Steady;
+    public List<GameObject> listeners = new List<GameObject>();
+
+    void notifyListeners(string msgname, object arg)
+    {
+        SendMessage(msgname, arg, SendMessageOptions.DontRequireReceiver);
+        for (int i = 0; i < listeners.Count; )
+        {
+            GameObject go = listeners[i];
+            if (go)
+            {
+                go.SendMessage(msgname, arg, SendMessageOptions.DontRequireReceiver);
+                i++;
+            }
+            else
+            {
+                listeners.RemoveAt(i);
+            }
+        }
+    }
+
     protected virtual void OnSteady() {
         if (null != Steady) {
             Steady.Invoke(this, new EventArgs());
         }
-        SendMessage("SteadyDetector_Steady", this, SendMessageOptions.DontRequireReceiver);
+        notifyListeners("SteadyDetector_Steady", this);
     }
 	
 	// Use this for initialization
