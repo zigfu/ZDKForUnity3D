@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Zig : MonoBehaviour {
-    //public ZigInputType inputType = ZigInputType.OpenNI;
+    public ZigInputType inputType = ZigInputType.Auto;
     public bool UpdateDepthmap = true;
     public bool UpdateImagemap = false;
     public bool UpdateLabelmap = false;
