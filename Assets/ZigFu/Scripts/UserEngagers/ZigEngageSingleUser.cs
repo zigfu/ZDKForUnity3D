@@ -10,7 +10,7 @@ public class ZigEngageSingleUser : MonoBehaviour {
 	
 	Dictionary<int, GameObject> objects = new Dictionary<int, GameObject>();
 
-    ZigTrackedUser engagedTrackedUser;
+    public ZigTrackedUser engagedTrackedUser { get; private set; }
 
     void Start() {
         // make sure we get zig events
