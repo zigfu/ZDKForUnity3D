@@ -83,4 +83,11 @@ class ZigEngageSingleSession : MonoBehaviour {
         Destroy(objects[user.Id]);
         objects.Remove(user.Id);
     }
+
+    public void Reset()
+    {
+        if (null != engagedTrackedUser) {
+            DisengageUser(engagedTrackedUser);
+        }
+    }
 }
