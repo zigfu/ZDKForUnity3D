@@ -4,10 +4,11 @@ using System.Collections.Generic;
 
 public class Zig : MonoBehaviour {
     public ZigInputType inputType = ZigInputType.Auto;
-    public bool UpdateDepthmap = true;
-    public bool UpdateImagemap = false;
-    public bool UpdateLabelmap = false;
-    public bool AlignDepthToRGB = false;
+    //public bool UpdateDepthmap = true;
+    //public bool UpdateImagemap = false;
+    //public bool UpdateLabelmap = false;
+    //public bool AlignDepthToRGB = false;
+    public ZigInputSettings settings = new ZigInputSettings();
     public List<GameObject> listeners = new List<GameObject>();
     public bool Verbose = true;
 
@@ -20,10 +21,11 @@ public class Zig : MonoBehaviour {
         #endif
 
         ZigInput.InputType = inputType;
-        ZigInput.UpdateDepth = UpdateDepthmap;
-        ZigInput.UpdateImage = UpdateImagemap;
-        ZigInput.UpdateLabelMap = UpdateLabelmap;
-        ZigInput.AlignDepthToRGB = AlignDepthToRGB;
+        ZigInput.Settings = settings;
+        //ZigInput.UpdateDepth = UpdateDepthmap;
+        //ZigInput.UpdateImage = UpdateImagemap;
+        //ZigInput.UpdateLabelMap = UpdateLabelmap;
+        //ZigInput.AlignDepthToRGB = AlignDepthToRGB;
         ZigInput.Instance.AddListener(gameObject);
 	}
 
