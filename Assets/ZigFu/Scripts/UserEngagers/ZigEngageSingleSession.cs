@@ -36,6 +36,9 @@ class ZigEngageSingleSession : MonoBehaviour {
 
     bool DisengageUser(ZigTrackedUser user) {
         if (user == engagedTrackedUser) {
+            if (null != user) { // force end session for a user on disengage
+                objects[user.Id].GetComponent<ZigHandSessionDetector>().EndSession();
+            }
             if (null != EngagedUser) user.RemoveListener(EngagedUser);
             engagedTrackedUser = null;
             SendMessage("UserDisengaged", this, SendMessageOptions.DontRequireReceiver);
