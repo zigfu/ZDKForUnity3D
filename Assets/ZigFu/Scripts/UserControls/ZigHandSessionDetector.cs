@@ -130,8 +130,7 @@ public class ZigHandSessionDetector : MonoBehaviour {
             currentSessionBounds.center = (RotateToUser) ? RotateHandPoint(trackedUser.Position) : trackedUser.Position;
             currentSessionBounds.center += SessionBoundsOffset;
             if (!currentSessionBounds.Contains(hp)) {
-                InSession = false;
-                OnSessionEnd();
+                EndSession();
                 return;
             }
             OnSessionUpdate(hp);
@@ -141,11 +140,16 @@ public class ZigHandSessionDetector : MonoBehaviour {
     void Zig_Detach(ZigTrackedUser user) {
         user.RemoveListener(leftHandDetector);
         user.RemoveListener(rightHandDetector);
-        if (InSession) {
-            InSession = false;
-            OnSessionEnd();
-        }
+        EndSession();
         trackedUser = null;
+    }
+
+    public void EndSession()
+    {
+        if (InSession) {
+            OnSessionEnd();
+            InSession = false;
+        }
     }
 
     void CheckSessionStart(Vector3 point, ZigJointId joint) {
