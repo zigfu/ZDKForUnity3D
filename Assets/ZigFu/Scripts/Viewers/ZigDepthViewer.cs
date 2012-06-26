@@ -36,13 +36,14 @@ public class ZigDepthViewer : MonoBehaviour {
     public Renderer target;
     public ZigResolution TextureSize = ZigResolution.QQVGA_160x120;
     public Color32 BaseColor = Color.yellow;
+    public bool UseHistogram = true;
     Texture2D texture;
     ResolutionData textureSize;
 
     float[] depthHistogramMap;
     Color32[] depthToColor;
     Color32[] outputPixels;
-    const int MaxDepth = 10000;
+    public int MaxDepth = 10000; //DO NOT MODIFY IN RUNTIME!!
 	// Use this for initialization
 	void Start () {
         if (target == null) {
@@ -121,7 +122,21 @@ public class ZigDepthViewer : MonoBehaviour {
 
     void Zig_Update(ZigInput input)
     {
-        UpdateHistogram(ZigInput.Depth);
+        if (UseHistogram) {
+            UpdateHistogram(ZigInput.Depth);
+        }
+        else {
+            //TODO: don't repeat this every frame
+            depthToColor[0] = Color.black;
+            for (int i = 1; i < MaxDepth; i++) {
+                float intensity = 1.0f - (i/(float)MaxDepth);
+                //depthHistogramMap[i] = intensity * 255;
+                depthToColor[i].r = (byte)(BaseColor.r * intensity);
+                depthToColor[i].g = (byte)(BaseColor.g * intensity);
+                depthToColor[i].b = (byte)(BaseColor.b * intensity);
+                depthToColor[i].a = 255;//(byte)(BaseColor.a * intensity);
+            }
+        }
         UpdateTexture(ZigInput.Depth);
     }
 
