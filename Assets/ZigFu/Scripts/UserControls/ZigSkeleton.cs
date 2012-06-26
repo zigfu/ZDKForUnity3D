@@ -38,7 +38,8 @@ public class ZigSkeleton : MonoBehaviour
 	public bool UpdateRootPosition = false;
 	public bool UpdateOrientation = true;
 	public bool RotateToPsiPose = false;
-	public float Damping = 30.0f;
+    public float RotationDamping = 30.0f;
+    public float Damping = 30.0f;
 	public Vector3 Scale = new Vector3(0.001f,0.001f,0.001f); 
 	
 	public Vector3 PositionBias = Vector3.zero;
@@ -177,7 +178,7 @@ public class ZigSkeleton : MonoBehaviour
 				newRotation.y = -newRotation.y;
 				newRotation.z = -newRotation.z;	
 			}
-			transforms[(int)joint].rotation = Quaternion.Slerp(transforms[(int)joint].rotation, newRotation, Time.deltaTime * Damping);
+			transforms[(int)joint].rotation = Quaternion.Slerp(transforms[(int)joint].rotation, newRotation, Time.deltaTime * RotationDamping);
         }
 	}
 	Vector3 doMirror(Vector3 vec)   
