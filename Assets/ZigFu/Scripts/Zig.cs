@@ -11,7 +11,8 @@ public class Zig : MonoBehaviour {
     public ZigInputSettings settings = new ZigInputSettings();
     public List<GameObject> listeners = new List<GameObject>();
     public bool Verbose = true;
-
+    
+    
 	void Awake () {
         #if UNITY_WEBPLAYER
         #if UNITY_EDITOR
@@ -56,5 +57,14 @@ public class Zig : MonoBehaviour {
 
     void Zig_Update(ZigInput zig) {
         notifyListeners("Zig_Update", zig);
+    }
+
+    void OnGUI()
+    {
+        if (GUI.Button(Rect(20, 40, 80, 20), "Try Again"))
+        {
+           OpenNI2.ZigInputOpenNI2 input = ZigInput.Instance as OpenNI2.ZigInputOpenNI2;
+           input.keepTrying = true;
+        }
     }
 }
