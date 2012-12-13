@@ -147,8 +147,9 @@ public class ZigHandSessionDetector : MonoBehaviour {
     public void EndSession()
     {
         if (InSession) {
-            OnSessionEnd();
             InSession = false;
+            OnSessionEnd();
+            
         }
     }
 

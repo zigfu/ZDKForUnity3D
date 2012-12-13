@@ -35,6 +35,7 @@ public class ZigDepthmapToParticles : MonoBehaviour
     void Start()
     {
         // init stuff
+        Debug.Log("Conversion Supported: " + NuiWrapper.ConversionSupported());
         
         YRes = ZigInput.Depth.yres;
         XRes = ZigInput.Depth.xres;
