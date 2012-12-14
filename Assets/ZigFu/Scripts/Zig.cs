@@ -11,7 +11,8 @@ public class Zig : MonoBehaviour {
     public ZigInputSettings settings = new ZigInputSettings();
     public List<GameObject> listeners = new List<GameObject>();
     public bool Verbose = true;
-
+    
+    
 	void Awake () {
         #if UNITY_WEBPLAYER
         #if UNITY_EDITOR
@@ -27,7 +28,6 @@ public class Zig : MonoBehaviour {
         //ZigInput.UpdateLabelMap = UpdateLabelmap;
         //ZigInput.AlignDepthToRGB = AlignDepthToRGB;
         ZigInput.Instance.AddListener(gameObject);
-        
 	}
 
     void notifyListeners(string msgname, object arg) {
@@ -57,5 +57,16 @@ public class Zig : MonoBehaviour {
 
     void Zig_Update(ZigInput zig) {
         notifyListeners("Zig_Update", zig);
+    }
+
+
+    //TODO: Remove me!!
+    void OnGUI()
+    {
+        if (GUI.Button(new Rect(20, 40, 80, 20), "Try Again"))
+        {
+
+            ZigInput.Instance.keepTrying();
+        }
     }
 }

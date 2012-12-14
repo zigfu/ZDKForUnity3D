@@ -86,8 +86,8 @@ public class NewUsersFrameEventArgs : EventArgs
 }
 
 public class ZigDepth {
-    public int xres { get; private set; }
-    public int yres { get; private set; }
+    public int xres;
+    public int yres;
     public short[] data;
     public ZigDepth(int x, int y) {
         xres = x;
@@ -345,7 +345,10 @@ public class ZigInput : MonoBehaviour {
 	public bool ReaderInited { get; private set; }
     public bool kinectSDK = false;
 
-
+    public void keepTrying()
+    {
+        ((OpenNI2.ZigInputOpenNI2)reader).keepTrying = true;
+    }
     public OpenNI.HandsGenerator GetHands()
     {
         return ((ZigInputOpenNI)reader).Hands;
@@ -369,7 +372,12 @@ public class ZigInput : MonoBehaviour {
         ZigInputKinectSDK r = reader as ZigInputKinectSDK;
         r.SetSkeletonTrackingSettings(SeatedMode, TrackSkeletonInNearMode);     
     }
-
+    public void UpdateMaps()
+    {
+        ZigInput.Depth = reader.Depth;
+        ZigInput.Image = reader.Image;
+        ZigInput.LabelMap = reader.LabelMap;
+    }
 
 	void Awake() {
 		#if WATERMARK_OMERCY
