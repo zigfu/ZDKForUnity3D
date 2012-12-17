@@ -12,9 +12,16 @@ public class itemLogi : MonoBehaviour {
     public Color origColor;
     public Color triggerColor;
     public mouse_event setTransform;
+	public AudioClip m_clip;
     void OnTriggerEnter(Collider other)
     {
+	
         renderer.material.color = triggerColor;
+		  if (m_clip != null)
+                            {
+                                audio.clip = m_clip;
+                                audio.Play();
+                            }
         if (other.tag == "fingertip")
         {
             if (setTransform != null)

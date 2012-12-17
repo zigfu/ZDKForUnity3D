@@ -128,6 +128,7 @@ namespace OpenNI2
         public int stride;
     }
 
+    public delegate void OniNewFrameCallback(IntPtr stream, IntPtr pCookie);
     public delegate void OniDeviceInfoCallback(ref OniDeviceInfo info, IntPtr pCookie);
     public delegate void OniDeviceStateCallback(ref OniDeviceInfo info, OniDeviceState deviceState, IntPtr pCookie);
 
@@ -272,7 +273,7 @@ namespace OpenNI2
         ///** Get the next frame from the stream. This function is blocking until there is a new frame from the stream. For timeout, use oniWaitForStreams() first */
         //ONI_C_API OniStatus oniStreamReadFrame(OniStreamHandle stream, OniFrame** pFrame);
         [DllImport("OpenNI2.dll")]
-        public static extern OniStatus oniStreamReadFrame(IntPtr stream, out IntPtr pFrame);
+        public static extern OniStatus oniStreamReadFrame(IntPtr stream, ref IntPtr pFrame);
 
         ///** Register a callback to when the stream has a new frame. */
         //ONI_C_API OniStatus oniStreamRegisterNewFrameCallback(OniStreamHandle stream, OniNewFrameCallback handler, void* pCookie, OniCallbackHandle* pHandle);
@@ -401,14 +402,18 @@ namespace OpenNI2
         IntPtr pDevice;
         IntPtr pDepthStream;
         IntPtr pDeviceCBHandle;
-        OpenNI2.OpenNI2Wrapper.OniDeviceCallbacks callbacks;
+        IntPtr pNewFrameCBHandle;
+        OpenNI2.OpenNI2Wrapper.OniDeviceCallbacks callbacks;        
         Delegate Connected;
         Delegate Disconnected;
         Delegate StateChanged;
+        Delegate NewFrame;
         IntPtr pCallbacks;
         // init/update/shutdown
 	    public void Init(ZigInputSettings settings)
         {
+            users = new List<ZigInputUser>();
+
             Debug.Log("Init called for OpenNI2");
             OpenNI2.OpenNI2Wrapper.OniVersion v = OpenNI2.OpenNI2Wrapper.oniGetVersion();
 
@@ -471,18 +476,38 @@ namespace OpenNI2
 
             if (pDevice != IntPtr.Zero)
             {
+
+
+                
+
                 s = OpenNI2.OpenNI2Wrapper.oniDeviceCreateStream(pDevice, OpenNI2.OpenNI2Wrapper.OniSensorType.ONI_SENSOR_DEPTH, ref pDepthStream);
                 Debug.Log("OpenNI2 Wrapper Stream created : " + s + " pDepthStream " + pDepthStream);
 
                 s = OpenNI2.OpenNI2Wrapper.oniStreamStart(pDepthStream);
                 Debug.Log("OpenNI2 Wrapper Stream started : " + s);
-        
+              
+                //NewFrame = new OpenNI2.OpenNI2Wrapper.OniNewFrameCallback(newFrame_handler);
+                //s = OpenNI2.OpenNI2Wrapper.oniStreamRegisterNewFrameCallback(pDepthStream, Marshal.GetFunctionPointerForDelegate(NewFrame), pDevice, out pNewFrameCBHandle);
+                //Debug.Log("OpenNI2 noniStreamRegisterNewFrameCallback " + s + " pNewFrameCBHandle: " + pNewFrameCBHandle);
+
         //TODO: should get properties of the stream and set it to resolution
                 Depth = new ZigDepth(320, 240);
 
                 frame = new OpenNI2.OpenNI2Wrapper.OniFrame();
             }
 
+        }
+
+
+        void newFrame_handler(IntPtr stream, IntPtr pCookie)
+        {
+            //OpenNI2.OpenNI2Wrapper.oniStreamUnregisterNewFrameCallback(pDepthStream, pNewFrameCBHandle);
+            Debug.Log("EVENT: new frame: " + stream + " pCookie " + pCookie);
+      //      if (keepTrying)
+      //      {
+      //          UpdateDepth();
+      //      }
+      //      OnNewUsersFrame(users);
         }
         void deviceConnected_handler(ref OpenNI2.OpenNI2Wrapper.OniDeviceInfo info, IntPtr pCookie)
         {
@@ -561,21 +586,28 @@ namespace OpenNI2
             Debug.Log("State:" + deviceState);
 
         }
-        public bool keepTrying = true;
+        public bool keepTrying = false;
+        List<ZigInputUser> users;
 	    public void Update()
         {
             if (keepTrying)
             {
                 UpdateDepth();
-                List<ZigInputUser> users = new List<ZigInputUser>();
+
                 OnNewUsersFrame(users);
+
             }
-            
-            
         }
 	    public void Shutdown()
         {
             Debug.Log("Shutdown called for OpenNI2");
+
+
+            //if (pNewFrameCBHandle != IntPtr.Zero)
+            //{
+            //    OpenNI2.OpenNI2Wrapper.oniStreamUnregisterNewFrameCallback(pDepthStream, pNewFrameCBHandle);
+            //    Debug.Log("OpenNI2 NewFrame unregistered");
+            //}
             if (pDepthStream != IntPtr.Zero)
             {
                 OpenNI2.OpenNI2Wrapper.oniStreamStop(pDepthStream);
@@ -589,6 +621,7 @@ namespace OpenNI2
                 OpenNI2.OpenNI2Wrapper.oniUnregisterDeviceCallbacks(pDeviceCBHandle);
                 Debug.Log("OPENNI2 unregistered callbacks");
             }
+
             if (pDevice != IntPtr.Zero)
             {
                 OpenNI2.OpenNI2Wrapper.oniDeviceClose(pDevice);
@@ -622,51 +655,58 @@ namespace OpenNI2
         {
             try
             {
-                keepTrying = false;
+           //     keepTrying = false;
 
                 //(OniStreamHandle* pStreams, int numStreams, int* pStreamIndex, int timeout);
 //        [DllImport("OpenNI2.dll")]
   //      public static extern OniStatus oniWaitForAnyStream(ref IntPtr pHandle, int numStreams, ref int pStreamIndex, int timeout);
 
                 int index;
-                OpenNI2.OpenNI2Wrapper.OniStatus s = OpenNI2.OpenNI2Wrapper.oniWaitForAnyStream(ref pDepthStream, 1, out index, -1);//timeout forever
-                Debug.Log("Status after wait: " + s + "index: " + index);
-                   
+                OpenNI2.OpenNI2Wrapper.OniStatus s = OpenNI2.OpenNI2Wrapper.oniWaitForAnyStream(ref pDepthStream, 1, out index, -1);//timeout forever -1,
+         //       Debug.Log("Status after wait: " + s + " pDepthStream " + pDepthStream + "index: " + index);
+
+
+                if (s == OpenNI2.OpenNI2Wrapper.OniStatus.ONI_STATUS_TIME_OUT)
+                {
+                    Debug.Log("TIMEOUT!!!");
+                    return;
+                    
+                }
                 if (s != OpenNI2.OpenNI2Wrapper.OniStatus.ONI_STATUS_OK)
                 {
                     
                     return;
                 }
 
-
-                s = OpenNI2.OpenNI2Wrapper.oniStreamReadFrame(pDepthStream, out pFrame);
-                Debug.Log("Read depthStream Frame: " + s + "\t\t\t pFRAME\t" + pFrame);
-
+               
+                s = OpenNI2.OpenNI2Wrapper.oniStreamReadFrame(pDepthStream, ref pFrame);
+       //         Debug.Log("Read depthStream Frame: " + s + "\t\t\t pFRAME\t" + pFrame);
+                
                 //OpenNI2.OpenNI2Wrapper.oniFrameAddRef(pFrame);
                                 
                 //Debug.Log("pFrame: \t\t\t pFRAME\t" + pFrame);
-               
-                //frame = (OpenNI2.OpenNI2Wrapper.OniFrame)Marshal.PtrToStructure(pFrame, typeof(OpenNI2.OpenNI2Wrapper.OniFrame));
+
+                frame = (OpenNI2.OpenNI2Wrapper.OniFrame)Marshal.PtrToStructure(pFrame, typeof(OpenNI2.OpenNI2Wrapper.OniFrame));
                 
                  
                 //Debug.Log("frame: " + frame.width + " " + frame.height);
                   
-                //if (Depth.data.Length == 0)
-                //{
-                //    Depth.xres = frame.width;
-                //    Depth.yres = frame.height;
-                //    Depth.data = new short[frame.width * frame.height];
+                if (Depth.data.Length == 0)
+                {
+                    Depth.xres = frame.width;
+                    Depth.yres = frame.height;
+                    Depth.data = new short[frame.width * frame.height];
                     
-                //    Debug.Log("ZigDepth reallocated, data: " + Depth.data.Length);
+             //       Debug.Log("ZigDepth reallocated, data: " + Depth.data.Length);
 
-                //}
+                }
                 //Debug.Log("Frame.data: \t\t\t FRAME.DATA:\t" + frame.data);
               
-                //Marshal.Copy(frame.data, Depth.data, 0, Depth.data.Length);
-                //Debug.Log("Marshal Copy complete " + Depth.data.Length);
-              
-                //OpenNI2.OpenNI2Wrapper.oniFrameRelease(pFrame);
-                //Debug.Log("oniFrameRelease");
+                Marshal.Copy(frame.data, Depth.data, 0, Depth.data.Length);
+            //    Debug.Log("Marshal Copy complete " + Depth.data.Length);
+
+                OpenNI2.OpenNI2Wrapper.oniFrameRelease(pFrame);
+           //     Debug.Log("oniFrameRelease");
              
             }
             catch (Exception e)
