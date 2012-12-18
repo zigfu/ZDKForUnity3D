@@ -6,15 +6,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using OniStreamHandle = System.IntPtr;
-using OniDeviceHandle = System.IntPtr;
-using OniRecorderHandle = System.IntPtr;
-using OniDepthPixel = System.UInt16;
+
 namespace OpenNI2
 {
-
+    using OniStreamHandle = System.IntPtr;
+    using OniDeviceHandle = System.IntPtr;
+    using OniRecorderHandle = System.IntPtr;
+    using OniDepthPixel = System.UInt16;
+    using NiteUserTrackerHandle = System.IntPtr;
+    using NiteHandTrackerHandle = System.IntPtr;
+    using NiteUserId = System.Int16;
+    using NiteHandId = System.Int16;
     public class OpenNI2Wrapper 
     {
+
         public static int ONI_MAX_STR = 256;
         [Flags]
         public enum OniStatus : uint
@@ -110,6 +115,7 @@ namespace OpenNI2
         public int build;																					
     }
 
+        
     [StructLayout(LayoutKind.Sequential)] 
     public struct OniFrame  
     {
@@ -132,6 +138,7 @@ namespace OpenNI2
     }
 
     public delegate void OniNewFrameCallback(IntPtr stream, IntPtr pCookie);
+    public delegate void OniGeneralCallback(IntPtr pCookie);
     public delegate void OniDeviceInfoCallback(ref OniDeviceInfo info, IntPtr pCookie);
     public delegate void OniDeviceStateCallback(ref OniDeviceInfo info, OniDeviceState deviceState, IntPtr pCookie);
 
@@ -435,6 +442,69 @@ namespace OpenNI2
     public class NITE2Wrapper
     {
         [Flags]
+        
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NiteVersion
+        {
+
+            /** Major version number, incremented for major API restructuring. */
+            public int major;
+            /** Minor version number, incremented when signficant new features added. */
+            public int minor;
+            /** Mainenance build number, incremented for new releases that primarily provide minor bug fixes. */
+            public int maintenance;
+            /** Build number. Incremented for each new API build. Generally not shown on the installer and download site. */
+            public int build;
+        }
+        public enum NiteJointType : uint
+        {
+	        NITE_JOINT_HEAD = 0,
+	        NITE_JOINT_NECK = 1,
+
+	        NITE_JOINT_LEFT_SHOULDER = 2,
+	        NITE_JOINT_RIGHT_SHOULDER = 3,
+	        NITE_JOINT_LEFT_ELBOW = 4,
+	        NITE_JOINT_RIGHT_ELBOW = 5,
+	        NITE_JOINT_LEFT_HAND = 6,
+	        NITE_JOINT_RIGHT_HAND = 7,
+
+	        NITE_JOINT_TORSO = 8,
+
+	        NITE_JOINT_LEFT_HIP = 9,
+	        NITE_JOINT_RIGHT_HIP = 10,
+	        NITE_JOINT_LEFT_KNEE = 11,
+	        NITE_JOINT_RIGHT_KNEE = 12,
+	        NITE_JOINT_LEFT_FOOT = 13,
+	        NITE_JOINT_RIGHT_FOOT = 14
+        } 
+        /** Possible states of the skeleton */
+        public enum NiteSkeletonState : uint
+        {
+	        /** No skeleton - skeleton was not requested */
+	        NITE_SKELETON_NONE = 0,
+	        /** Skeleton requested, but still unavailable */
+	        NITE_SKELETON_CALIBRATING = 1,
+	        /** Skeleton available */
+	        NITE_SKELETON_TRACKED = 2,
+
+	        /** Possible reasons as to why skeleton is unavailable */
+	        NITE_SKELETON_CALIBRATION_ERROR_NOT_IN_POSE = 3,
+	        NITE_SKELETON_CALIBRATION_ERROR_HANDS = 4,
+	        NITE_SKELETON_CALIBRATION_ERROR_HEAD = 5,
+	        NITE_SKELETON_CALIBRATION_ERROR_LEGS = 6,
+	        NITE_SKELETON_CALIBRATION_ERROR_TORSO = 7
+        } 
+        public enum NiteUserState : uint
+        {
+	        /** User is visible and already known */
+	        NITE_USER_STATE_VISIBLE = 1,
+	        /** User is new - this is the first time the user is available */
+	        NITE_USER_STATE_NEW = 2,
+	        /** User is lost. This is the last time this user will be seen */
+	        NITE_USER_STATE_LOST = 4,
+        } 
+
         public enum NiteStatus : uint
         {
 	        NITE_STATUS_OK = 0,
@@ -442,11 +512,392 @@ namespace OpenNI2
 	        NITE_STATUS_BAD_USER_ID = 2
         }
 
+        public enum NitePoseType : uint
+        {
+	        NITE_POSE_PSI = 0,
+	        NITE_POSE_CROSSED_HANDS = 1
+        } 
+
+        public enum NitePoseState : uint
+        {
+	        NITE_POSE_STATE_DETECTING = 1,
+	        NITE_POSE_STATE_IN_POSE = 2,
+	        NITE_POSE_STATE_ENTER = 4,
+	        NITE_POSE_STATE_EXIT = 8
+
+        }
+
+        public enum NiteGestureType : uint
+        {
+	        NITE_GESTURE_WAVE = 0,
+	        NITE_GESTURE_CLICK = 1,
+	        NITE_GESTURE_HAND_RAISE = 2
+        }
+
+/** Possible state of a gesture. Currently only 'Complete' is used. */
+        public enum NiteGestureState : uint
+        {
+	        NITE_GESTURE_STATE_NEW = 1,				// Future
+	        NITE_GESTURE_STATE_IN_PROGRESS = 2,		// Future
+	        NITE_GESTURE_STATE_COMPLETED = 4
+        } 
+
+/** Possible state of a hand */
+        public enum NiteHandState : uint
+        {
+ 	        /** This hand was lost. It is the last frame in which it will be provided */
+	        NITE_HAND_STATE_LOST = 0,
+	        /** This is a new hand - it is the first frame in which it is available*/
+	        NITE_HAND_STATE_NEW = 1,
+ 	        /** This is a known hand */
+	        NITE_HAND_STATE_TRACKED = 2,
+ 	        /** This is a known hand, and in this frame it's very near the edge of the field of view */
+	        NITE_HAND_STATE_TOUCHING_FOV = 4,
+        }
+
+
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NiteUserTrackerCallbacks
+        {
+            public IntPtr readyForNextFrame;      
+        }
+        
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NiteHandTrackerCallbacks
+        {
+            public IntPtr readyForNextFrame;      
+        } 
+        
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NitePoint3f
+        {
+            public float x;
+            public float y;
+            public float z;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NiteQuaternion
+        {    
+	        public float x;
+            public float y;
+            public float z;
+            public float w;
+        } 
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NiteSkeletonJoint
+        {
+	        /** Type of the joint */
+	        NiteJointType jointType;
+
+	        /** Position of the joint - in real world coordinates */
+	        NitePoint3f position;
+	        float positionConfidence;
+
+	        /** Orientation of the joint */
+	        NiteQuaternion orientation;
+	        float orientationConfidence;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NiteBoundingBox
+        {
+	        NitePoint3f min;
+	        NitePoint3f max;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NitePoseData
+        {
+	        NitePoseType type;
+	        int state;
+        } 
+        
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NiteSkeleton 
+        {
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 15)] //NITE_JOINT_COUNT
+	        NiteSkeletonJoint [] joints;
+	        NiteSkeletonState state;
+        }
+
+        /** Snapshot of a specific user */
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NiteUserData
+        {
+	        NiteUserId id;
+	        NiteBoundingBox boundingBox;
+	        NitePoint3f centerOfMass;
+
+	        int state;
+
+	        NiteSkeleton skeleton;
+
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)] //NITE_POSE_COUNT
+            NitePoseData [] poses;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NiteUserMap
+        {
+            IntPtr pixels; //NiteUserId* pixels;
+
+	        int width;
+	        int height;
+
+	        int stride;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NitePlane
+        {
+	        NitePoint3f point;
+	        NitePoint3f normal;
+        } 
+        
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NiteUserTrackerFrame
+        {
+	        /** Number of users */
+	        int userCount;
+	        /** List of users */
+	        IntPtr pUser;//NiteUserData* pUser;
+
+	        /** Scene segmentation map */
+	        NiteUserMap userMap;
+	        /** The depth frame from which this data was learned */
+	        IntPtr pDepthFrame; //OniFrame* pDepthFrame;
+
+	        UInt64 timestamp;
+	        int frameIndex;
+
+	        /** Confidence of the floor plane */
+	        float floorConfidence;
+	        /** Floor plane */
+	        NitePlane floor;
+        } 
+
+        /** A snapshot of a specific hand */
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NiteHandData
+        {
+	        NiteHandId id;
+	        NitePoint3f position;
+	        int state;
+        }
+
+/** A snapshot of a specific gesture */
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NiteGestureData
+        {
+	        NiteGestureType type;
+	        NitePoint3f currentPosition;
+	        int state;
+        } 
+
+    /** Output snapshot of the Hand Tracker algorithm */
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NiteHandTrackerFrame
+        {
+	        /** Number of hands */
+	        int handCount;
+	        /** List of hands */
+            IntPtr pHands; //NiteHandData* pHands;
+
+	        /** Number of gestures */
+	        int gestureCount;
+	        /** List of gestures */
+	        IntPtr pGestures//NiteGestureData* pGestures;
+
+	        /** The depth frame from which this data was learned */
+	        IntPtr pDepthFrame; //OniFrame* pDepthFrame;
+
+	        UInt64 timestamp;
+	        int frameIndex;
+        } 
+
+        /**  Initialize OpenNI2. Use ONI_API_VERSION as the version. */
+        //ONI_C_API OniStatus oniInitialize(int apiVersion);
         [DllImport("NiTE2.dll")]
         public static extern NiteStatus niteInitialize();
 
+        
+        /**  Shutdown OpenNI2 */
+        //ONI_C_API void oniShutdown();
         [DllImport("NiTE2.dll")]
         public static extern void niteShutdown();
+
+
+//        NITE_API NiteVersion niteGetVersion();
+        [DllImport("NiTE2.dll")]
+        public static extern NiteVersion niteGetVersion();
+
+//// UserTracker
+//NITE_API NiteStatus niteInitializeUserTracker(NiteUserTrackerHandle*);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteInitializeUserTracker(out NiteUserTrackerHandle pHandle);
+
+
+//NITE_API NiteStatus niteInitializeUserTrackerByDevice(void*, NiteUserTrackerHandle*);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteInitializeUserTrackerByDevice(OniDeviceHandle pDevice, out NiteUserTrackerHandle pHandle);
+
+
+
+//NITE_API NiteStatus niteShutdownUserTracker(NiteUserTrackerHandle);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteShutdownUserTracker(NiteUserTrackerHandle pHandle);
+
+
+//NITE_API NiteStatus niteStartSkeletonTracking(NiteUserTrackerHandle, NiteUserId);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteStartSkeletonTracking(NiteUserTrackerHandle pHandle, NiteUserId userId);
+
+
+//NITE_API void niteStopSkeletonTracking(NiteUserTrackerHandle, NiteUserId);
+        [DllImport("NiTE2.dll")]
+        public static extern void niteStopSkeletonTracking(NiteUserTrackerHandle pHandle, NiteUserId userId);
+
+//NITE_API bool niteIsSkeletonTracking(NiteUserTrackerHandle, NiteUserId);
+        [DllImport("NiTE2.dll")]
+        public static extern bool niteIsSkeletonTracking(NiteUserTrackerHandle pHandle, NiteUserId userId);
+
+
+//NITE_API NiteStatus niteSetSkeletonSmoothing(NiteUserTrackerHandle, float);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteSetSkeletonSmoothing(NiteUserTrackerHandle pHandle, float smoothing);
+
+//NITE_API NiteStatus niteGetSkeletonSmoothing(NiteUserTrackerHandle, float*);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteGetSkeletonSmoothing(NiteUserTrackerHandle pHandle, out float smoothing);
+
+//NITE_API NiteStatus niteStartPoseDetection(NiteUserTrackerHandle, NiteUserId, NitePoseType);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteStartPoseDetection(NiteUserTrackerHandle pHandle, NiteUserId userId, NitePoseType poseType);
+
+        //NITE_API void niteStopPoseDetection(NiteUserTrackerHandle, NiteUserId, NitePoseType);
+        [DllImport("NiTE2.dll")]
+        public static extern void niteStopPoseDetection(NiteUserTrackerHandle pHandle, NiteUserId userId, NitePoseType poseType);
+
+//NITE_API void niteStopAllPoseDetection(NiteUserTrackerHandle, NiteUserId);
+        [DllImport("NiTE2.dll")]
+        public static extern void niteStopAllPoseDetection(NiteUserTrackerHandle pHandle, NiteUserId userId);
+
+
+//NITE_API NiteStatus niteRegisterUserTrackerCallbacks(NiteUserTrackerHandle, NiteUserTrackerCallbacks*, void*);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteRegisterUserTrackerCallbacks(NiteUserTrackerHandle pHandle, IntPtr pCallbacks, IntPtr pCookie);
+
+//NITE_API void niteUnregisterUserTrackerCallbacks(NiteUserTrackerHandle, NiteUserTrackerCallbacks*);
+        [DllImport("NiTE2.dll")]
+        public static extern void niteUnregisterUserTrackerCallbacks(NiteUserTrackerHandle pHandle, IntPtr pCallbacks);
+
+//NITE_API NiteStatus niteReadUserTrackerFrame(NiteUserTrackerHandle, NiteUserTrackerFrame**);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteReadUserTrackerFrame(NiteUserTrackerHandle pHandle, ref IntPtr pFrame);
+
+//NITE_API NiteStatus niteUserTrackerFrameAddRef(NiteUserTrackerHandle, NiteUserTrackerFrame*);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteUserTrackerFrameAddRef(NiteUserTrackerHandle pHandle, IntPtr pFrame);
+
+
+//NITE_API NiteStatus niteUserTrackerFrameRelease(NiteUserTrackerHandle, NiteUserTrackerFrame*);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteUserTrackerFrameRelease(NiteUserTrackerHandle pHandle, IntPtr pFrame);
+
+
+//// HandTracker
+//NITE_API NiteStatus niteInitializeHandTracker(NiteHandTrackerHandle*);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteInitializeHandTracker(out NiteHandTrackerHandle pHandle);
+
+
+//NITE_API NiteStatus niteInitializeHandTrackerByDevice(void*, NiteHandTrackerHandle*);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteInitializeHandTrackerByDevice(IntPtr pDevice, out NiteHandTrackerHandle pHandle);
+
+
+//NITE_API NiteStatus niteShutdownHandTracker(NiteHandTrackerHandle);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteShutdownHandTracker(NiteHandTrackerHandle pHandle);
+
+
+//NITE_API NiteStatus niteStartHandTracking(NiteHandTrackerHandle, const NitePoint3f*, NiteHandId* pNewHandId);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteStartHandTracking(NiteHandTrackerHandle pHandle, ref NitePoint3f point, out NiteHandId pNewHandId);
+
+
+//NITE_API void niteStopHandTracking(NiteHandTrackerHandle, NiteHandId);
+        [DllImport("NiTE2.dll")]
+        public static extern void niteStopHandTracking(NiteHandTrackerHandle pHandle, NiteHandId handId);
+
+//NITE_API void niteStopAllHandTracking(NiteHandTrackerHandle);
+        [DllImport("NiTE2.dll")]
+        public static extern void niteStopAllHandTracking(NiteHandTrackerHandle pHandle);
+
+//NITE_API NiteStatus niteSetHandSmoothingFactor(NiteHandTrackerHandle, float);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteSetHandSmoothingFactor(NiteHandTrackerHandle pHandle, float smoothing);
+
+//NITE_API NiteStatus niteGetHandSmoothingFactor(NiteHandTrackerHandle, float*);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteSetHandSmoothingFactor(NiteHandTrackerHandle pHandle, out float smoothing);
+
+
+//NITE_API NiteStatus niteRegisterHandTrackerCallbacks(NiteHandTrackerHandle, NiteHandTrackerCallbacks*, void*);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteRegisterHandTrackerCallbacks(NiteHandTrackerHandle pHandle, IntPtr pCallbacks, IntPtr pCookie);
+
+//NITE_API void niteUnregisterHandTrackerCallbacks(NiteHandTrackerHandle, NiteHandTrackerCallbacks*);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteUnregisterHandTrackerCallbacks(NiteHandTrackerHandle pHandle, IntPtr pCallbacks);
+
+
+//NITE_API NiteStatus niteReadHandTrackerFrame(NiteHandTrackerHandle, NiteHandTrackerFrame**);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteReadHandTrackerFrame(NiteHandTrackerHandle pHandle, ref IntPtr pFrame);
+
+
+//NITE_API NiteStatus niteHandTrackerFrameAddRef(NiteHandTrackerHandle, NiteHandTrackerFrame*);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteHandTrackerFrameAddRef(NiteHandTrackerHandle pHandle, IntPtr pFrame);
+
+//NITE_API NiteStatus niteHandTrackerFrameRelease(NiteHandTrackerHandle, NiteHandTrackerFrame*);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteHandTrackerFrameRelease(NiteHandTrackerHandle pHandle, IntPtr pFrame);
+
+
+//NITE_API NiteStatus niteStartGestureDetection(NiteHandTrackerHandle, NiteGestureType);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteStartGestureDetection(NiteHandTrackerHandle pHandle, NiteGestureType gestureType);
+
+//NITE_API void niteStopGestureDetection(NiteHandTrackerHandle, NiteGestureType);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteStopGestureDetection(NiteHandTrackerHandle pHandle, NiteGestureType gestureType);
+
+//NITE_API void niteStopAllGestureDetection(NiteHandTrackerHandle);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteStopAllGestureDetection(NiteHandTrackerHandle pHandle);
+ 
+//NITE_API NiteStatus niteConvertJointCoordinatesToDepth(NiteUserTrackerHandle userTracker, float x, float y, float z, float* pX, float* pY);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteConvertJointCoordinatesToDepth(NiteUserTrackerHandle userTracker, float x, float y, float z, out float pX, out float pY);
+
+//NITE_API NiteStatus niteConvertDepthCoordinatesToJoint(NiteUserTrackerHandle userTracker, int x, int y, int z, float* pX, float* pY);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteConvertDepthCoordinatesToJoint(NiteUserTrackerHandle userTracker, int x, int y, int z, out float pX, out float pY);
+
+//NITE_API NiteStatus niteConvertHandCoordinatesToDepth(NiteHandTrackerHandle handTracker, float x, float y, float z, float* pX, float* pY);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteConvertHandCoordinatesToDepth(NiteUserTrackerHandle userTracker,  float x, float y, float z, out float pX, out float pY);
+
+//NITE_API NiteStatus niteConvertDepthCoordinatesToHand(NiteHandTrackerHandle handTracker, int x, int y, int z, float* pX, float* pY);
+        [DllImport("NiTE2.dll")]
+        public static extern NiteStatus niteConvertDepthCoordinatesToHand(NiteUserTrackerHandle userTracker, int x, int y, int z, out float pX, out float pY);
+
     }
 
 
