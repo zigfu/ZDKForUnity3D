@@ -345,10 +345,17 @@ public class ZigInput : MonoBehaviour {
 	public bool ReaderInited { get; private set; }
     public bool kinectSDK = false;
 
+    //todo: remove the next two funcitons
     public void keepTrying()
     {
         ((OpenNI2.ZigInputOpenNI2)reader).keepTrying = true;
     }
+
+    public void testConvert()
+    {
+        ((OpenNI2.ZigInputOpenNI2)reader).testConvert = true;
+    }
+
     public OpenNI.HandsGenerator GetHands()
     {
         return ((ZigInputOpenNI)reader).Hands;

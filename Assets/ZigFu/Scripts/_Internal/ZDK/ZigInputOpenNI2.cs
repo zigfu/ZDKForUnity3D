@@ -141,7 +141,15 @@ namespace OpenNI2
     //public OniDeviceInfoCallback		deviceDisconnected;
     //[MarshalAs(UnmanagedType.FunctionPtr)]
     //public OniDeviceStateCallback		deviceStateChanged;
-       
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct OniFloatPoint3D
+    {
+        public float x;
+        public float y;
+        public float z;
+    }
+
     [StructLayout(LayoutKind.Sequential)]
     public struct OniDeviceCallbacks
     {
@@ -334,11 +342,11 @@ namespace OpenNI2
 
 //// ONI_C_API OniStatus oniConvertRealWorldToProjective(OniStreamHandle stream, OniFloatPoint3D* pRealWorldPoint, OniFloatPoint3D* pProjectivePoint);
         [DllImport("OpenNI2.dll")]
-        public static extern OniStatus oniConvertRealWorldToProjective(OniStreamHandle stream, IntPtr pRealWorldPoint, IntPtr pProjectivePoint);
+        public static extern OniStatus oniConvertRealWorldToProjective(OniStreamHandle stream, ref OniFloatPoint3D pRealWorldPoint, ref OniFloatPoint3D pProjectivePoint);
 
 //// ONI_C_API OniStatus oniConvertProjectiveToRealWorld(OniStreamHandle stream, OniFloatPoint3D* pProjectivePoint, OniFloatPoint3D* pRealWorldPoint);
         [DllImport("OpenNI2.dll")]
-        public static extern OniStatus oniConvertProjectiveToRealWorld(OniStreamHandle stream, IntPtr pProjectivePoint, IntPtr pRealWorldPoint);
+        public static extern OniStatus oniConvertProjectiveToRealWorld(OniStreamHandle stream, ref OniFloatPoint3D pProjectivePoint, ref OniFloatPoint3D pRealWorldPoint);
 
 
 ///**
@@ -450,6 +458,7 @@ namespace OpenNI2
 
         OniDeviceHandle pDevice;
         OniStreamHandle pDepthStream;
+        OniStreamHandle pImageStream;
         IntPtr pDeviceCBHandle;
         IntPtr pNewFrameCBHandle;
         OpenNI2.OpenNI2Wrapper.OniDeviceCallbacks callbacks;        
@@ -458,6 +467,7 @@ namespace OpenNI2
         Delegate StateChanged;
         Delegate NewFrame;
         IntPtr pCallbacks;
+        byte[] rawImageMap;
         // init/update/shutdown
 	    public void Init(ZigInputSettings settings)
         {
@@ -530,18 +540,25 @@ namespace OpenNI2
                 
 
                 s = OpenNI2.OpenNI2Wrapper.oniDeviceCreateStream(pDevice, OpenNI2.OpenNI2Wrapper.OniSensorType.ONI_SENSOR_DEPTH, ref pDepthStream);
-                Debug.Log("OpenNI2 Wrapper Stream created : " + s + " pDepthStream " + pDepthStream);
+                Debug.Log("OpenNI2 Wrapper Depth Stream created : " + s + " pDepthStream " + pDepthStream);
 
                 s = OpenNI2.OpenNI2Wrapper.oniStreamStart(pDepthStream);
-                Debug.Log("OpenNI2 Wrapper Stream started : " + s);
+                Debug.Log("OpenNI2 Wrapper Depth Stream started : " + s);
+
+                s = OpenNI2.OpenNI2Wrapper.oniDeviceCreateStream(pDevice, OpenNI2.OpenNI2Wrapper.OniSensorType.ONI_SENSOR_COLOR, ref pImageStream);
+                Debug.Log("OpenNI2 Wrapper Image Stream created : " + s + " pImageStream " + pImageStream);
+
+                s = OpenNI2.OpenNI2Wrapper.oniStreamStart(pImageStream);
+                Debug.Log("OpenNI2 Wrapper Image Stream started : " + s);
               
                 //NewFrame = new OpenNI2.OpenNI2Wrapper.OniNewFrameCallback(newFrame_handler);
                 //s = OpenNI2.OpenNI2Wrapper.oniStreamRegisterNewFrameCallback(pDepthStream, Marshal.GetFunctionPointerForDelegate(NewFrame), pDevice, out pNewFrameCBHandle);
-                //Debug.Log("OpenNI2 noniStreamRegisterNewFrameCallback " + s + " pNewFrameCBHandle: " + pNewFrameCBHandle);
+                //Debug.Log("OpenNI2 oniStreamRegisterNewFrameCallback " + s + " pNewFrameCBHandle: " + pNewFrameCBHandle);
 
         //TODO: should get properties of the stream and set it to resolution
                 Depth = new ZigDepth(320, 240);
-
+                Image = new ZigImage(320, 240);
+                rawImageMap = new byte[Image.xres * Image.yres * 3];
                 frame = new OpenNI2.OpenNI2Wrapper.OniFrame();
             }
 
@@ -639,6 +656,7 @@ namespace OpenNI2
 
         }
         public bool keepTrying = false;
+        public bool testConvert = false;
         List<ZigInputUser> users;
 	    public void Update()
         {
@@ -666,6 +684,14 @@ namespace OpenNI2
                 Debug.Log("OpenNI2 stream stopped");
 
                 OpenNI2.OpenNI2Wrapper.oniStreamDestroy(pDepthStream);
+                Debug.Log("OpenNI2 stream destroyed");
+            }
+            if (pImageStream != IntPtr.Zero)
+            {
+                OpenNI2.OpenNI2Wrapper.oniStreamStop(pImageStream);
+                Debug.Log("OpenNI2 stream stopped");
+
+                OpenNI2.OpenNI2Wrapper.oniStreamDestroy(pImageStream);
                 Debug.Log("OpenNI2 stream destroyed");
             }
             if (pDeviceCBHandle != IntPtr.Zero)
@@ -752,12 +778,37 @@ namespace OpenNI2
              //       Debug.Log("ZigDepth reallocated, data: " + Depth.data.Length);
 
                 }
+
+
+
                 //Debug.Log("Frame.data: \t\t\t FRAME.DATA:\t" + frame.data);
               
                 Marshal.Copy(frame.data, Depth.data, 0, Depth.data.Length);
             //    Debug.Log("Marshal Copy complete " + Depth.data.Length);
 
+                
                 OpenNI2.OpenNI2Wrapper.oniFrameRelease(pFrame);
+                
+                if (testConvert)
+                {
+                    Vector3 ws = ConvertImageToWorldSpace(new Vector3(10f,10f,(float)Depth.data[10*320+10]));
+                    Debug.Log("test convert: " + ws);
+                    testConvert = false;
+                }
+
+                s = OpenNI2.OpenNI2Wrapper.oniStreamReadFrame(pImageStream, ref pFrame);
+                frame = (OpenNI2.OpenNI2Wrapper.OniFrame)Marshal.PtrToStructure(pFrame, typeof(OpenNI2.OpenNI2Wrapper.OniFrame));
+              //  Debug.Log("Image frame: " + frame.width + " " + frame.height);
+                Marshal.Copy(frame.data, rawImageMap, 0, rawImageMap.Length);
+                
+                int rawi=0;
+                for (int i = 0; i < Image.data.Length; i++, rawi+=3) {
+                    Image.data[i].r = rawImageMap[rawi];
+                    Image.data[i].g = rawImageMap[rawi+1];
+                    Image.data[i].b = rawImageMap[rawi+2];
+                };
+                OpenNI2.OpenNI2Wrapper.oniFrameRelease(pFrame);
+
            //     Debug.Log("oniFrameRelease");
              
             }
@@ -774,12 +825,22 @@ namespace OpenNI2
 
         // misc
         public Vector3 ConvertWorldToImageSpace(Vector3 worldPosition)
-        { 
-             return Vector3.zero;
+        {
+            float x, y, z;
+
+            OpenNI2.OpenNI2Wrapper.OniStatus s = OpenNI2.OpenNI2Wrapper.oniCoordinateConverterWorldToDepth(pDepthStream, worldPosition.x, worldPosition.y, worldPosition.z, out x, out y, out z);
+            Debug.Log("Convert status: " + s);
+            
+            return new Vector3(x, y, z);
         }
         public Vector3 ConvertImageToWorldSpace(Vector3 imagePosition)
         {
-            return Vector3.zero;
+            float x, y, z;
+            OpenNI2.OpenNI2Wrapper.OniStatus s = OpenNI2.OpenNI2Wrapper.oniCoordinateConverterDepthToWorld(pDepthStream, imagePosition.x, imagePosition.y, imagePosition.z, out x, out y, out z);
+            
+            Debug.Log("Convert status: " + s);
+         
+            return new Vector3(x,y,z);
         }
         public bool AlignDepthToRGB { get; set; }
     }

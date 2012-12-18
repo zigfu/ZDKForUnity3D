@@ -68,5 +68,10 @@ public class Zig : MonoBehaviour {
 
             ZigInput.Instance.keepTrying();
         }
+        if (GUI.Button(new Rect(20, 70, 80, 20), "Test Convert"))
+        {
+
+            ZigInput.Instance.testConvert();
+        }
     }
 }
