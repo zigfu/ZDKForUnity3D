@@ -255,14 +255,30 @@ namespace OpenNI2
 
 /** Set property in the device. Use the properties listed in OniTypes.h: ONI_DEVICE_PROPERTY_..., or specific ones supplied by the device. */
 //ONI_C_API OniStatus oniDeviceSetProperty(OniDeviceHandle device, int propertyId, const void* data, int dataSize);
+        [DllImport("OpenNI2.dll")]
+        public static extern OniStatus oniDeviceSetProperty(OniDeviceHandle device, int propertyId, IntPtr data, int dataSize);
+
 ///** Get property in the device. Use the properties listed in OniTypes.h: ONI_DEVICE_PROPERTY_..., or specific ones supplied by the device. */
 //ONI_C_API OniStatus oniDeviceGetProperty(OniDeviceHandle device, int propertyId, void* data, int* pDataSize);
+        [DllImport("OpenNI2.dll")]
+        public static extern OniStatus oniDeviceGetProperty(OniDeviceHandle device, int propertyId, out IntPtr data, out int dataSize);
+
+
 ///** Check if the property is supported by the device. Use the properties listed in OniTypes.h: ONI_DEVICE_PROPERTY_..., or specific ones supplied by the device. */
 //ONI_C_API OniBool oniDeviceIsPropertySupported(OniDeviceHandle device, int propertyId);
+        [DllImport("OpenNI2.dll")]
+        public static extern bool oniDeviceIsPropertySupported(OniDeviceHandle device, int propertyId);
+
 ///** Invoke an internal functionality of the device. */
 //ONI_C_API OniStatus oniDeviceInvoke(OniDeviceHandle device, int commandId, const void* data, int dataSize);
+        [DllImport("OpenNI2.dll")]
+        public static extern OniStatus oniDeviceInvoke(OniDeviceHandle device, int commandId, IntPtr data, int dataSize);
+
+
 ///** Check if a command is supported, for invoke */
 //ONI_C_API OniBool oniDeviceIsCommandSupported(OniDeviceHandle device, int commandId);
+        [DllImport("OpenNI2.dll")]
+        public static extern bool oniDeviceIsCommandSupported(OniDeviceHandle device, int commandId);
 
 //ONI_C_API OniBool oniDeviceIsImageRegistrationModeSupported(OniDeviceHandle device, OniImageRegistrationMode mode);
         [DllImport("OpenNI2.dll")]
