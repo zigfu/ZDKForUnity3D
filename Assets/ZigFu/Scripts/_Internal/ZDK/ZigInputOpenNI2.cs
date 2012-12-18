@@ -6,7 +6,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-
+using OniStreamHandle = System.IntPtr;
+using OniDeviceHandle = System.IntPtr;
+using OniRecorderHandle = System.IntPtr;
+using OniDepthPixel = System.UInt16;
 namespace OpenNI2
 {
 
@@ -186,7 +189,7 @@ namespace OpenNI2
         ///** Wait for any of the streams to have a new frame */
         //ONI_C_API OniStatus oniWaitForAnyStream(OniStreamHandle* pStreams, int numStreams, int* pStreamIndex, int timeout);
         [DllImport("OpenNI2.dll")]
-        public static extern OniStatus oniWaitForAnyStream(ref IntPtr pHandle, int numStreams, out int pStreamIndex, int timeout);
+        public static extern OniStatus oniWaitForAnyStream(ref IntPtr pHandle, int numStreams, out int pStreamIndex, int timeout); //TODO properly handle 1st arg stream array
 
         ///** Get the current version of OpenNI2 */
         //ONI_C_API OniVersion oniGetVersion();
@@ -205,34 +208,35 @@ namespace OpenNI2
         public static extern string oniGetExtendedError();
 
         /** Open a device. Uri can be taken from the matching OniDeviceInfo. */
+        //ONI_C_API OniStatus oniDeviceOpen(const char* uri, OniDeviceHandle* pDevice);
         [DllImport("OpenNI2.dll")]
-        public static extern OniStatus oniDeviceOpen( string uri, ref IntPtr pDevice);
+        public static extern OniStatus oniDeviceOpen( string uri, ref OniDeviceHandle pDevice);
 
         /** Close a device */
         [DllImport("OpenNI2.dll")]
-        public static extern OniStatus oniDeviceClose(IntPtr device);
+        public static extern OniStatus oniDeviceClose(OniDeviceHandle device);
 
         /** Get the possible configurations available for a specific source, or NULL if the source does not exist. */
         //ONI_C_API const OniSensorInfo* oniDeviceGetSensorInfo(OniDeviceHandle device, OniSensorType sensorType);
         [DllImport("OpenNI2.dll")]
-        public static extern IntPtr oniDeviceGetSensorInfo(IntPtr device, OniSensorType sensorType);
+        public static extern IntPtr oniDeviceGetSensorInfo(OniDeviceHandle device, OniSensorType sensorType);
 
         ///** Get the OniDeviceInfo of a certain device. */
         //ONI_C_API OniStatus oniDeviceGetInfo(OniDeviceHandle device, OniDeviceInfo* pInfo);
         [DllImport("OpenNI2.dll")]
-        public static extern OniStatus oniDeviceGetInfo(IntPtr device, ref OniDeviceInfo pInfo);   
+        public static extern OniStatus oniDeviceGetInfo(OniDeviceHandle device, ref OniDeviceInfo pInfo);   
 
         /** Create a new stream in the device. The stream will originate from the source. */
         //ONI_C_API OniStatus oniDeviceCreateStream(OniDeviceHandle device, OniSensorType sensorType, OniStreamHandle* pStream);
         [DllImport("OpenNI2.dll")]
-        public static extern OniStatus oniDeviceCreateStream(IntPtr device, OniSensorType sensorType, ref IntPtr pStream);
+        public static extern OniStatus oniDeviceCreateStream(OniDeviceHandle device, OniSensorType sensorType, ref IntPtr pStream);
    
         //ONI_C_API OniStatus oniDeviceEnableDepthColorSync(OniDeviceHandle device);
         [DllImport("OpenNI2.dll")]
-        public static extern OniStatus oniDeviceEnableDepthColorSync(IntPtr device);   
+        public static extern OniStatus oniDeviceEnableDepthColorSync(OniDeviceHandle device);   
         //ONI_C_API void oniDeviceDisableDepthColorSync(OniDeviceHandle device);
         [DllImport("OpenNI2.dll")]
-        public static extern void oniDeviceDisableDepthColorSync(IntPtr device);
+        public static extern void oniDeviceDisableDepthColorSync(OniDeviceHandle device);
 
 /** Set property in the device. Use the properties listed in OniTypes.h: ONI_DEVICE_PROPERTY_..., or specific ones supplied by the device. */
 //ONI_C_API OniStatus oniDeviceSetProperty(OniDeviceHandle device, int propertyId, const void* data, int dataSize);
@@ -247,54 +251,72 @@ namespace OpenNI2
 
 //ONI_C_API OniBool oniDeviceIsImageRegistrationModeSupported(OniDeviceHandle device, OniImageRegistrationMode mode);
         [DllImport("OpenNI2.dll")]
-        public static extern bool oniDeviceIsImageRegistrationModeSupported(IntPtr device, OniImageRegistrationMode mode);
+        public static extern bool oniDeviceIsImageRegistrationModeSupported(OniDeviceHandle device, OniImageRegistrationMode mode);
 
         /** Destroy an existing stream */
         [DllImport("OpenNI2.dll")]
-        public static extern void oniStreamDestroy(IntPtr stream);
+        public static extern void oniStreamDestroy(OniStreamHandle stream);
         
         /** Get the OniSourceInfo of the certain stream. */
         //ONI_C_API const OniSensorInfo* oniStreamGetSensorInfo(OniStreamHandle stream);
         [DllImport("OpenNI2.dll")]
-        public static extern IntPtr oniStreamGetSensorInfo(IntPtr stream);
+        public static extern IntPtr oniStreamGetSensorInfo(OniStreamHandle stream);
 
         /** Start generating data from the stream. */
         //ONI_C_API OniStatus oniStreamStart(OniStreamHandle stream);
         [DllImport("OpenNI2.dll")]
-        public static extern OniStatus oniStreamStart(IntPtr stream);
+        public static extern OniStatus oniStreamStart(OniStreamHandle stream);
 
         /** Stop generating data from the stream. */
         //ONI_C_API void oniStreamStop(OniStreamHandle stream);        
         [DllImport("OpenNI2.dll")]
-        public static extern void oniStreamStop(IntPtr stream);
+        public static extern void oniStreamStop(OniStreamHandle stream);
 
 
 
         ///** Get the next frame from the stream. This function is blocking until there is a new frame from the stream. For timeout, use oniWaitForStreams() first */
         //ONI_C_API OniStatus oniStreamReadFrame(OniStreamHandle stream, OniFrame** pFrame);
         [DllImport("OpenNI2.dll")]
-        public static extern OniStatus oniStreamReadFrame(IntPtr stream, ref IntPtr pFrame);
+        public static extern OniStatus oniStreamReadFrame(OniStreamHandle stream, ref IntPtr pFrame);
 
         ///** Register a callback to when the stream has a new frame. */
         //ONI_C_API OniStatus oniStreamRegisterNewFrameCallback(OniStreamHandle stream, OniNewFrameCallback handler, void* pCookie, OniCallbackHandle* pHandle);
         [DllImport("OpenNI2.dll")]
-        public static extern OniStatus oniStreamRegisterNewFrameCallback(IntPtr stream, IntPtr handler, IntPtr pCookie, out IntPtr pHandle);
+        public static extern OniStatus oniStreamRegisterNewFrameCallback(OniStreamHandle stream, IntPtr handler, IntPtr pCookie, out IntPtr pHandle);
 
 ///** Unregister a previously registered callback to when the stream has a new frame. */
 //ONI_C_API void oniStreamUnregisterNewFrameCallback(OniStreamHandle stream, OniCallbackHandle handle);
         [DllImport("OpenNI2.dll")]
-        public static extern void oniStreamUnregisterNewFrameCallback(IntPtr stream, IntPtr handle);
+        public static extern void oniStreamUnregisterNewFrameCallback(OniStreamHandle stream, IntPtr handle);
 
 ///** Set property in the stream. Use the properties listed in OniTypes.h: ONI_STREAM_PROPERTY_..., or specific ones supplied by the device for its streams. */
 //ONI_C_API OniStatus oniStreamSetProperty(OniStreamHandle stream, int propertyId, const void* data, int dataSize);
+        [DllImport("OpenNI2.dll")]
+        public static extern OniStatus oniStreamSetProperty(OniStreamHandle stream, int propertId, IntPtr data, int dataSize);
+
+
 ///** Get property in the stream. Use the properties listed in OniTypes.h: ONI_STREAM_PROPERTY_..., or specific ones supplied by the device for its streams. */
 //ONI_C_API OniStatus oniStreamGetProperty(OniStreamHandle stream, int propertyId, void* data, int* pDataSize);
+        [DllImport("OpenNI2.dll")]
+        public static extern OniStatus oniStreamGetProperty(OniStreamHandle stream, int propertId, out IntPtr data, out int dataSize);
+
 ///** Check if the property is supported the stream. Use the properties listed in OniTypes.h: ONI_STREAM_PROPERTY_..., or specific ones supplied by the device for its streams. */
 //ONI_C_API OniBool oniStreamIsPropertySupported(OniStreamHandle stream, int propertyId);
+        [DllImport("OpenNI2.dll")]
+        public static extern bool oniStreamIsPropertySupported(OniStreamHandle stream, int propertyId);
+
 ///** Invoke an internal functionality of the stream. */
 //ONI_C_API OniStatus oniStreamInvoke(OniStreamHandle stream, int commandId, const void* data, int dataSize);
+        [DllImport("OpenNI2.dll")]
+        public static extern OniStatus oniStreamInvoke(OniStreamHandle stream, int commandId, IntPtr data, int dataSize);
+
+
 ///** Check if a command is supported, for invoke */
 //ONI_C_API OniBool oniStreamIsCommandSupported(OniStreamHandle stream, int commandId);
+        [DllImport("OpenNI2.dll")]
+        public static extern bool oniStreamIsCommandSupported(OniStreamHandle stream, int commandId);
+
+
 //// handle registration of pixel
 
 //////
@@ -311,7 +333,13 @@ namespace OpenNI2
 
 
 //// ONI_C_API OniStatus oniConvertRealWorldToProjective(OniStreamHandle stream, OniFloatPoint3D* pRealWorldPoint, OniFloatPoint3D* pProjectivePoint);
+        [DllImport("OpenNI2.dll")]
+        public static extern OniStatus oniConvertRealWorldToProjective(OniStreamHandle stream, IntPtr pRealWorldPoint, IntPtr pProjectivePoint);
+
 //// ONI_C_API OniStatus oniConvertProjectiveToRealWorld(OniStreamHandle stream, OniFloatPoint3D* pProjectivePoint, OniFloatPoint3D* pRealWorldPoint);
+        [DllImport("OpenNI2.dll")]
+        public static extern OniStatus oniConvertProjectiveToRealWorld(OniStreamHandle stream, IntPtr pProjectivePoint, IntPtr pRealWorldPoint);
+
 
 ///**
 // * Creates a recorder that records to a file.
@@ -321,6 +349,9 @@ namespace OpenNI2
 // * @retval ONI_STATUS_ERROR Upon any kind of failure.
 // */
 //ONI_C_API OniStatus oniCreateRecorder(const char* fileName, OniRecorderHandle* pRecorder);
+        [DllImport("OpenNI2.dll")]
+        public static extern OniStatus oniCreateRecorder(string fileName, OniRecorderHandle pRecorder);
+
 
 ///**
 // * Attaches a stream to a recorder. The amount of attached streams is virtually
@@ -336,6 +367,9 @@ namespace OpenNI2
 //        OniRecorderHandle   recorder, 
 //        OniStreamHandle     stream, 
 //        OniBool             allowLossyCompression);
+        [DllImport("OpenNI2.dll")]
+        public static extern OniStatus oniRecorderAttachStream(OniRecorderHandle recorder, OniStreamHandle stream, bool allowLossyCompression);
+
 
 ///**
 // * Starts recording. There must be at least one stream attached to the recorder,
@@ -345,7 +379,10 @@ namespace OpenNI2
 // * @retval ONI_STATUS_ERROR Upon any kind of failure.
 // */
 //ONI_C_API OniStatus oniRecorderStart(OniRecorderHandle recorder);
+        [DllImport("OpenNI2.dll")]
+        public static extern OniStatus oniRecorderStart(OniRecorderHandle recorder);
 
+        //TODO: tell primesense about void typed function despite retval in doc
 ///**
 // * Stops recording. You can resume recording via oniRecorderStart.
 // * @param[in] recorder The handle to the recorder.
@@ -353,6 +390,9 @@ namespace OpenNI2
 // * @retval ONI_STATUS_ERROR Upon any kind of failure.
 // */
 //ONI_C_API void oniRecorderStop(OniRecorderHandle recorder);
+        [DllImport("OpenNI2.dll")]
+        public static extern void oniRecorderStop(OniRecorderHandle recorder);
+
 
 ///**
 // * Stops recording if needed, and destroys a recorder.
@@ -362,12 +402,21 @@ namespace OpenNI2
 // * @retval ONI_STATUS_ERROR Upon any kind of failure.
 // */
 //ONI_C_API OniStatus oniRecorderDestroy(OniRecorderHandle* pRecorder);
+        [DllImport("OpenNI2.dll")]
+        public static extern OniStatus oniRecorderDestroy(ref OniRecorderHandle recorder);
+
 
 //ONI_C_API OniStatus oniCoordinateConverterDepthToWorld(OniStreamHandle depthStream, float depthX, float depthY, float depthZ, float* pWorldX, float* pWorldY, float* pWorldZ);
+        [DllImport("OpenNI2.dll")]
+        public static extern OniStatus oniCoordinateConverterDepthToWorld(OniStreamHandle depthStream, float depthX, float depthY, float depthZ, out float pWorldX, out float pWorldY, out float pWorldZ);
 
 //ONI_C_API OniStatus oniCoordinateConverterWorldToDepth(OniStreamHandle depthStream, float worldX, float worldY, float worldZ, float* pDepthX, float* pDepthY, float* pDepthZ);
+        [DllImport("OpenNI2.dll")]
+        public static extern OniStatus oniCoordinateConverterWorldToDepth(OniStreamHandle depthStream, float worldX, float worldY, float worldZ, out float pDepthX, out float pDepthY, out float pDepthZ);
 
 //ONI_C_API OniStatus oniCoordinateConverterDepthToColor(OniStreamHandle depthStream, OniStreamHandle colorStream, int depthX, int depthY, OniDepthPixel depthZ, int* pColorX, int* pColorY);
+        [DllImport("OpenNI2.dll")]
+        public static extern OniStatus oniCoordinateConverterDepthToColor(OniStreamHandle depthStream, OniStreamHandle colorStream, int depthX, int depthY, float depthZ, out float pWorldX, out float pWorldY, out float pWorldZ);
 
 
 
@@ -399,8 +448,8 @@ namespace OpenNI2
     class ZigInputOpenNI2 : IZigInputReader
     {
 
-        IntPtr pDevice;
-        IntPtr pDepthStream;
+        OniDeviceHandle pDevice;
+        OniStreamHandle pDepthStream;
         IntPtr pDeviceCBHandle;
         IntPtr pNewFrameCBHandle;
         OpenNI2.OpenNI2Wrapper.OniDeviceCallbacks callbacks;        
@@ -503,6 +552,9 @@ namespace OpenNI2
         {
             //OpenNI2.OpenNI2Wrapper.oniStreamUnregisterNewFrameCallback(pDepthStream, pNewFrameCBHandle);
             Debug.Log("EVENT: new frame: " + stream + " pCookie " + pCookie);
+
+            //Warning: unity canot access monobehavior methods from the handler thread
+
       //      if (keepTrying)
       //      {
       //          UpdateDepth();
