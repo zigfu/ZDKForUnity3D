@@ -457,22 +457,9 @@ namespace OpenNI2
 
     public class NITE2Wrapper
     {
-        [Flags]
         
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct NiteVersion
-        {
-
-            /** Major version number, incremented for major API restructuring. */
-            public int major;
-            /** Minor version number, incremented when signficant new features added. */
-            public int minor;
-            /** Mainenance build number, incremented for new releases that primarily provide minor bug fixes. */
-            public int maintenance;
-            /** Build number. Incremented for each new API build. Generally not shown on the installer and download site. */
-            public int build;
-        }
+        
+        [Flags]        
         public enum NiteJointType : uint
         {
 	        NITE_JOINT_HEAD = 0,
@@ -607,111 +594,111 @@ namespace OpenNI2
         public struct NiteSkeletonJoint
         {
 	        /** Type of the joint */
-	        NiteJointType jointType;
+	        public NiteJointType jointType;
 
 	        /** Position of the joint - in real world coordinates */
-	        NitePoint3f position;
-	        float positionConfidence;
+	        public NitePoint3f position;
+	        public float positionConfidence;
 
 	        /** Orientation of the joint */
-	        NiteQuaternion orientation;
-	        float orientationConfidence;
+	        public NiteQuaternion orientation;
+	        public float orientationConfidence;
         }
 
         [StructLayout(LayoutKind.Sequential)]
         public struct NiteBoundingBox
         {
-	        NitePoint3f min;
-	        NitePoint3f max;
+	        public NitePoint3f min;
+	        public NitePoint3f max;
         }
 
         [StructLayout(LayoutKind.Sequential)]
         public struct NitePoseData
         {
-	        NitePoseType type;
-	        int state;
+	        public NitePoseType type;
+	        public int state;
         } 
         
         [StructLayout(LayoutKind.Sequential)]
         public struct NiteSkeleton 
         {
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 15)] //NITE_JOINT_COUNT
-	        NiteSkeletonJoint [] joints;
-	        NiteSkeletonState state;
+	        public NiteSkeletonJoint [] joints;
+	        public NiteSkeletonState state;
         }
 
         /** Snapshot of a specific user */
         [StructLayout(LayoutKind.Sequential)]
         public struct NiteUserData
         {
-	        NiteUserId id;
-	        NiteBoundingBox boundingBox;
-	        NitePoint3f centerOfMass;
+	        public NiteUserId id;
+	        public NiteBoundingBox boundingBox;
+	        public NitePoint3f centerOfMass;
 
-	        int state;
+	        public int state;
 
-	        NiteSkeleton skeleton;
+	        public NiteSkeleton skeleton;
 
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)] //NITE_POSE_COUNT
-            NitePoseData [] poses;
+            public NitePoseData [] poses;
         }
 
         [StructLayout(LayoutKind.Sequential)]
         public struct NiteUserMap
         {
-            IntPtr pixels; //NiteUserId* pixels;
+            public IntPtr pixels; //NiteUserId* pixels;
 
-	        int width;
-	        int height;
+	        public int width;
+	        public int height;
 
-	        int stride;
+	        public int stride;
         }
 
         [StructLayout(LayoutKind.Sequential)]
         public struct NitePlane
         {
-	        NitePoint3f point;
-	        NitePoint3f normal;
+	        public NitePoint3f point;
+	        public NitePoint3f normal;
         } 
         
         [StructLayout(LayoutKind.Sequential)]
         public struct NiteUserTrackerFrame
         {
 	        /** Number of users */
-	        int userCount;
+	        public int userCount;
 	        /** List of users */
-	        IntPtr pUser;//NiteUserData* pUser;
+	        public IntPtr pUser;//NiteUserData* pUser;
 
 	        /** Scene segmentation map */
-	        NiteUserMap userMap;
+	        public NiteUserMap userMap;
 	        /** The depth frame from which this data was learned */
-	        IntPtr pDepthFrame; //OniFrame* pDepthFrame;
+	        public IntPtr pDepthFrame; //OniFrame* pDepthFrame;
 
-	        UInt64 timestamp;
-	        int frameIndex;
+	        public UInt64 timestamp;
+	        public int frameIndex;
 
 	        /** Confidence of the floor plane */
-	        float floorConfidence;
+	        public float floorConfidence;
 	        /** Floor plane */
-	        NitePlane floor;
+	        public NitePlane floor;
         } 
 
         /** A snapshot of a specific hand */
         [StructLayout(LayoutKind.Sequential)]
         public struct NiteHandData
         {
-	        NiteHandId id;
-	        NitePoint3f position;
-	        int state;
+	        public NiteHandId id;
+	        public NitePoint3f position;
+	        public int state;
         }
 
 /** A snapshot of a specific gesture */
         [StructLayout(LayoutKind.Sequential)]
         public struct NiteGestureData
         {
-	        NiteGestureType type;
-	        NitePoint3f currentPosition;
-	        int state;
+	        public NiteGestureType type;
+	        public NitePoint3f currentPosition;
+	        public int state;
         } 
 
     /** Output snapshot of the Hand Tracker algorithm */
@@ -719,21 +706,35 @@ namespace OpenNI2
         public struct NiteHandTrackerFrame
         {
 	        /** Number of hands */
-	        int handCount;
+	        public int handCount;
 	        /** List of hands */
-            IntPtr pHands; //NiteHandData* pHands;
+            public IntPtr pHands; //NiteHandData* pHands;
 
 	        /** Number of gestures */
-	        int gestureCount;
+	        public int gestureCount;
 	        /** List of gestures */
-	        IntPtr pGestures//NiteGestureData* pGestures;
+            public IntPtr pGestures;//NiteGestureData* pGestures;
 
 	        /** The depth frame from which this data was learned */
-	        IntPtr pDepthFrame; //OniFrame* pDepthFrame;
+	        public IntPtr pDepthFrame; //OniFrame* pDepthFrame;
 
-	        UInt64 timestamp;
-	        int frameIndex;
-        } 
+	        public UInt64 timestamp;
+	        public int frameIndex;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NiteVersion
+        {
+
+            /** Major version number, incremented for major API restructuring. */
+            public int major;
+            /** Minor version number, incremented when signficant new features added. */
+            public int minor;
+            /** Mainenance build number, incremented for new releases that primarily provide minor bug fixes. */
+            public int maintenance;
+            /** Build number. Incremented for each new API build. Generally not shown on the installer and download site. */
+            public int build;
+        }
 
         /**  Initialize OpenNI2. Use ONI_API_VERSION as the version. */
         //ONI_C_API OniStatus oniInitialize(int apiVersion);
@@ -925,7 +926,7 @@ namespace OpenNI2
 
         OniDeviceHandle pDevice;
         OniStreamHandle pDepthStream;
-        OniStreamHandle pImageStream;
+        OniStreamHandle pImageStream;        
         IntPtr pDeviceCBHandle;
         IntPtr pNewFrameCBHandle;
         OpenNI2.OpenNI2Wrapper.OniDeviceCallbacks callbacks;        
@@ -935,6 +936,9 @@ namespace OpenNI2
         Delegate NewFrame;
         IntPtr pCallbacks;
         byte[] rawImageMap;
+
+        NiteUserTrackerHandle pUserTracker;
+
         // init/update/shutdown
 	    public void Init(ZigInputSettings settings)
         {
@@ -1025,8 +1029,16 @@ namespace OpenNI2
         //TODO: should get properties of the stream and set it to resolution
                 Depth = new ZigDepth(320, 240);
                 Image = new ZigImage(320, 240);
+                LabelMap = new ZigLabelMap(320, 240);
                 rawImageMap = new byte[Image.xres * Image.yres * 3];
                 frame = new OpenNI2.OpenNI2Wrapper.OniFrame();
+
+
+
+
+                ns = OpenNI2.NITE2Wrapper.niteInitializeUserTracker(out pUserTracker);
+                Debug.Log("OpenNI2 Wrapper User Tracker Initialized : " + ns + " pUserTracker " + pUserTracker);
+
             }
 
         }
@@ -1145,6 +1157,11 @@ namespace OpenNI2
             //    OpenNI2.OpenNI2Wrapper.oniStreamUnregisterNewFrameCallback(pDepthStream, pNewFrameCBHandle);
             //    Debug.Log("OpenNI2 NewFrame unregistered");
             //}
+
+            if (pUserTracker != IntPtr.Zero)
+            {
+                OpenNI2.NITE2Wrapper.niteShutdownUserTracker(pUserTracker);
+            }
             if (pDepthStream != IntPtr.Zero)
             {
                 OpenNI2.OpenNI2Wrapper.oniStreamStop(pDepthStream);
@@ -1223,15 +1240,15 @@ namespace OpenNI2
                     return;
                 }
 
-               
-                s = OpenNI2.OpenNI2Wrapper.oniStreamReadFrame(pDepthStream, ref pFrame);
+                IntPtr pDepthFrame = IntPtr.Zero;
+                s = OpenNI2.OpenNI2Wrapper.oniStreamReadFrame(pDepthStream, ref pDepthFrame);
        //         Debug.Log("Read depthStream Frame: " + s + "\t\t\t pFRAME\t" + pFrame);
                 
                 //OpenNI2.OpenNI2Wrapper.oniFrameAddRef(pFrame);
                                 
                 //Debug.Log("pFrame: \t\t\t pFRAME\t" + pFrame);
 
-                frame = (OpenNI2.OpenNI2Wrapper.OniFrame)Marshal.PtrToStructure(pFrame, typeof(OpenNI2.OpenNI2Wrapper.OniFrame));
+                frame = (OpenNI2.OpenNI2Wrapper.OniFrame)Marshal.PtrToStructure(pDepthFrame, typeof(OpenNI2.OpenNI2Wrapper.OniFrame));
                 
                  
                 //Debug.Log("frame: " + frame.width + " " + frame.height);
@@ -1253,8 +1270,8 @@ namespace OpenNI2
                 Marshal.Copy(frame.data, Depth.data, 0, Depth.data.Length);
             //    Debug.Log("Marshal Copy complete " + Depth.data.Length);
 
+
                 
-                OpenNI2.OpenNI2Wrapper.oniFrameRelease(pFrame);
                 
                 if (testConvert)
                 {
@@ -1263,8 +1280,9 @@ namespace OpenNI2
                     testConvert = false;
                 }
 
-                s = OpenNI2.OpenNI2Wrapper.oniStreamReadFrame(pImageStream, ref pFrame);
-                frame = (OpenNI2.OpenNI2Wrapper.OniFrame)Marshal.PtrToStructure(pFrame, typeof(OpenNI2.OpenNI2Wrapper.OniFrame));
+                IntPtr pImageFrame = IntPtr.Zero;
+                s = OpenNI2.OpenNI2Wrapper.oniStreamReadFrame(pImageStream, ref pImageFrame);
+                frame = (OpenNI2.OpenNI2Wrapper.OniFrame)Marshal.PtrToStructure(pImageFrame, typeof(OpenNI2.OpenNI2Wrapper.OniFrame));
               //  Debug.Log("Image frame: " + frame.width + " " + frame.height);
                 Marshal.Copy(frame.data, rawImageMap, 0, rawImageMap.Length);
                 
@@ -1274,7 +1292,20 @@ namespace OpenNI2
                     Image.data[i].g = rawImageMap[rawi+1];
                     Image.data[i].b = rawImageMap[rawi+2];
                 };
-                OpenNI2.OpenNI2Wrapper.oniFrameRelease(pFrame);
+                
+
+                IntPtr pUserFrame = IntPtr.Zero;
+                OpenNI2.NITE2Wrapper.NiteStatus ns = OpenNI2.NITE2Wrapper.niteReadUserTrackerFrame(pUserTracker, ref pUserFrame);
+                Debug.Log("read user tracker frame: " + s + " pFrame: " + pFrame);
+
+                OpenNI2.NITE2Wrapper.NiteUserTrackerFrame userFrame = (OpenNI2.NITE2Wrapper.NiteUserTrackerFrame)Marshal.PtrToStructure(pUserFrame, typeof(OpenNI2.NITE2Wrapper.NiteUserTrackerFrame));
+                Debug.Log("User Frame to Ptr, userCount: " + userFrame.userCount);
+                Marshal.Copy(userFrame.userMap.pixels, LabelMap.data, 0, userFrame.userMap.width* userFrame.userMap.height);
+                OpenNI2.NITE2Wrapper.niteUserTrackerFrameRelease(pUserTracker, pUserFrame);
+                OpenNI2.OpenNI2Wrapper.oniFrameRelease(pDepthFrame);
+                OpenNI2.OpenNI2Wrapper.oniFrameRelease(pImageFrame);
+
+
 
            //     Debug.Log("oniFrameRelease");
              
