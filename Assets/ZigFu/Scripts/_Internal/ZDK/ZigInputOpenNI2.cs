@@ -614,7 +614,7 @@ namespace OpenNI2
             public float y;
             public float z;
             public float w;
-            static public implicit operator Quaternion(NiteQuaternion q) { return new Quaternion(q.x, -q.y, -q.z, q.w); }
+            static public implicit operator Quaternion(NiteQuaternion q) { return new Quaternion(q.x, q.y, -q.z, -q.w); }
         } 
 
         [StructLayout(LayoutKind.Sequential)]
