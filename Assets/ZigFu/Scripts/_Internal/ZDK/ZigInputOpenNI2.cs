@@ -481,6 +481,30 @@ namespace OpenNI2
 	        NITE_JOINT_LEFT_FOOT = 13,
 	        NITE_JOINT_RIGHT_FOOT = 14
         } 
+        public static ZigJointId NiteJointToZig(NiteJointType niteJointType)
+        {
+            switch (niteJointType)
+            {
+                case NiteJointType.NITE_JOINT_HEAD: return ZigJointId.Head;
+	            case NiteJointType.NITE_JOINT_NECK: return ZigJointId.Neck;
+	            case NiteJointType.NITE_JOINT_LEFT_SHOULDER: return ZigJointId.LeftShoulder;
+	            case NiteJointType.NITE_JOINT_RIGHT_SHOULDER: return ZigJointId.RightShoulder;
+	            case NiteJointType.NITE_JOINT_LEFT_ELBOW: return ZigJointId.LeftElbow;
+	            case NiteJointType.NITE_JOINT_RIGHT_ELBOW: return ZigJointId.RightElbow;
+	            case NiteJointType.NITE_JOINT_LEFT_HAND: return ZigJointId.LeftHand;
+	            case NiteJointType.NITE_JOINT_RIGHT_HAND: return ZigJointId.RightHand;
+
+	            case NiteJointType.NITE_JOINT_TORSO: return ZigJointId.Torso;
+
+	            case NiteJointType.NITE_JOINT_LEFT_HIP: return ZigJointId.LeftHip;
+	            case NiteJointType.NITE_JOINT_RIGHT_HIP: return ZigJointId.RightHip;
+	            case NiteJointType.NITE_JOINT_LEFT_KNEE: return ZigJointId.LeftKnee;
+	            case NiteJointType.NITE_JOINT_RIGHT_KNEE: return ZigJointId.RightKnee;
+	            case NiteJointType.NITE_JOINT_LEFT_FOOT: return ZigJointId.LeftFoot;
+                case NiteJointType.NITE_JOINT_RIGHT_FOOT: return ZigJointId.RightFoot;
+                default: return ZigJointId.Head;
+            }
+        }
         /** Possible states of the skeleton */
         public enum NiteSkeletonState : uint
         {
@@ -579,7 +603,9 @@ namespace OpenNI2
             public float x;
             public float y;
             public float z;
+            static public implicit operator Vector3(NitePoint3f p) { return new Vector3(p.x,p.y,-p.z); }
         }
+        
 
         [StructLayout(LayoutKind.Sequential)]
         public struct NiteQuaternion
@@ -588,6 +614,7 @@ namespace OpenNI2
             public float y;
             public float z;
             public float w;
+            static public implicit operator Quaternion(NiteQuaternion q) { return new Quaternion(q.x, -q.y, -q.z, q.w); }
         } 
 
         [StructLayout(LayoutKind.Sequential)]
@@ -635,7 +662,7 @@ namespace OpenNI2
 	        public NiteBoundingBox boundingBox;
 	        public NitePoint3f centerOfMass;
 
-	        public int state;
+            public NiteUserState state;
 
 	        public NiteSkeleton skeleton;
 
@@ -1134,7 +1161,7 @@ namespace OpenNI2
             Debug.Log("State:" + deviceState);
 
         }
-        public bool keepTrying = false;
+        public bool keepTrying = true;
         public bool testConvert = false;
         List<ZigInputUser> users;
 	    public void Update()
@@ -1213,6 +1240,7 @@ namespace OpenNI2
 
         OpenNI2.OpenNI2Wrapper.OniFrame frame;
         IntPtr pFrame;
+        int oldUserCount;
         void UpdateDepth()
         {
             try
@@ -1273,12 +1301,7 @@ namespace OpenNI2
 
                 
                 
-                if (testConvert)
-                {
-                    Vector3 ws = ConvertImageToWorldSpace(new Vector3(10f,10f,(float)Depth.data[10*320+10]));
-                    Debug.Log("test convert: " + ws);
-                    testConvert = false;
-                }
+               
 
                 IntPtr pImageFrame = IntPtr.Zero;
                 s = OpenNI2.OpenNI2Wrapper.oniStreamReadFrame(pImageStream, ref pImageFrame);
@@ -1296,10 +1319,63 @@ namespace OpenNI2
 
                 IntPtr pUserFrame = IntPtr.Zero;
                 OpenNI2.NITE2Wrapper.NiteStatus ns = OpenNI2.NITE2Wrapper.niteReadUserTrackerFrame(pUserTracker, ref pUserFrame);
-                Debug.Log("read user tracker frame: " + s + " pFrame: " + pFrame);
+                //Debug.Log("read user tracker frame: " + s + " pFrame: " + pFrame);
 
                 OpenNI2.NITE2Wrapper.NiteUserTrackerFrame userFrame = (OpenNI2.NITE2Wrapper.NiteUserTrackerFrame)Marshal.PtrToStructure(pUserFrame, typeof(OpenNI2.NITE2Wrapper.NiteUserTrackerFrame));
-                Debug.Log("User Frame to Ptr, userCount: " + userFrame.userCount);
+                //Debug.Log("User Frame to Ptr, userCount: " + userFrame.userCount);
+                OpenNI2.NITE2Wrapper.NiteUserData[] niteUsers = new OpenNI2.NITE2Wrapper.NiteUserData[userFrame.userCount];
+
+                int sizeInBytes = Marshal.SizeOf(typeof(OpenNI2.NITE2Wrapper.NiteUserData));
+                if (testConvert)
+                {
+                    Vector3 ws = ConvertImageToWorldSpace(new Vector3(10f, 10f, (float)Depth.data[10 * 320 + 10]));
+                    Debug.Log("test convert: " + ws);
+                    testConvert = false;
+                
+                    Debug.Log("Size in Bytes " + sizeInBytes);
+                    
+                }
+
+                
+                for(int i = 0; i<userFrame.userCount; i++)
+                {
+                    IntPtr p = new IntPtr((userFrame.pUser.ToInt32() + i * sizeInBytes));
+                    niteUsers[i] = (OpenNI2.NITE2Wrapper.NiteUserData)Marshal.PtrToStructure( p,typeof(OpenNI2.NITE2Wrapper.NiteUserData));
+                    ZigInputUser user = new ZigInputUser(niteUsers[i].id, niteUsers[i].centerOfMass);
+
+                    OpenNI2.NITE2Wrapper.NiteSkeleton skeleton = niteUsers[i].skeleton;
+                                                                                                         
+                    user.Tracked =  skeleton.state == NITE2Wrapper.NiteSkeletonState.NITE_SKELETON_TRACKED;
+
+                    List<ZigInputJoint> joints = new List<ZigInputJoint>();
+                    if (user.Tracked)
+                    {
+                        
+                        foreach (OpenNI2.NITE2Wrapper.NiteSkeletonJoint joint in skeleton.joints)
+                        {
+                            ZigInputJoint zigJoint = new ZigInputJoint(OpenNI2.NITE2Wrapper.NiteJointToZig(joint.jointType));
+                            zigJoint.GoodPosition = joint.positionConfidence > .5f;
+                            zigJoint.Position = joint.position;
+
+                            zigJoint.GoodRotation = joint.orientationConfidence > .5f;
+                            zigJoint.Rotation = joint.orientation;
+                            joints.Add(zigJoint);
+                        }
+                       
+                    }
+                    else
+                    {
+                        ns = OpenNI2.NITE2Wrapper.niteStartSkeletonTracking(pUserTracker, (short)user.Id);
+                    }
+
+                    user.SkeletonData = joints;
+                    users.Add(user);
+                    if (oldUserCount != userFrame.userCount)
+                    {
+                        Debug.Log("UserID i: " + i + " = " + niteUsers[i].id + "user state: " + niteUsers[i].state);
+                    }                
+                }
+                oldUserCount = userFrame.userCount;
                 Marshal.Copy(userFrame.userMap.pixels, LabelMap.data, 0, userFrame.userMap.width* userFrame.userMap.height);
                 OpenNI2.NITE2Wrapper.niteUserTrackerFrameRelease(pUserTracker, pUserFrame);
                 OpenNI2.OpenNI2Wrapper.oniFrameRelease(pDepthFrame);
