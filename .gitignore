@@ -7,3 +7,8 @@ Temp
 *.sln
 *.suo
 Library/assetservercachev3
+/*.ini
+/*.dll
+/*.pdb
+OpenNI2/*
+NiTE2/*

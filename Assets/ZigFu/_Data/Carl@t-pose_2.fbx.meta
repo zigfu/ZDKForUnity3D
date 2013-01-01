@@ -1,340 +1,208 @@
-fileFormatVersion: 1
+fileFormatVersion: 2
 guid: 1d4dd64030a0a8f4184e81ee88b000e0
 ModelImporter:
-  importerVersion: 7
-  meshes:
-    scaleFactor: 0.01
-    useFileUnits: 1
-    meshCompression: 0
-    generateColliders: 0
-    swapUVs: 0
-  tangentSpace:
-    normalImportMode: 0
-    tangentImportMode: 1
-    smoothingAngle: 60
-    splitTangents: 1
-  materials:
-    generation: 1
-  animations:
-    generation: 3
-    bakeAnimations: 0
-    animationCompression: 1
-    animationWrapMode: 0
-    splitAnimations: 1
-  nodeInfo:
-    RightEyelidUpper:
-    - 100000
-    - 400000
-    RightHandMiddle2:
-    - 100002
-    - 400002
-    LeftFootToeBase_End:
-    - 100004
-    - 400004
-    RightHandMiddle1:
-    - 100006
-    - 400006
-    RightHandMiddle3:
-    - 100008
-    - 400008
-    RightEyelidLower:
-    - 100010
-    - 400010
-    RightFootToeBase_End:
-    - 100012
-    - 400012
-    RightHandMiddle4:
-    - 100014
-    - 400014
-    RightHandIndex1:
-    - 100016
-    - 400016
-    RightHandThumb4:
-    - 100018
-    - 400018
-    RightHandThumb3:
-    - 100020
-    - 400020
-    RightHandThumb2:
-    - 100022
-    - 400022
-    RightHandThumb1:
-    - 100024
-    - 400024
-    RightHand:
-    - 100026
-    - 400026
-    RightForeArm:
-    - 100028
-    - 400028
-    RightArm:
-    - 100030
-    - 400030
-    RightShoulder:
-    - 100032
-    - 400032
-    LeftHandPinky4:
-    - 100034
-    - 400034
-    LeftHandPinky3:
-    - 100036
-    - 400036
-    LeftHandPinky2:
-    - 100038
-    - 400038
-    LeftHandPinky1:
-    - 100040
-    - 400040
-    LeftHandRing4:
-    - 100042
-    - 400042
-    LeftHandRing3:
-    - 100044
-    - 400044
-    LeftHandRing2:
-    - 100046
-    - 400046
-    LeftHandRing1:
-    - 100048
-    - 400048
-    LeftHandIndex4:
-    - 100050
-    - 400050
-    LeftHandIndex3:
-    - 100052
-    - 400052
-    LeftHandIndex2:
-    - 100054
-    - 400054
-    LeftHandIndex1:
-    - 100056
-    - 400056
-    LeftHandMiddle4:
-    - 100058
-    - 400058
-    LeftHandMiddle3:
-    - 100060
-    - 400060
-    LeftHandMiddle2:
-    - 100062
-    - 400062
-    LeftHandMiddle1:
-    - 100064
-    - 400064
-    LeftHandThumb4:
-    - 100066
-    - 400066
-    LeftHandThumb3:
-    - 100068
-    - 400068
-    LeftHandThumb2:
-    - 100070
-    - 400070
-    LeftHandThumb1:
-    - 100072
-    - 400072
-    LeftHand:
-    - 100074
-    - 400074
-    LeftForeArm:
-    - 100076
-    - 400076
-    LeftArm:
-    - 100078
-    - 400078
-    LeftShoulder:
-    - 100080
-    - 400080
-    RightLipUpper:
-    - 100082
-    - 400082
-    RightNostril:
-    - 100084
-    - 400084
-    RightCheek:
-    - 100086
-    - 400086
-    RightIOuterBrow:
-    - 100088
-    - 400088
-    RightInnerBrow:
-    - 100090
-    - 400090
-    LeftIOuterBrow:
-    - 100092
-    - 400092
-    LeftInnerBrow:
-    - 100094
-    - 400094
-    LeftEyelidUpper:
-    - 100096
-    - 400096
-    LeftEyelidLower:
-    - 100098
-    - 400098
-    LeftCheek:
-    - 100100
-    - 400100
-    LeftNostril:
-    - 100102
-    - 400102
-    LeftLipUpper:
-    - 100104
-    - 400104
-    LeftLipCorner:
-    - 100106
-    - 400106
-    RightLipCorner:
-    - 100108
-    - 400108
-    RightLipLower:
-    - 100110
-    - 400110
-    JawEND:
-    - 100112
-    - 400112
-    LeftLipLower:
-    - 100114
-    - 400114
-    TongueTip:
-    - 100116
-    - 400116
-    TongueBack:
-    - 100118
-    - 400118
-    Jaw:
-    - 100120
-    - 400120
-    RightEye:
-    - 100122
-    - 400122
-    LeftEye:
-    - 100124
-    - 400124
-    HeadTop_End:
-    - 100126
-    - 400126
-    Head:
-    - 100128
-    - 400128
-    Neck1:
-    - 100130
-    - 400130
-    Neck:
-    - 100132
-    - 400132
-    Spine2:
-    - 100134
-    - 400134
-    Spine1:
-    - 100136
-    - 400136
-    Spine:
-    - 100138
-    - 400138
-    Hips:
-    - 100140
-    - 400140
-    LeftLeg:
-    - 100142
-    - 400142
-    LeftToeBase:
-    - 100144
-    - 400144
-    LeftFoot:
-    - 100146
-    - 400146
-    Glasses:
-    - 100148
-    - 400148
-    - 13700000
-    Hair:
-    - 100150
-    - 400150
-    - 13700002
-    PantsGeo:
-    - 100152
-    - 400152
-    - 13700004
-    HandsGeo:
-    - 100154
-    - 400154
-    - 13700006
-    //RootNode:
-    - 100156
-    - 400156
-    - 11100000
-    HeadGeo:
-    - 100158
-    - 400158
-    - 13700008
-    ShirtGeo:
-    - 100160
-    - 400160
-    - 13700010
-    eyes:
-    - 100162
-    - 400162
-    - 13700012
-    TeethGeo:
-    - 100164
-    - 400164
-    - 13700014
-    ShoesGeo:
-    - 100166
-    - 400166
-    - 13700016
-    RightToeBase:
-    - 100168
-    - 400168
-    RightFoot:
-    - 100170
-    - 400170
-    RightUpLeg:
-    - 100172
-    - 400172
-    RightLeg:
-    - 100174
-    - 400174
-    LeftUpLeg:
-    - 100176
-    - 400176
-    RightHandPinky4:
-    - 100178
-    - 400178
-    RightHandPinky3:
-    - 100180
-    - 400180
-    RightHandPinky2:
-    - 100182
-    - 400182
-    RightHandPinky1:
-    - 100184
-    - 400184
-    RightHandRing4:
-    - 100186
-    - 400186
-    RightHandRing3:
-    - 100188
-    - 400188
-    RightHandRing2:
-    - 100190
-    - 400190
-    RightHandRing1:
-    - 100192
-    - 400192
-    RightHandIndex4:
-    - 100194
-    - 400194
-    RightHandIndex3:
-    - 100196
-    - 400196
-    RightHandIndex2:
-    - 100198
-    - 400198
-AssetImporter:
-  importerVersion: 1
+  serializedVersion: 15
   fileIDToRecycleName:
+    100000: //RootNode
+    100002: eyes
+    100004: Glasses
+    100006: Hair
+    100008: HandsGeo
+    100010: Head
+    100012: HeadGeo
+    100014: HeadTop_End
+    100016: Hips
+    100018: Jaw
+    100020: JawEND
+    100022: LeftArm
+    100024: LeftCheek
+    100026: LeftEye
+    100028: LeftEyelidLower
+    100030: LeftEyelidUpper
+    100032: LeftFoot
+    100034: LeftFootToeBase_End
+    100036: LeftForeArm
+    100038: LeftHand
+    100040: LeftHandIndex1
+    100042: LeftHandIndex2
+    100044: LeftHandIndex3
+    100046: LeftHandIndex4
+    100048: LeftHandMiddle1
+    100050: LeftHandMiddle2
+    100052: LeftHandMiddle3
+    100054: LeftHandMiddle4
+    100056: LeftHandPinky1
+    100058: LeftHandPinky2
+    100060: LeftHandPinky3
+    100062: LeftHandPinky4
+    100064: LeftHandRing1
+    100066: LeftHandRing2
+    100068: LeftHandRing3
+    100070: LeftHandRing4
+    100072: LeftHandThumb1
+    100074: LeftHandThumb2
+    100076: LeftHandThumb3
+    100078: LeftHandThumb4
+    100080: LeftInnerBrow
+    100082: LeftIOuterBrow
+    100084: LeftLeg
+    100086: LeftLipCorner
+    100088: LeftLipLower
+    100090: LeftLipUpper
+    100092: LeftNostril
+    100094: LeftShoulder
+    100096: LeftToeBase
+    100098: LeftUpLeg
+    100100: Neck
+    100102: Neck1
+    100104: PantsGeo
+    100106: RightArm
+    100108: RightCheek
+    100110: RightEye
+    100112: RightEyelidLower
+    100114: RightEyelidUpper
+    100116: RightFoot
+    100118: RightFootToeBase_End
+    100120: RightForeArm
+    100122: RightHand
+    100124: RightHandIndex1
+    100126: RightHandIndex2
+    100128: RightHandIndex3
+    100130: RightHandIndex4
+    100132: RightHandMiddle1
+    100134: RightHandMiddle2
+    100136: RightHandMiddle3
+    100138: RightHandMiddle4
+    100140: RightHandPinky1
+    100142: RightHandPinky2
+    100144: RightHandPinky3
+    100146: RightHandPinky4
+    100148: RightHandRing1
+    100150: RightHandRing2
+    100152: RightHandRing3
+    100154: RightHandRing4
+    100156: RightHandThumb1
+    100158: RightHandThumb2
+    100160: RightHandThumb3
+    100162: RightHandThumb4
+    100164: RightInnerBrow
+    100166: RightIOuterBrow
+    100168: RightLeg
+    100170: RightLipCorner
+    100172: RightLipLower
+    100174: RightLipUpper
+    100176: RightNostril
+    100178: RightShoulder
+    100180: RightToeBase
+    100182: RightUpLeg
+    100184: ShirtGeo
+    100186: ShoesGeo
+    100188: Spine
+    100190: Spine1
+    100192: Spine2
+    100194: TeethGeo
+    100196: TongueBack
+    100198: TongueTip
+    400000: //RootNode
+    400002: eyes
+    400004: Glasses
+    400006: Hair
+    400008: HandsGeo
+    400010: Head
+    400012: HeadGeo
+    400014: HeadTop_End
+    400016: Hips
+    400018: Jaw
+    400020: JawEND
+    400022: LeftArm
+    400024: LeftCheek
+    400026: LeftEye
+    400028: LeftEyelidLower
+    400030: LeftEyelidUpper
+    400032: LeftFoot
+    400034: LeftFootToeBase_End
+    400036: LeftForeArm
+    400038: LeftHand
+    400040: LeftHandIndex1
+    400042: LeftHandIndex2
+    400044: LeftHandIndex3
+    400046: LeftHandIndex4
+    400048: LeftHandMiddle1
+    400050: LeftHandMiddle2
+    400052: LeftHandMiddle3
+    400054: LeftHandMiddle4
+    400056: LeftHandPinky1
+    400058: LeftHandPinky2
+    400060: LeftHandPinky3
+    400062: LeftHandPinky4
+    400064: LeftHandRing1
+    400066: LeftHandRing2
+    400068: LeftHandRing3
+    400070: LeftHandRing4
+    400072: LeftHandThumb1
+    400074: LeftHandThumb2
+    400076: LeftHandThumb3
+    400078: LeftHandThumb4
+    400080: LeftInnerBrow
+    400082: LeftIOuterBrow
+    400084: LeftLeg
+    400086: LeftLipCorner
+    400088: LeftLipLower
+    400090: LeftLipUpper
+    400092: LeftNostril
+    400094: LeftShoulder
+    400096: LeftToeBase
+    400098: LeftUpLeg
+    400100: Neck
+    400102: Neck1
+    400104: PantsGeo
+    400106: RightArm
+    400108: RightCheek
+    400110: RightEye
+    400112: RightEyelidLower
+    400114: RightEyelidUpper
+    400116: RightFoot
+    400118: RightFootToeBase_End
+    400120: RightForeArm
+    400122: RightHand
+    400124: RightHandIndex1
+    400126: RightHandIndex2
+    400128: RightHandIndex3
+    400130: RightHandIndex4
+    400132: RightHandMiddle1
+    400134: RightHandMiddle2
+    400136: RightHandMiddle3
+    400138: RightHandMiddle4
+    400140: RightHandPinky1
+    400142: RightHandPinky2
+    400144: RightHandPinky3
+    400146: RightHandPinky4
+    400148: RightHandRing1
+    400150: RightHandRing2
+    400152: RightHandRing3
+    400154: RightHandRing4
+    400156: RightHandThumb1
+    400158: RightHandThumb2
+    400160: RightHandThumb3
+    400162: RightHandThumb4
+    400164: RightInnerBrow
+    400166: RightIOuterBrow
+    400168: RightLeg
+    400170: RightLipCorner
+    400172: RightLipLower
+    400174: RightLipUpper
+    400176: RightNostril
+    400178: RightShoulder
+    400180: RightToeBase
+    400182: RightUpLeg
+    400184: ShirtGeo
+    400186: ShoesGeo
+    400188: Spine
+    400190: Spine1
+    400192: Spine2
+    400194: TeethGeo
+    400196: TongueBack
+    400198: TongueTip
     4300000: eyes
     4300002: TeethGeo
     4300004: ShirtGeo
@@ -344,4 +212,64 @@ AssetImporter:
     4300012: HandsGeo
     4300014: Glasses
     4300016: Hair
-    7400000: mixamo.com //// Carl@t-pose_2
+    7400000: mixamo.com
+    11100000: //RootNode
+    13700000: eyes
+    13700002: Glasses
+    13700004: Hair
+    13700006: HandsGeo
+    13700008: HeadGeo
+    13700010: PantsGeo
+    13700012: ShirtGeo
+    13700014: ShoesGeo
+    13700016: TeethGeo
+  materials:
+    importMaterials: 1
+    materialName: 3
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 1
+  userData: 
