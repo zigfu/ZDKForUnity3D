@@ -732,7 +732,7 @@ public class NuiWrapper
     public static extern UInt32 NuiImageGetColorPixelCoordinatesFromDepthPixel(NuiImageResolution Resolution, ref NuiImageViewArea ViewArea, int DepthX, int DepthY, ushort DepthValue, out int ColorX, out int ColorY);
 }
 
-class ZigInputKinectSDK : IZigInputReader
+public class ZigInputKinectSDK : IZigInputReader
 {
     static short PLAYER_MASK = 0x00000007;
     NuiWrapper.NuiSkeletonFrame skeletonFrame = new NuiWrapper.NuiSkeletonFrame();
@@ -973,7 +973,7 @@ class ZigInputKinectSDK : IZigInputReader
         {
             x = worldPosition.x / 1000, // Kinect SDK is in meters, we're in millimeters
             y = worldPosition.y / 1000,
-            z = worldPosition.z / 1000,
+            z = -worldPosition.z / 1000,
             w = 1 // this is a homogenous space
         };
         Vector3 result = new Vector3();
@@ -987,7 +987,7 @@ class ZigInputKinectSDK : IZigInputReader
         NuiWrapper.Vector4 pt = NuiWrapper.NuiTransformDepthImageToSkeleton((long)imagePosition.x, (long)imagePosition.y, unshiftedZ);
         return new Vector3(pt.x * 1000, // Kinect SDK is in meters, we're in millimeters
                            pt.y * 1000,
-                           imagePosition.z);
+                           -imagePosition.z);
     }
 
     //-------------------------------------------------------------------------

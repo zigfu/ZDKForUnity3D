@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using OpenNI;
 
 
-class ZigInputOpenNI : IZigInputReader
+public class ZigInputOpenNI : IZigInputReader
 {
 	//-------------------------------------------------------------------------
 	// IZigInputReader interface

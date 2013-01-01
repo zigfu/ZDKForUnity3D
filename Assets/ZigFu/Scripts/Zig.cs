@@ -58,20 +58,5 @@ public class Zig : MonoBehaviour {
     void Zig_Update(ZigInput zig) {
         notifyListeners("Zig_Update", zig);
     }
-
-
-    //TODO: Remove me!!
-    void OnGUI()
-    {
-        if (GUI.Button(new Rect(20, 40, 80, 20), "Try Again"))
-        {
-
-            ZigInput.Instance.keepTrying();
-        }
-        if (GUI.Button(new Rect(20, 70, 80, 20), "Test Convert"))
-        {
-
-            ZigInput.Instance.testConvert();
-        }
-    }
+  
 }

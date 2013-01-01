@@ -121,7 +121,7 @@ public class ZigLabelMap
     }
 }
 
-interface IZigInputReader
+public interface IZigInputReader
 {
 	// init/update/shutdown
 	void Init(ZigInputSettings settings);
@@ -341,19 +341,21 @@ public class ZigInput : MonoBehaviour {
 	//-------------------------------------------------------------------------
 	
 	public List<GameObject> listeners = new List<GameObject>();
-    IZigInputReader reader;
+    public IZigInputReader reader;
 	public bool ReaderInited { get; private set; }
     public bool kinectSDK = false;
 
-    //todo: remove the next two funcitons
-    public void keepTrying()
+    public ZigInputOpenNI getOpenNI()
     {
-        ((OpenNI2.ZigInputOpenNI2)reader).keepTrying = true;
+        return reader as ZigInputOpenNI;
     }
-
-    public void testConvert()
+    public OpenNI2.ZigInputOpenNI2 getOpenNI2()
     {
-        ((OpenNI2.ZigInputOpenNI2)reader).testConvert = true;
+        return reader as OpenNI2.ZigInputOpenNI2;
+    }
+    public ZigInputKinectSDK getKinectSDK()
+    {
+        return reader as ZigInputKinectSDK;
     }
 
     public OpenNI.HandsGenerator GetHands()
