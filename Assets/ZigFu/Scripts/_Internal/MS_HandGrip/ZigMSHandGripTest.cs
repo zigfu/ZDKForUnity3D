@@ -6,9 +6,11 @@ using System.Text;
 using System;
 
 public enum GripHandState { NONE, GRIP, RELEASED };
+public enum GripHandKinectUpdateMode {FROM_UNITY, THREAD};
 
 public class ZigMSHandGripTest : MonoBehaviour {
 
+    public GripHandKinectUpdateMode m_UpdateMode = GripHandKinectUpdateMode.FROM_UNITY;
     public TextMesh m_MsgTxt;
     private StringBuilder m_SBTxt;
     
@@ -17,7 +19,7 @@ public class ZigMSHandGripTest : MonoBehaviour {
 
 
     [DllImport("KinectGrip170_CLR20", EntryPoint = "InitKinectInteraction")]
-    public static extern int InitKinectInteraction();
+    public static extern int InitKinectInteraction(int a_Mode);
 
     [DllImport("KinectGrip170_CLR20", EntryPoint = "FinishKinectInteraction")]
     public static extern int FinishKinectInteraction();
@@ -36,7 +38,7 @@ public class ZigMSHandGripTest : MonoBehaviour {
     // Use this for initialization
 	void Start () {
         // Initialize MS Kinect Interaction Stream
-        InitKinectInteraction();
+        InitKinectInteraction( (int)m_UpdateMode );
 
         m_SBTxt = new StringBuilder(100);
 	}
