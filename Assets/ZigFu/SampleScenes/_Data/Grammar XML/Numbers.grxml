@@ -1,0 +1,26 @@
+<grammar version="1.0" xml:lang="en-US" root="Numbers" tag-format="semantics/1.0-literals" xmlns="http://www.w3.org/2001/06/grammar">
+  <rule id="Numbers">
+    <one-of>
+      <item>
+        <tag>ONE</tag>
+        <one-of>
+          <item>one</item>
+        </one-of>
+      </item>
+      <item>
+        <tag>TWO</tag>
+        <one-of>
+          <item>two</item>
+          <item>to</item>
+          <item>too</item>
+        </one-of>
+      </item>
+      <item>
+        <tag>THREE</tag>
+        <one-of>
+          <item>three</item>
+        </one-of>
+      </item>
+    </one-of>
+  </rule>
+</grammar>

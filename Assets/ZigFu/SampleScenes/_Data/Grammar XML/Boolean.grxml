@@ -1,0 +1,20 @@
+<grammar version="1.0" xml:lang="en-US" root="Boolean" tag-format="semantics/1.0-literals" xmlns="http://www.w3.org/2001/06/grammar">
+  <rule id="Boolean">
+    <one-of>
+      <item>
+        <tag>TRUE</tag>
+        <one-of>
+          <item>true</item>
+          <item>yes</item>
+        </one-of>
+      </item>
+      <item>
+        <tag>FALSE</tag>
+        <one-of>
+          <item>false</item>
+          <item>no</item>
+        </one-of>
+      </item>
+    </one-of>
+  </rule>
+</grammar>

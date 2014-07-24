@@ -1,0 +1,13 @@
+<grammar version="1.0" xml:lang="en-US" root="Restart" tag-format="semantics/1.0-literals" xmlns="http://www.w3.org/2001/06/grammar">
+  <rule id="Restart">
+    <one-of>
+      <item>
+        <tag>RESTART</tag>
+        <one-of>
+          <item>restart</item>
+          <item>try again</item>
+        </one-of>
+      </item>
+    </one-of>
+  </rule>
+</grammar>

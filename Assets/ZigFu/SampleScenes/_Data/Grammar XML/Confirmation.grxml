@@ -1,0 +1,22 @@
+<grammar version="1.0" xml:lang="en-US" root="Confirmation" tag-format="semantics/1.0-literals" xmlns="http://www.w3.org/2001/06/grammar">
+  <rule id="Confirmation">
+    <one-of>
+      <item>
+        <tag>YES</tag>
+        <one-of>
+          <item>yes</item>
+          <item>you got it</item>
+          <item>affirmative</item>
+        </one-of>
+      </item>
+      <item>
+        <tag>NO</tag>
+        <one-of>
+          <item>no</item>
+          <item>no way</item>
+          <item>negative</item>
+        </one-of>
+      </item>
+    </one-of>
+  </rule>
+</grammar>

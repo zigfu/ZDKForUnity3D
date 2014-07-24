@@ -1,0 +1,226 @@
+fileFormatVersion: 2
+guid: fe0c84e67d7e748449dda3691d4ebea8
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Box03
+    100002: Box04
+    100004: Box06
+    100006: Box07
+    100008: Box14
+    100010: Box15
+    100012: Box21
+    100014: Box22
+    100016: Box23
+    100018: Box24
+    100020: Box29
+    100022: Box30
+    100024: Box32
+    100026: Box35
+    100028: Box37
+    100030: Box43
+    100032: Box45
+    100034: Box46
+    100036: Box47
+    100038: Box48
+    100040: Box49
+    100042: Box50
+    100044: Box51
+    100046: Box52
+    100048: Box53
+    100050: Box54
+    100052: Box55
+    100054: Box56
+    100056: eye left
+    100058: eye right
+    100060: gums
+    100062: gums 1
+    100064: head
+    100066: teeths upper
+    100068: tetths lower
+    100070: //RootNode
+    400000: Box03
+    400002: Box04
+    400004: Box06
+    400006: Box07
+    400008: Box14
+    400010: Box15
+    400012: Box21
+    400014: Box22
+    400016: Box23
+    400018: Box24
+    400020: Box29
+    400022: Box30
+    400024: Box32
+    400026: Box35
+    400028: Box37
+    400030: Box43
+    400032: Box45
+    400034: Box46
+    400036: Box47
+    400038: Box48
+    400040: Box49
+    400042: Box50
+    400044: Box51
+    400046: Box52
+    400048: Box53
+    400050: Box54
+    400052: Box55
+    400054: Box56
+    400056: eye left
+    400058: eye right
+    400060: gums
+    400062: gums 1
+    400064: head
+    400066: teeths upper
+    400068: tetths lower
+    400070: //RootNode
+    2300000: Box03
+    2300002: Box04
+    2300004: Box06
+    2300006: Box07
+    2300008: Box14
+    2300010: Box15
+    2300012: Box21
+    2300014: Box22
+    2300016: Box23
+    2300018: Box24
+    2300020: Box29
+    2300022: Box30
+    2300024: Box32
+    2300026: Box35
+    2300028: Box37
+    2300030: Box43
+    2300032: Box45
+    2300034: Box46
+    2300036: Box47
+    2300038: Box48
+    2300040: Box49
+    2300042: Box50
+    2300044: Box51
+    2300046: Box52
+    2300048: Box53
+    2300050: Box54
+    2300052: Box55
+    2300054: Box56
+    2300056: eye left
+    2300058: eye right
+    2300060: gums 1
+    2300062: head
+    3300000: Box03
+    3300002: Box04
+    3300004: Box06
+    3300006: Box07
+    3300008: Box14
+    3300010: Box15
+    3300012: Box21
+    3300014: Box22
+    3300016: Box23
+    3300018: Box24
+    3300020: Box29
+    3300022: Box30
+    3300024: Box32
+    3300026: Box35
+    3300028: Box37
+    3300030: Box43
+    3300032: Box45
+    3300034: Box46
+    3300036: Box47
+    3300038: Box48
+    3300040: Box49
+    3300042: Box50
+    3300044: Box51
+    3300046: Box52
+    3300048: Box53
+    3300050: Box54
+    3300052: Box55
+    3300054: Box56
+    3300056: eye left
+    3300058: eye right
+    3300060: gums 1
+    3300062: head
+    4300000: gums
+    4300002: Box03
+    4300004: Box04
+    4300006: Box29
+    4300008: Box07
+    4300010: Box32
+    4300012: Box35
+    4300014: Box37
+    4300016: Box43
+    4300018: Box49
+    4300020: Box50
+    4300022: Box51
+    4300024: Box52
+    4300026: Box53
+    4300028: Box55
+    4300030: Box14
+    4300032: Box15
+    4300034: Box06
+    4300036: Box21
+    4300038: Box46
+    4300040: Box24
+    4300042: Box48
+    4300044: Box45
+    4300046: Box22
+    4300048: Box47
+    4300050: Box30
+    4300052: Box23
+    4300054: Box54
+    4300056: Box56
+    4300058: head
+    4300060: eye left
+    4300062: eye right
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 0
+    normalImportMode: 0
+    tangentImportMode: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 
